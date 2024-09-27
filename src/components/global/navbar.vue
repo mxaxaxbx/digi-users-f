@@ -10,7 +10,9 @@
     <button>
       <i class="fas fa-bars"></i>
     </button>
-    <router-link to="/" class="text-2xl font-bold text-orange-500">edu</router-link>
+    <router-link to="/" class="text-2xl font-bold text-gray-800">
+      digi
+    </router-link>
     <div class="shrink w-5/6"></div>
     <a :href="usersLink" aria-label="User Profile">
       <i class="fas fa-user" aria-hidden="true"></i>

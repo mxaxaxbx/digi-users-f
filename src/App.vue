@@ -23,7 +23,7 @@
     <!-- footer -->
     <footer class="bg-gray-800 text-white py-8">
       <div class="container mx-auto text-center">
-        <p>&copy; 2024 digi-edu. All rights reserved.</p>
+        <p>&copy; 2024 digi-users. All rights reserved.</p>
       </div>
     </footer>
   </div>
@@ -32,5 +32,5 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
 
-const NavBar = defineAsyncComponent(() => import('./components/global/nav-bar.vue'));
+const NavBar = defineAsyncComponent(() => import('./components/global/navbar.vue'));
 </script>
