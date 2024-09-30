@@ -14,10 +14,10 @@
       digi
     </router-link>
     <div class="shrink w-5/6"></div>
-    <a :href="usersLink" aria-label="User Profile">
+    <router-link to="/auth/login" class="text-gray-800">
       <i class="fas fa-user" aria-hidden="true"></i>
       <span class="sr-only">User Profile</span>
-    </a>
+    </router-link>
   </nav>
 </template>
 
