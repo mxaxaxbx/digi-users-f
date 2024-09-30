@@ -5,6 +5,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: () => import('../views/home.vue'),
+    meta: {
+      title: 'Home',
+    },
   },
   {
     path: '/about',
@@ -19,6 +22,14 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = `${to.meta.title} | digi systems`;
+  }
+
+  next();
 });
 
 export default router;
