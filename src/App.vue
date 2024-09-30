@@ -23,7 +23,7 @@
     <!-- footer -->
     <footer class="bg-gray-800 text-white py-8">
       <div class="container mx-auto text-center">
-        <p>&copy; 2024 digi-users. All rights reserved.</p>
+        <p>&copy; 2024 digi systems. All rights reserved.</p>
       </div>
     </footer>
   </div>
