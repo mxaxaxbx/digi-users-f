@@ -31,6 +31,14 @@ const routes: Array<RouteRecordRaw> = [
           title: 'Login',
         },
       },
+      {
+        path: 'check-code',
+        name: 'check-code',
+        component: () => import('../views/auth/validatecode.vue'),
+        meta: {
+          title: 'Verificar código',
+        },
+      },
     ],
   },
 ];
