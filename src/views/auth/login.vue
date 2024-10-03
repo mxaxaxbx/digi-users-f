@@ -3,7 +3,7 @@
     <h3 class="text-3xl font-bold text-center mt-8"> Iniciar sesión </h3>
     <!-- form -->
     <div class="container mx-auto max-w-md">
-      <form class="mt-8">
+      <form class="mt-8" @submit.prevent="toCheckCode">
         <div class="mb-4">
           <label
             for="email"
@@ -52,6 +52,19 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const email = ref('');
+
+function toCheckCode() {
+  if (!email.value) {
+    return;
+  }
+  router.push({
+    path: '/auth/check-code',
+    query: { email: email.value },
+  });
+}
 </script>
