@@ -3,7 +3,8 @@ export interface AuthStateI {
 }
 
 export interface SendCodeI {
-  phone: string;
+  email: string;
+  code?: string;
 }
 
 export const state: AuthStateI = {

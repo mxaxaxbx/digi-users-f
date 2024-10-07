@@ -58,7 +58,7 @@
       </div>
       <!-- change email address -->
       <div class="w-full my-10 flex justify-center">
-        <router-link to="/auth/sendcode" class="underline cursor-pointer">
+        <router-link to="/auth/login" class="underline cursor-pointer">
           Cambiar correo
         </router-link>
       </div>

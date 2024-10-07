@@ -41,7 +41,9 @@
               hover:bg-blue-700
               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
             "
+            :disabled="loading"
           >
+            <i v-if="loading" class="fas fa-spinner animate-spin mr-2"></i>
             Iniciar sesión
           </button>
         </div>
@@ -52,19 +54,35 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const store = useStore();
 
 const email = ref('');
+const loading = ref(false);
 
-function toCheckCode() {
-  if (!email.value) {
-    return;
+async function toCheckCode() {
+  try {
+    if (!email.value) {
+      return;
+    }
+
+    loading.value = true;
+
+    await store.dispatch('auth/sendcode', {
+      email: email.value,
+    });
+
+    router.push({
+      path: '/auth/check-code',
+      query: { email: email.value },
+    });
+  } catch (error) {
+    console.error(error);
+  } finally {
+    loading.value = false;
   }
-  router.push({
-    path: '/auth/check-code',
-    query: { email: email.value },
-  });
 }
 </script>
