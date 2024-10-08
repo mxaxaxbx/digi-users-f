@@ -1,10 +1,12 @@
 <template>
   <div class="h-screen flex justify-center items-center">
     <div class="
+        -mt-5
+        h-screen
         text-white
-        px-5
+        px-7 py-16
         w-full sm:w-full md:w-1/2 lg:w-1/3
-        shadow-lg rounded
+        --shadow-lg --rounded
         bg-gradient-to-br from-blue-900 to-blue-700
       ">
       <form class="" action="" method="POST" @submit.prevent="validatecode()">
