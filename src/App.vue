@@ -1,5 +1,7 @@
 <template>
   <div class="bg-gray-200">
+    <!-- notifications -->
+    <Notifications />
     <!-- TODO Dark overlay -->
     <!-- menu -->
     <div
@@ -33,4 +35,5 @@
 import { defineAsyncComponent } from 'vue';
 
 const NavBar = defineAsyncComponent(() => import('./components/global/navbar.vue'));
+const Notifications = defineAsyncComponent(() => import('./components/global/notifications.vue'));
 </script>
