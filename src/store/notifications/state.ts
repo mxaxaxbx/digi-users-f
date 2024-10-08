@@ -2,6 +2,7 @@ export interface NotificationI {
   type: string;
   message: string;
   closeIn: number;
+  seconds: number;
 }
 
 export interface NotificationStateI {

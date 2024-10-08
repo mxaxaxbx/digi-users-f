@@ -23,18 +23,35 @@
       "
     >
       <p class="text-sm text-blue-800">{{ notification }}</p>
+      <p> {{ now }} </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineAsyncComponent } from 'vue';
+import {
+  ref,
+  onMounted,
+  defineAsyncComponent,
+  onBeforeUnmount,
+} from 'vue';
+import moment from 'moment';
 
 const notifications = ref(['hola', 'hola', 'hola']);
+// get the current date unix timestamp
+const now = ref(moment().format('X'));
 const MyComponent = ref<any>(null);
+const interval = ref(0);
+
+function updateNow() {
+  interval.value = setInterval(() => {
+    now.value = moment().format('X');
+  }, 1000);
+}
 
 onMounted(async () => {
   try {
+    updateNow();
     const response = await fetch('https://us-east1-digi-io.cloudfunctions.net/mf-test');
     const componentCode = await response.text();
 
@@ -51,4 +68,9 @@ onMounted(async () => {
     console.error(error);
   }
 });
+
+onBeforeUnmount(() => {
+  clearInterval(interval.value);
+});
+
 </script>
