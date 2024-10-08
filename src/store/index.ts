@@ -1,7 +1,7 @@
 import { createStore, Store } from 'vuex';
 
 import auth from './auth';
-import notifications from './notificarions';
+import notifications from './notifications';
 
 import { state, RootStateI } from './state';
 
