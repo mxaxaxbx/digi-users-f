@@ -1,6 +1,8 @@
 import { createStore, Store } from 'vuex';
 
 import auth from './auth';
+import notifications from './notificarions';
+
 import { state, RootStateI } from './state';
 
 const store: Store<RootStateI> = createStore({
@@ -16,5 +18,6 @@ const store: Store<RootStateI> = createStore({
 });
 
 store.registerModule('auth', auth);
+store.registerModule('notifications', notifications);
 
 export default store;
