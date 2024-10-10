@@ -23,7 +23,30 @@
       "
       :class="`border-${notification.color}-500 bg-${notification.color}-100`"
     >
-      <p class="text-sm text-blue-800">{{ notification }}</p>
+      <div class="flex justify-between">
+        <div class="flex items-center">
+          <div class="mr-2">
+            <i class="fas fa-bell" />
+          </div>
+          <div>
+            <p class="font-semibold">{{ notification.title }}</p>
+            <p>{{ notification.message }}</p>
+          </div>
+        </div>
+        <div>
+          <button
+            @click="removeNotification(notification.id)"
+            class="
+              p-1
+              rounded
+              text-white
+            "
+            :class="`bg-${notification.color}-500 hover:bg-${notification.color}-600`"
+          >
+            <i class="fas fa-times" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
