@@ -3,9 +3,9 @@
     class="
       fixed
       top-0
+      px-5
       right-0
       z-50
-      p-4
       w-96
       bg-white bg-opacity-90
     "
@@ -15,15 +15,15 @@
       v-for="(notification, index) in notifications"
       :key="index"
       class="
+        mt-2
         p-2
-        bg-blue-100
-        border-l-4 border-blue-500
+        border-l-4
         shadow
         mb-2
       "
+      :class="`border-${notification.color}-500 bg-${notification.color}-100`"
     >
       <p class="text-sm text-blue-800">{{ notification }}</p>
-      <p> {{ now }} </p>
     </div>
   </div>
 </template>
@@ -34,10 +34,17 @@ import {
   onMounted,
   defineAsyncComponent,
   onBeforeUnmount,
+  watch,
+  computed,
 } from 'vue';
+import { useStore } from 'vuex';
 import moment from 'moment';
 
-const notifications = ref(['hola', 'hola', 'hola']);
+import { NotificationI } from '@/store/notifications/state';
+
+const store = useStore();
+
+const notifications = computed<NotificationI[]>(() => store.state.notifications.notifications);
 // get the current date unix timestamp
 const now = ref(moment().format('X'));
 const MyComponent = ref<any>(null);
@@ -49,23 +56,36 @@ function updateNow() {
   }, 1000);
 }
 
+function removeNotification(id: string) {
+  store.commit('notifications/removeNotification', id);
+}
+
 onMounted(async () => {
   try {
     updateNow();
     const response = await fetch('https://us-east1-digi-io.cloudfunctions.net/mf-test');
     const componentCode = await response.text();
-
-    // dynamically load the component
-    // eslint-disable-next-line arrow-body-style
-    MyComponent.value = defineAsyncComponent(() => {
-      return new Promise((resolve) => {
-        // eslint-disable-next-line no-eval
-        const component = eval(componentCode);
-        resolve(component);
-      });
-    });
   } catch (error) {
     console.error(error);
+  }
+});
+
+// watch each second
+watch(now, (newVal) => {
+  if (notifications.value.length === 0) {
+    return;
+  }
+
+  const notificationsReverse = [...notifications.value].reverse();
+
+  // get the last one
+  const lastNotification = notificationsReverse[notificationsReverse.length - 1];
+  if (lastNotification) {
+    const diff = lastNotification.closeIn - Number(newVal);
+    console.log('diff', diff);
+    if (diff < 0) {
+      removeNotification(lastNotification.id);
+    }
   }
 });
 

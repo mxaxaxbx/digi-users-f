@@ -1,5 +1,7 @@
 export interface NotificationI {
+  id: string;
   type: string;
+  color: string;
   message: string;
   closeIn: number;
   seconds: number;

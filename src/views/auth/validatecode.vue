@@ -51,6 +51,12 @@
             </span>
           </button>
         </div>
+
+        <div class="w-full my-10 flex justify-center">
+          <button @click="test()" class="underline cursor-pointer">
+            test
+          </button>
+        </div>
       </form>
       <div class="w-full my-10 flex justify-center">
         <button v-if="availableIn === 0" @click="resendCode()" class="underline cursor-pointer">
@@ -217,5 +223,13 @@ const resendCode = async () => {
     newInterval(t);
   }, 1000);
 };
+
+function test() {
+  store.commit('notifications/addNotification', {
+    message: 'Hola',
+    type: 'info',
+    seconds: 500,
+  });
+}
 
 </script>
