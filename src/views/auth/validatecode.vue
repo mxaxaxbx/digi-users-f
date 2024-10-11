@@ -43,7 +43,7 @@
             " :class="loading ? 'cursor-not-allowed bg-gray-400' : 'cursor-pointer'"
             :disabled="loading">
             <span v-if="loading">
-              <font-awesome-icon v-if="loading" icon="fa-spinner" class="animate-spin" />
+              <i class="fas fa-spinner animate-spin mr-2"></i>
               Enviando código...
             </span>
             <span v-else>
