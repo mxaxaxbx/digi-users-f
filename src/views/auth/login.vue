@@ -79,8 +79,13 @@ async function toCheckCode() {
       path: '/auth/check-code',
       query: { email: email.value },
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
+    const message = error?.response?.data?.error || 'Ocurrió un error al enviar el código';
+    store.commit('notifications/addNotification', {
+      type: 'error',
+      message,
+    });
   } finally {
     loading.value = false;
   }
