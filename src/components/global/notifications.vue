@@ -10,7 +10,6 @@
       bg-white bg-opacity-90
     "
   >
-    <component :is="MyComponent" />
     <div
       v-for="(notification, index) in notifications"
       :key="index"
@@ -21,7 +20,12 @@
         shadow
         mb-2
       "
-      :class="`border-${notification.color}-500 bg-${notification.color}-100`"
+      :class="{
+        'border-red-500 bg-red-100': notification.type === 'error',
+        'border-green-500 bg-green-100': notification.type === 'success',
+        'border-blue-500 bg-blue-100': notification.type === 'info',
+        'border-yellow-500 bg-yellow-100': notification.type === 'warning',
+      }"
     >
       <div class="flex justify-between">
         <div class="flex items-center">
@@ -40,8 +44,8 @@
               p-1
               rounded
               text-white
+              bg-black
             "
-            :class="`bg-${notification.color}-500 hover:bg-${notification.color}-600`"
           >
             <i class="fas fa-times" />
           </button>
@@ -55,7 +59,6 @@
 import {
   ref,
   onMounted,
-  defineAsyncComponent,
   onBeforeUnmount,
   watch,
   computed,
@@ -70,7 +73,6 @@ const store = useStore();
 const notifications = computed<NotificationI[]>(() => store.state.notifications.notifications);
 // get the current date unix timestamp
 const now = ref(moment().format('X'));
-const MyComponent = ref<any>(null);
 const interval = ref(0);
 
 function updateNow() {
@@ -84,13 +86,7 @@ function removeNotification(id: string) {
 }
 
 onMounted(async () => {
-  try {
-    updateNow();
-    const response = await fetch('https://us-east1-digi-io.cloudfunctions.net/mf-test');
-    const componentCode = await response.text();
-  } catch (error) {
-    console.error(error);
-  }
+  updateNow();
 });
 
 // watch each second
@@ -105,7 +101,6 @@ watch(now, (newVal) => {
   const lastNotification = notificationsReverse[notificationsReverse.length - 1];
   if (lastNotification) {
     const diff = lastNotification.closeIn - Number(newVal);
-    console.log('diff', diff);
     if (diff < 0) {
       removeNotification(lastNotification.id);
     }
