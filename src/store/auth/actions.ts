@@ -13,4 +13,17 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
   ) {
     await usersClient.post('api/auth/sendcode', payload);
   },
+  async validatecode(
+    context: ActionContext<AuthStateI, RootStateI>,
+    payload: SendCodeI,
+  ) {
+    const { data } = await usersClient.post('api/auth/validatecode', payload);
+    const {
+      businesses,
+      permissions,
+      token,
+      user,
+    } = data;
+    console.log('response', data);
+  },
 };
