@@ -52,11 +52,6 @@
           </button>
         </div>
 
-        <div class="w-full my-10 flex justify-center">
-          <button @click="test()" class="underline cursor-pointer">
-            test
-          </button>
-        </div>
       </form>
       <div class="w-full my-10 flex justify-center">
         <button v-if="availableIn === 0" @click="resendCode()" class="underline cursor-pointer">
@@ -121,14 +116,24 @@ onMounted(() => {
   return () => clearInterval(timer);
 });
 
-const validatecode = async () => {
+async function validatecode() {
   loading.value = true;
-  await store.dispatch('auth/validatecode', {
-    email: route.query.email as string,
-    code: code.value.join(''),
-  });
-  loading.value = false;
-};
+  try {
+    await store.dispatch('auth/validatecode', {
+      email: route.query.email as string,
+      code: code.value.join(''),
+    });
+  } catch (err: any) {
+    const message = err?.response?.data?.error || 'Ocurrió un error al validar el código';
+    console.error('auth/validatecode validatecode', err);
+    store.commit('notifications/addNotification', {
+      message,
+      type: 'error',
+    });
+  } finally {
+    loading.value = false;
+  }
+}
 
 const pasteCode = async () => {
   try {
@@ -211,25 +216,27 @@ const setCode = (ev: Event) => {
   }
 };
 
-const resendCode = async () => {
+async function resendCode() {
   loading.value = true;
-  await store.dispatch(
-    'auth/sendcode',
-    { email: route.query.email as string },
-  );
-  loading.value = false;
-  next = moment().add(2, 'minute').unix();
-  const t = setInterval(() => {
-    newInterval(t);
-  }, 1000);
-};
-
-function test() {
-  store.commit('notifications/addNotification', {
-    message: 'Hola',
-    type: 'info',
-    seconds: 500,
-  });
+  try {
+    await store.dispatch(
+      'auth/sendcode',
+      { email: route.query.email as string },
+    );
+  } catch (err: any) {
+    const message = err?.response?.data?.error || 'Ocurrió un error al enviar el código';
+    console.error('auth/validatecode resendCode', err);
+    store.commit('notifications/addNotification', {
+      message,
+      type: 'error',
+    });
+  } finally {
+    loading.value = false;
+    next = moment().add(2, 'minute').unix();
+    const t = setInterval(() => {
+      newInterval(t);
+    }, 1000);
+  }
 }
 
 </script>
