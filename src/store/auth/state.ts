@@ -1,5 +1,11 @@
+export interface BusinessI {
+  id: number;
+  name: string;
+}
+
 export interface AuthStateI {
   token: string;
+  businesses: BusinessI[];
 }
 
 export interface SendCodeI {
@@ -9,4 +15,5 @@ export interface SendCodeI {
 
 export const state: AuthStateI = {
   token: '',
+  businesses: [],
 };
