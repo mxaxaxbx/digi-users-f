@@ -17,11 +17,10 @@ jobs:
       -
         name: Setup .env file
         env:
-          VUE_APP_DIGI_USERS_F_DEV: ${{ secrets.VUE_APP_DIGI_USERS_F_DEV }}
-          VUE_APP_ENV: DEV
+          VUE_APP_URL_DG_USERS_DEV: ${{ secrets.VUE_APP_URL_DG_USERS_DEV }}
+          VUE_APP_ENVIRONMENT: DEV
         run: |
-          branch=dev
-          env="${branch^^}"
+          env="DEV"
           printenv | grep VUE_APP_ > .env
           cat .env
 
