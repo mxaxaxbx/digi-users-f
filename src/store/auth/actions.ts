@@ -24,6 +24,10 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
       token,
       user,
     } = data;
-    console.log('response', data);
+    context.commit('setBusinesses', snakeToCamel(businesses));
+    context.commit('setPermissions', snakeToCamel(permissions));
+    context.commit('setToken', token);
+    context.commit('setUser', snakeToCamel(user));
+    window.location.href = '/app';
   },
 };
