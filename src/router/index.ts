@@ -41,6 +41,18 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  // app routes
+  {
+    path: '/app',
+    name: 'app',
+    component: () => import('../views/app/index.vue'),
+    children: [
+    ],
+    meta: {
+      title: 'Home',
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({
@@ -53,7 +65,18 @@ router.beforeEach((to, from, next) => {
     document.title = `${to.meta.title} | digi systems`;
   }
 
-  next();
+  // redirect to login page if not logged in and trying to access a restricted page
+  if (to.meta.requiresAuth) {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      return next({
+        name: 'login',
+        query: { redirect: to.fullPath },
+      });
+    }
+  }
+
+  return next();
 });
 
 export default router;
