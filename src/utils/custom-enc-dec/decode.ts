@@ -33,6 +33,10 @@ function decodeString(enc: string): string {
   return new TextDecoder().decode(buffer);
 }
 
+function decodeBoolean(enc: string): boolean {
+  return enc === 'T';
+}
+
 function decodeArray(enc: string): any[] {
   const str = decodeString(enc.slice(0));
   const spl = str.split('-');
@@ -69,6 +73,10 @@ function decode(enc: string): { value: DecodedValue, length: number } {
     case 'S': {
       const value = decodeString(enc.slice(1));
       return { value, length: enc.length + 1 };
+    }
+    case 'B': {
+      const value = decodeBoolean(enc.slice(1));
+      return { value, length: 2 };
     }
     case 'A': {
       const value = decodeArray(enc.slice(1));

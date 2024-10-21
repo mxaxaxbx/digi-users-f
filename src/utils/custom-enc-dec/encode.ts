@@ -38,6 +38,10 @@ function encodeString(s: string): EncodedValue {
   return bufferToCustom(buffer);
 }
 
+function encodeBoolean(b: boolean): EncodedValue {
+  return b ? 'T' : 'F';
+}
+
 function encodeArray(arr: Array<any>): EncodedValue {
   const elements: Array<any> = [];
   // eslint-disable-next-line no-restricted-syntax
@@ -61,18 +65,21 @@ function encodeObject(obj: { [key: string]: any }): EncodedValue {
 }
 
 function encode(val: DecodedValue): EncodedValue {
+  console.log('val', val);
   switch (typeof val) {
     case 'number':
       return `N${encodeNumber(val)}`;
     case 'string':
       return `S${encodeString(val)}`;
+    case 'boolean':
+      return `B${encodeBoolean(val)}`;
     case 'object':
       if (Array.isArray(val)) {
         return encodeArray(val);
       }
       return encodeObject(val);
     default:
-      throw new Error('Unsupported type');
+      throw new Error(`Unsupported type: ${typeof val}`);
   }
 }
 
