@@ -30,7 +30,10 @@ function decodeNumber(enc: string): number {
 
 function decodeString(enc: string): string {
   const buffer = customToBuffer(enc);
-  return new TextDecoder().decode(buffer);
+  let txt = new TextDecoder().decode(buffer);
+  // remove trailing spaces
+  txt = txt.replace(/\0/g, '');
+  return txt.trim();
 }
 
 function decodeBoolean(enc: string): boolean {
