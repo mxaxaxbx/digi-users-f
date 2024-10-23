@@ -30,4 +30,11 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context.commit('setUser', snakeToCamel(user));
     window.location.href = '/app';
   },
+  logout(context: ActionContext<AuthStateI, RootStateI>) {
+    context.commit('setBusinesses', []);
+    context.commit('setPermissions', []);
+    context.commit('setToken', '');
+    context.commit('setUser', null);
+    window.location.href = '/';
+  },
 };
