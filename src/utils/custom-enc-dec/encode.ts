@@ -65,7 +65,6 @@ function encodeObject(obj: { [key: string]: any }): EncodedValue {
 }
 
 function encode(val: DecodedValue): EncodedValue {
-  console.log('val', val);
   switch (typeof val) {
     case 'number':
       return `N${encodeNumber(val)}`;
