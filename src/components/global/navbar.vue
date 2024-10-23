@@ -14,7 +14,15 @@
       digi
     </router-link>
     <div class="shrink w-5/6"></div>
-    <router-link to="/auth/login" class="text-gray-800">
+
+    <Dropdown
+      v-if="isAuthenticated"
+      :content="dropdownContent"
+      :options="dropdownOptions"
+      :loading="loading"
+      @action="handleAction"
+    />
+    <router-link v-else to="/auth/login" class="text-gray-800">
       <i class="fas fa-user" aria-hidden="true"></i>
       <span class="sr-only">User Profile</span>
     </router-link>
@@ -22,10 +30,57 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, defineAsyncComponent } from 'vue';
+import { useStore } from 'vuex';
+
+import { UserI } from '@/store/auth/state';
+
+interface Options {
+  content: string;
+  action: string;
+}
+
+const Dropdown = defineAsyncComponent(() => import('@/components/global/dropdown.vue'));
+
+const store = useStore();
 
 const { VUE_APP_ENV } = process.env;
 const VUE_APP_DIGI_USERS_F = process.env[`VUE_APP_DIGI_USERS_F_${VUE_APP_ENV}`];
 
+const isAuthenticated = computed<boolean>(() => store.getters['auth/isAuthenticated']);
+const user = computed<UserI>(() => store.getters['auth/user']);
+
 const usersLink = ref(`${VUE_APP_DIGI_USERS_F}/auth/login?app=edu`);
+const showUserMenu = ref(false);
+const loading = ref(false);
+const dropdownOptions: Options[] = [
+  { content: 'cerrar sesión', action: 'logout' },
+];
+const dropdownContent = ref<string>(user.value ? `
+  <span>
+    ${user.value.firstName.charAt(0)}
+    ${user.value.lastName.charAt(0)}
+  </span>
+` : `
+  <i class="fas fa-user" aria-hidden="true"></i>
+  <span class="sr-only">User Profile</span>
+`);
+
+const closeOnClickOutside = () => {
+  showUserMenu.value = false;
+};
+
+function logout() {
+  store.dispatch('auth/logout');
+}
+
+function handleAction(action: string) {
+  switch (action) {
+    case 'logout':
+      logout();
+      break;
+    default:
+      break;
+  }
+}
 </script>
