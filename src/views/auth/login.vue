@@ -22,7 +22,7 @@
               w-full
               border border-gray-300
               rounded-md shadow-sm
-              focus:outline-none focus:ring-blue-500 focus:border-blue-500
+              focus:outline-none focus:ring-pink-500 focus:border-pink-500
               sm:text-sm
             "
           />
@@ -37,9 +37,9 @@
               border border-transparent
               rounded-md shadow-sm
               text-sm font-medium text-white
-              bg-blue-600
-              hover:bg-blue-700
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+              bg-pink-600
+              hover:bg-pink-700
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500
             "
             :disabled="loading"
           >

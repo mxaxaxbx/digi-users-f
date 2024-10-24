@@ -9,7 +9,7 @@
         </p>
         <a
           href="#products"
-          class="mt-6 inline-block bg-white text-blue-600 py-3 px-6 rounded-lg hover:bg-gray-200"
+          class="mt-6 inline-block bg-white text-pink-600 py-3 px-6 rounded-lg hover:bg-gray-200"
         >
           Explore Products
         </a>

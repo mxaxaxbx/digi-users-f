@@ -7,7 +7,7 @@
         px-7 py-16
         w-full sm:w-full md:w-1/2 lg:w-1/3
         --shadow-lg --rounded
-        bg-gradient-to-br from-blue-900 to-blue-700
+        bg-gradient-to-br from-pink-900 to-pink-700
       ">
       <form class="" action="" method="POST" @submit.prevent="validatecode()">
         <h1 class="w-full text-4xl text-center my-6"> Verificación de email </h1>
