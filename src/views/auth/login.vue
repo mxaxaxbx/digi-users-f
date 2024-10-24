@@ -53,11 +53,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
+const route = useRoute();
 const store = useStore();
 
 const email = ref('');
@@ -77,7 +78,10 @@ async function toCheckCode() {
 
     router.push({
       path: '/auth/check-code',
-      query: { email: email.value },
+      query: {
+        email: email.value,
+        app: route.query.app,
+      },
     });
   } catch (error: any) {
     console.error(error);
@@ -90,4 +94,5 @@ async function toCheckCode() {
     loading.value = false;
   }
 }
+
 </script>

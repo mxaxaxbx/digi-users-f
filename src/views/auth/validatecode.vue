@@ -122,6 +122,7 @@ async function validatecode() {
     await store.dispatch('auth/validatecode', {
       email: route.query.email as string,
       code: code.value.join(''),
+      app: route.query.app as string,
     });
   } catch (err: any) {
     const message = err?.response?.data?.error || 'Ocurrió un error al validar el código';
