@@ -33,6 +33,7 @@ export interface AuthStateI {
 export interface SendCodeI {
   email: string;
   code?: string;
+  app?: string;
 }
 
 export const state: AuthStateI = {
