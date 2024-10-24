@@ -4,13 +4,13 @@
       w-100
       bg-gray-300
       p-4
-      flex items-center space-x-2
+      flex items-center space-x-4
     "
   >
     <button>
       <i class="fas fa-bars"></i>
     </button>
-    <router-link to="/" class="text-2xl font-bold text-gray-800">
+    <router-link to="/" class="text-2xl font-bold text-pink-600">
       digi
     </router-link>
     <div class="shrink w-5/6"></div>
