@@ -19,21 +19,18 @@ function switchApp() {
     return;
   }
 
-  const businesses = localStorage.getItem('businesses');
-  const permissions = localStorage.getItem('permissions');
   const token = localStorage.getItem('token');
-  const user = localStorage.getItem('user');
 
   loading.value = true;
   switch (app) {
     case 'edu': {
       const eduApp = process.env.VUE_APP_URL_DG_EDU_APP;
-      window.location.href = `${eduApp}/auth/confirmsession?token=${token}&user=${user}&businesses=${businesses}&permissions=${permissions}`;
+      window.location.href = `${eduApp}/auth/confirmsession?token=${token}`;
       break;
     }
     case 'care': {
       const careApp = process.env.VUE_APP_URL_DG_CARE_APP;
-      window.location.href = `${careApp}/auth/confirmsession?token=${token}&user=${user}&businesses=${businesses}&permissions=${permissions}`;
+      window.location.href = `${careApp}/auth/confirmsession?token=${token}`;
       break;
     }
     default:
