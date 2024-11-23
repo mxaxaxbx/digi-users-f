@@ -22,10 +22,22 @@ function customToBuffer(encoded: string): ArrayBuffer {
   return new Uint8Array(output).buffer;
 }
 
-function decodeNumber(enc: string): number {
+function decodeInt64(enc: string): bigint {
+  const buffer = customToBuffer(enc);
+  const view = new DataView(buffer);
+  return view.getBigInt64(0);
+}
+
+function decodeFloat64(enc: string): number {
   const buffer = customToBuffer(enc);
   const view = new DataView(buffer);
   return view.getFloat64(0);
+}
+
+function decodeFloat32(enc: string): number {
+  const buffer = customToBuffer(enc);
+  const view = new DataView(buffer);
+  return view.getFloat32(0);
 }
 
 function decodeString(enc: string): string {
@@ -53,17 +65,17 @@ function decodeArray(enc: string): any[] {
 }
 
 function decodeObject(enc: string): { [key: string]: any } {
-  const str = decodeString(enc.slice(0));
+  const str = decodeString(enc);
   const objSplit = str.split('-');
   const objToReturn: { [key: string]: any } = {};
 
   for (let i = 0; i < objSplit.length; i += 1) {
     const [key, value] = objSplit[i].split('_');
     // eslint-disable-next-line no-use-before-define
-    const decodedKey = decode(key);
+    const decodedKey = decodeString(key);
     // eslint-disable-next-line no-use-before-define
     const decodedValue = decode(value);
-    objToReturn[String(decodedKey.value)] = decodedValue.value;
+    objToReturn[decodedKey] = decodedValue.value;
   }
   return objToReturn;
 }
@@ -71,8 +83,22 @@ function decodeObject(enc: string): { [key: string]: any } {
 function decode(enc: string): { value: DecodedValue, length: number } {
   const type = enc[0];
   switch (type) {
-    case 'N':
-      return { value: decodeNumber(enc.slice(1)), length: 12 };
+    // type of integers
+    case 'I':
+      return { value: decodeInt64(enc.slice(3)), length: 12 };
+    // type of floats
+    case 'F': {
+      // get the first three characters and decode the float
+      const tp = enc.slice(0, 3);
+      switch (tp) {
+        case 'F32':
+          return { value: decodeFloat32(enc.slice(3)), length: 8 };
+        case 'F64':
+          return { value: decodeFloat64(enc.slice(3)), length: 12 };
+        default:
+          throw new Error(`Invalid float type ${tp}`);
+      }
+    }
     case 'S': {
       const value = decodeString(enc.slice(1));
       return { value, length: enc.length + 1 };
@@ -89,8 +115,16 @@ function decode(enc: string): { value: DecodedValue, length: number } {
       const value = decodeObject(enc.slice(1));
       return { value, length: enc.length + 1 };
     }
+    case 'T': {
+      const value = decodeObject(enc.slice(1));
+      return { value, length: enc.length + 1 };
+    }
+    case 'L': {
+      const value = decodeArray(enc.slice(1));
+      return { value, length: enc.length + 1 };
+    }
     default:
-      throw new Error('Invalid type');
+      throw new Error(`Invalid type ${type}`);
   }
 }
 

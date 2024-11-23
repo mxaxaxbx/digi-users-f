@@ -26,10 +26,24 @@ function bufferToCustom(buffer: Uint8Array): string {
   return output;
 }
 
-function encodeNumber(n: number): EncodedValue {
+function encodeInt64(n: bigint): string {
+  const buffer = new ArrayBuffer(8);
+  const view = new DataView(buffer);
+  view.setBigInt64(0, n);
+  return bufferToCustom(new Uint8Array(buffer));
+}
+
+function encodeFloat64(n: number): string {
   const buffer = new ArrayBuffer(8);
   const view = new DataView(buffer);
   view.setFloat64(0, n);
+  return bufferToCustom(new Uint8Array(buffer));
+}
+
+function encodeFloat32(n: number): string {
+  const buffer = new ArrayBuffer(4);
+  const view = new DataView(buffer);
+  view.setFloat32(0, n);
   return bufferToCustom(new Uint8Array(buffer));
 }
 
@@ -56,18 +70,24 @@ function encodeArray(arr: Array<any>): EncodedValue {
 }
 
 function encodeObject(obj: { [key: string]: any }): EncodedValue {
-  const encodeEntries = Object.entries(obj)
-  // eslint-disable-next-line no-use-before-define
-    .map(([key, value]) => `${encode(key)}_${encode(value)}`)
-    .join('-');
-  const str = encodeString(encodeEntries);
-  return `O${str}E`;
+  const entries: string[] = [];
+  Object.entries(obj).forEach(([key, value]) => {
+    const fieldName = encodeString(key);
+    // eslint-disable-next-line no-use-before-define
+    const fieldValue = encode(value);
+
+    entries.push(`${fieldName}_${fieldValue}`);
+  });
+  const str = encodeString(entries.join('-'));
+  return `O${str}`;
 }
 
 function encode(val: DecodedValue): EncodedValue {
   switch (typeof val) {
+    case 'bigint':
+      return `I${encodeInt64(val)}`;
     case 'number':
-      return `N${encodeNumber(val)}`;
+      return `F64${encodeFloat64(val)}`;
     case 'string':
       return `S${encodeString(val)}`;
     case 'boolean':
