@@ -62,6 +62,22 @@
             Learn More
           </a>
         </div>
+
+        <!-- fireweb -->
+        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+          <h3 class="text-xl font-bold mb-4">Fireweb</h3>
+          <p class="text-gray-600 mb-4">
+            A web-based application for managing
+            firestore databases using a user-friendly interface.
+          </p>
+          <a
+            :href="firewebLink"
+            target="_blank"
+            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
+          >
+            Learn More
+          </a>
+        </div>
       </div>
     </section>
   </div>
@@ -72,4 +88,5 @@ import { ref } from 'vue';
 
 const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
 const eduAppLink = ref(process.env.VUE_APP_URL_DG_EDU_APP);
+const firewebLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
 </script>
