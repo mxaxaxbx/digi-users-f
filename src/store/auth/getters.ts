@@ -12,8 +12,14 @@ export const getters: GetterTree<AuthStateI, RootStateI> = {
   },
   user: (state) => {
     const encodedUser = localStorage.getItem('user');
-    if (!encodedUser) return null;
-    const { value } = decode(encodedUser);
-    return value as UserI;
+    if (!encodedUser) return state.user;
+    const u = decode(encodedUser).value as any;
+    const user: any = {};
+    Object.keys(u).forEach((key) => {
+      // convert the first letter of the key to lowercase
+      const newKey = key.charAt(0).toLowerCase() + key.slice(1);
+      user[newKey] = u[key];
+    });
+    return user as UserI;
   },
 };
