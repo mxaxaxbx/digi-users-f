@@ -39,6 +39,14 @@ const routes: Array<RouteRecordRaw> = [
           title: 'Verificar código',
         },
       },
+      {
+        path: 'loginwithgoogle',
+        name: 'loginwithgoogle',
+        component: () => import('../views/auth/loginwithgoogle.vue'),
+        meta: {
+          title: 'Login with Google',
+        },
+      },
     ],
   },
   // app routes
