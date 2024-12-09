@@ -7,7 +7,7 @@ import { RootStateI } from '../state';
 
 export const getters: GetterTree<AuthStateI, RootStateI> = {
   isAuthenticated: (state) => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('token');
     return !!user;
   },
   user: (state) => {

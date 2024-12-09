@@ -1,4 +1,4 @@
-export interface BusinessI {
+export interface ProjectI {
   id: number;
   name: string;
 }
@@ -25,9 +25,10 @@ export interface UserI {
 
 export interface AuthStateI {
   token: string;
-  businesses: BusinessI[];
+  projects: ProjectI[];
   permissions: PermissionI[];
   user?: UserI;
+  project?: ProjectI;
 }
 
 export interface SendCodeI {
@@ -38,6 +39,7 @@ export interface SendCodeI {
 
 export const state: AuthStateI = {
   token: '',
-  businesses: [],
+  projects: [],
   permissions: [],
+
 };

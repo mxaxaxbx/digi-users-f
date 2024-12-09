@@ -17,28 +17,33 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context: ActionContext<AuthStateI, RootStateI>,
     payload: SendCodeI,
   ) {
-    const { data } = await usersClient.post('api/auth/validatecode', payload);
-    const {
-      businesses,
-      permissions,
-      token,
-      user,
-    } = data;
-    context.commit('setBusinesses', snakeToCamel(businesses));
-    context.commit('setPermissions', snakeToCamel(permissions));
-    context.commit('setToken', token);
-    context.commit('setUser', snakeToCamel(user));
+    const { data } = await usersClient.post('api/auth/validatecodev2', payload);
+    context.commit('setToken', data);
+    // eslint-disable-next-line no-promise-executor-return
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    await context.dispatch('getUserDetails');
+    await context.dispatch('getUserProjects');
+    await context.dispatch('getUserPermissions');
     if (payload.app) {
       window.location.href = `/app?app=${payload.app}`;
       return;
     }
     window.location.href = '/app';
   },
+  async getUserDetails(context: ActionContext<AuthStateI, RootStateI>, token: string) {
+    const { data } = await usersClient.get('/api/auth/userdetailsv2');
+    context.commit('setUser', data);
+  },
+  async getUserProjects(context: ActionContext<AuthStateI, RootStateI>) {
+    const { data } = await usersClient.get('/api/auth/userbusinesses');
+    context.commit('setProjects', data);
+  },
+  async getUserPermissions(context: ActionContext<AuthStateI, RootStateI>) {
+    const { data } = await usersClient.get('/api/auth/userperms');
+    context.commit('setPermissions', data);
+  },
   logout(context: ActionContext<AuthStateI, RootStateI>) {
-    context.commit('setBusinesses', []);
-    context.commit('setPermissions', []);
     context.commit('setToken', '');
-    context.commit('setUser', null);
-    window.location.href = '/';
+    window.location.href = '/auth/login';
   },
 };

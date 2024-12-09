@@ -1,53 +1,74 @@
 import { MutationTree } from 'vuex';
 
-import { encode } from '@/utils/custom-enc-dec';
+import { decode, encode } from '@/utils/custom-enc-dec';
 
 import {
   AuthStateI,
-  BusinessI,
+  ProjectI,
   PermissionI,
   UserI,
 } from './state';
 
 export const mutations: MutationTree<AuthStateI> = {
-  setBusinesses(state: AuthStateI, payload: BusinessI[]) {
-    if (payload.length === 0) {
-      localStorage.removeItem('businesses');
-      state.businesses = [];
-      return;
-    }
-    const businesses = encode(payload);
-    localStorage.setItem('businesses', businesses);
-    state.businesses = payload;
-  },
-  setPermissions(state: AuthStateI, payload: PermissionI[]) {
-    if (payload.length === 0) {
-      localStorage.removeItem('permissions');
-      state.permissions = [];
-      return;
-    }
-    const permissions = encode(payload);
-    localStorage.setItem('permissions', permissions);
-    state.permissions = payload;
-  },
   setToken(state: AuthStateI, payload: string) {
     if (!payload) {
       localStorage.removeItem('token');
       state.token = '';
       return;
     }
-    const token = encode(payload);
-    localStorage.setItem('token', token);
-    state.token = payload;
+    const { value } = decode(payload);
+    localStorage.setItem('token', payload);
+    console.log('token', value);
+    console.log('token', payload);
+    state.token = value as unknown as string;
   },
-  setUser(state: AuthStateI, payload: UserI) {
+  setUser(state: AuthStateI, payload: string) {
     if (!payload) {
       localStorage.removeItem('user');
       state.user = undefined;
       return;
     }
-    const user = encode(payload);
-    localStorage.setItem('user', user);
-    state.user = payload;
+
+    const { value } = decode(payload);
+    localStorage.setItem('user', payload);
+    state.user = value as unknown as UserI;
+  },
+  setProjects(state: AuthStateI, payload: string) {
+    if (payload.length === 0) {
+      localStorage.removeItem('projects');
+      state.projects = [];
+      return;
+    }
+    const { value } = decode(payload);
+    localStorage.setItem('projects', payload);
+    state.projects = value as unknown as ProjectI[];
+
+    const projectEncoded = localStorage.getItem('project');
+    if (!projectEncoded) {
+      const selectedProject = state.projects[0] as any;
+      selectedProject.ID = Number(selectedProject.ID);
+      const encodeProject = encode(selectedProject);
+      localStorage.setItem('project', encodeProject);
+    }
+  },
+  setProject(state: AuthStateI, payload: ProjectI) {
+    if (!payload) {
+      localStorage.removeItem('project');
+      state.project = undefined;
+      return;
+    }
+    state.project = payload;
+    const projectEncoded = encode(payload);
+    localStorage.setItem('project', projectEncoded);
+  },
+  setPermissions(state: AuthStateI, payload: string) {
+    if (payload.length === 0) {
+      localStorage.removeItem('permissions');
+      state.permissions = [];
+      return;
+    }
+    const { value } = decode(payload);
+    localStorage.setItem('permissions', payload);
+    state.permissions = value as unknown as PermissionI[];
   },
 };
