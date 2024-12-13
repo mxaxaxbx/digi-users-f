@@ -44,13 +44,9 @@ const Dropdown = defineAsyncComponent(() => import('@/components/global/dropdown
 
 const store = useStore();
 
-const { VUE_APP_ENV } = process.env;
-const VUE_APP_DIGI_USERS_F = process.env[`VUE_APP_DIGI_USERS_F_${VUE_APP_ENV}`];
-
 const isAuthenticated = computed<boolean>(() => store.getters['auth/isAuthenticated']);
 const user = computed<UserI>(() => store.getters['auth/user']);
 
-const usersLink = ref(`${VUE_APP_DIGI_USERS_F}/auth/login?app=edu`);
 const showUserMenu = ref(false);
 const loading = ref(false);
 const dropdownOptions: Options[] = [

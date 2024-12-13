@@ -33,6 +33,11 @@ function switchApp() {
       window.location.href = `${careApp}/auth/confirmsession?token=${token}`;
       break;
     }
+    case 'storage': {
+      const storageApp = process.env.VUE_APP_URL_DG_STORAGE_APP;
+      window.location.href = `${storageApp}/auth/confirmsession?token=${token}`;
+      break;
+    }
     default:
       break;
   }
