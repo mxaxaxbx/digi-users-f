@@ -1,8 +1,12 @@
-import { createStore } from 'vuex';
+import { createStore, Store } from 'vuex';
 
-export default createStore({
-  state: {
-  },
+import auth from './auth';
+import notifications from './notifications';
+
+import { state, RootStateI } from './state';
+
+const store: Store<RootStateI> = createStore({
+  state,
   getters: {
   },
   mutations: {
@@ -12,3 +16,8 @@ export default createStore({
   modules: {
   },
 });
+
+store.registerModule('auth', auth);
+store.registerModule('notifications', notifications);
+
+export default store;
