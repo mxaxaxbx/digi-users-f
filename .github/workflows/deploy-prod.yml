@@ -21,7 +21,7 @@ jobs:
           VUE_APP_URL_DG_USERS_P: ${{ secrets.VUE_APP_URL_DG_USERS_P }}
           VUE_APP_URL_DG_CARE_APP: ${{ secrets.VUE_APP_URL_DG_CARE_APP_P }}
           VUE_APP_URL_DG_EDU_APP: ${{ secrets.VUE_APP_URL_DG_EDU_APP_P }}
-          VUE_APP_URL_DG_FIREWEB_APP: ${{ secrets.VUE_APP_URL_DG_FIREWEB_APP_F }}
+          VUE_APP_URL_DG_FIREWEB_APP: ${{ secrets.VUE_APP_URL_DG_FIREWEB_APP_P }}
           VUE_APP_GOOGLE_CLIENT_ID: ${{ secrets.VUE_APP_GOOGLE_CLIENT_ID_P }}
         run: |
           env="P"
