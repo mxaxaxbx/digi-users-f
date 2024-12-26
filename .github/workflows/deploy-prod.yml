@@ -26,7 +26,6 @@ jobs:
         run: |
           env="P"
           printenv | grep VUE_APP_ > .env
-          cat .env
 
       -
         name: Setup Node.js
@@ -54,4 +53,3 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "dist"
-          # deployment_environment: "production"
