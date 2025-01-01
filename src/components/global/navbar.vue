@@ -7,11 +7,15 @@
       flex items-center space-x-4
     "
   >
-    <button>
+    <button @click="toggleSidebar">
       <i class="fas fa-bars"></i>
     </button>
     <router-link to="/" class="text-2xl font-bold text-pink-600">
-      digi
+      <img
+        src="https:///assets.digiapps.com.co/logo.png"
+        alt="Logo"
+        class="w-20 h-8"
+      />
     </router-link>
     <div class="shrink w-5/6"></div>
 
@@ -78,5 +82,9 @@ function handleAction(action: string) {
     default:
       break;
   }
+}
+
+function toggleSidebar() {
+  store.commit('toggleSidebar');
 }
 </script>

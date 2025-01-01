@@ -61,6 +61,15 @@ const routes: Array<RouteRecordRaw> = [
       requiresAuth: true,
     },
   },
+  // privacy policy
+  {
+    path: '/privacy-policy',
+    name: 'privacy-policy',
+    component: () => import('../views/privacy-policy.vue'),
+    meta: {
+      title: 'Privacy Policy',
+    },
+  },
 ];
 
 const router = createRouter({

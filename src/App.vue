@@ -2,9 +2,16 @@
   <div class="bg-gray-200">
     <!-- notifications -->
     <Notifications />
-    <!-- TODO Dark overlay -->
+    <!-- Dark overlay -->
+    <div
+      v-if="showSidebar"
+      class="fixed inset-0 bg-black opacity-50 z-30"
+      @click="toggleSidebar"
+      @keydown="toggleSidebar"
+    ></div>
     <!-- menu -->
     <div
+      v-click-outside="clickOutside"
       class="
         w-full fixed
         z-40
@@ -13,6 +20,7 @@
       "
     >
       <NavBar/>
+      <Sidebar/>
     </div>
     <!-- content -->
     <div
@@ -32,8 +40,35 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, computed } from 'vue';
+import { useStore } from 'vuex';
 
-const NavBar = defineAsyncComponent(() => import('./components/global/navbar.vue'));
 const Notifications = defineAsyncComponent(() => import('./components/global/notifications.vue'));
+const NavBar = defineAsyncComponent(() => import('./components/global/navbar.vue'));
+const Sidebar = defineAsyncComponent(() => import('./components/global/sidebar.vue'));
+
+const store = useStore();
+
+const showSidebar = computed(() => store.state.sidebar);
+
+function toggleSidebar() {
+  store.commit('toggleSidebar');
+}
+
+function clickOutside() {
+  if (showSidebar.value) store.commit('toggleSidebar');
+}
+
 </script>
+
+<style scoped>
+.blocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(0, 0, 0, 0.9); /* Change the alpha value for darkness */
+  z-index: 20; /* Ensure it's above the sidebar */
+}
+</style>
