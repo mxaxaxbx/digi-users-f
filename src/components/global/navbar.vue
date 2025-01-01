@@ -7,11 +7,15 @@
       flex items-center space-x-4
     "
   >
-    <button>
+    <button @click="toggleSidebar">
       <i class="fas fa-bars"></i>
     </button>
     <router-link to="/" class="text-2xl font-bold text-pink-600">
-      digi
+      <img
+        src="https:///assets.digiapps.com.co/logo.png"
+        alt="Logo"
+        class="w-20 h-8"
+      />
     </router-link>
     <div class="shrink w-5/6"></div>
 
@@ -44,13 +48,9 @@ const Dropdown = defineAsyncComponent(() => import('@/components/global/dropdown
 
 const store = useStore();
 
-const { VUE_APP_ENV } = process.env;
-const VUE_APP_DIGI_USERS_F = process.env[`VUE_APP_DIGI_USERS_F_${VUE_APP_ENV}`];
-
 const isAuthenticated = computed<boolean>(() => store.getters['auth/isAuthenticated']);
 const user = computed<UserI>(() => store.getters['auth/user']);
 
-const usersLink = ref(`${VUE_APP_DIGI_USERS_F}/auth/login?app=edu`);
 const showUserMenu = ref(false);
 const loading = ref(false);
 const dropdownOptions: Options[] = [
@@ -82,5 +82,9 @@ function handleAction(action: string) {
     default:
       break;
   }
+}
+
+function toggleSidebar() {
+  store.commit('toggleSidebar');
 }
 </script>

@@ -58,7 +58,10 @@
             Secure cloud storage solutions to store, manage,
             and share files with ease and reliability.
           </p>
-          <a href="#" class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500">
+          <a
+            :href="storageAppLink"
+            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
+          >
             Learn More
           </a>
         </div>
@@ -89,4 +92,5 @@ import { ref } from 'vue';
 const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
 const eduAppLink = ref(process.env.VUE_APP_URL_DG_EDU_APP);
 const firewebLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
+const storageAppLink = ref(process.env.VUE_APP_URL_DG_STORAGE_APP);
 </script>
