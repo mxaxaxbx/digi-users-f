@@ -7,7 +7,7 @@
       flex items-center space-x-4
     "
   >
-    <button>
+    <button @click="toggleSidebar">
       <i class="fas fa-bars"></i>
     </button>
     <router-link to="/" class="text-2xl font-bold text-pink-600">
@@ -82,5 +82,9 @@ function handleAction(action: string) {
     default:
       break;
   }
+}
+
+function toggleSidebar() {
+  store.commit('toggleSidebar');
 }
 </script>
