@@ -4,13 +4,13 @@ import auth from './auth';
 import notifications from './notifications';
 
 import { state, RootStateI } from './state';
+import { mutations } from './mutations';
 
 const store: Store<RootStateI> = createStore({
   state,
   getters: {
   },
-  mutations: {
-  },
+  mutations,
   actions: {
   },
   modules: {

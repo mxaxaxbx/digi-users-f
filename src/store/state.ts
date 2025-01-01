@@ -1,7 +1,7 @@
 export interface RootStateI {
-  version: string;
+  sidebar: boolean;
 }
 
 export const state: RootStateI = {
-  version: '0.0.1',
+  sidebar: false,
 };
