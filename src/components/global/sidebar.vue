@@ -18,8 +18,7 @@
       "
     >
       <h3 class="text-lg font-bold text-gray-900">Menú</h3>
-      <!-- authenticated menu -->
-      <ul v-if="isAuth" class="space-y-2 font-medium">
+      <ul class="space-y-2 font-medium">
         <!-- privacy policy -->
         <li>
           <router-link
