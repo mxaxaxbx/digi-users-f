@@ -35,6 +35,13 @@
       <div class="container mx-auto text-center">
         <p>&copy; 2024 digi systems. All rights reserved.</p>
       </div>
+      <!-- privacy policy -->
+      <router-link
+        to="/privacy-policy"
+        class="block text-center text-gray-400 hover:text-white"
+      >
+        Política de privacidad
+      </router-link>
     </footer>
   </div>
 </template>
