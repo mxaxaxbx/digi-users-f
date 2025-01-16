@@ -21,18 +21,24 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context.commit('setToken', data);
     // eslint-disable-next-line no-promise-executor-return
     // await new Promise((resolve) => setTimeout(resolve, 1000));
-    await context.dispatch('getUserDetails');
+    await context.dispatch('getUserDetails', payload.app);
     await context.dispatch('getUserProjects');
     await context.dispatch('getUserPermissions');
     if (payload.app) {
-      window.location.href = `/app?app=${payload.app}`;
+      window.location.href = `/app/redirect?app=${payload.app}`;
       return;
     }
     window.location.href = '/app';
   },
-  async getUserDetails(context: ActionContext<AuthStateI, RootStateI>, token: string) {
+  async getUserDetails(context: ActionContext<AuthStateI, RootStateI>, app: string) {
     const { data } = await usersClient.get('/api/auth/userdetailsv2');
     context.commit('setUser', data);
+    // get user details from getters
+    const { user } = context.getters;
+    console.log('user', user);
+    if (user?.firstName === '') {
+      window.location.href = `/app/users/edit-profile?app=${app}`;
+    }
   },
   async getUserProjects(context: ActionContext<AuthStateI, RootStateI>) {
     const { data } = await usersClient.get('/api/auth/userbusinesses');
