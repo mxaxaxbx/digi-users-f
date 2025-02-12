@@ -39,6 +39,7 @@ export const mutations: MutationTree<AuthStateI> = {
       state.projects = [];
       return;
     }
+    console.log('payload', payload);
     const { value } = decode(payload);
     localStorage.setItem('projects', payload);
     state.projects = value as unknown as ProjectI[];
