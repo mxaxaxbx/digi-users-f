@@ -21,10 +21,36 @@ export const getters: GetterTree<AuthStateI, RootStateI> = {
     const u = decode(encodedUser).value as any;
     const user: any = {};
     Object.keys(u).forEach((key) => {
+      if (key === 'ID') {
+        user.id = Number(u[key]);
+        return;
+      }
+
+      if (key === 'Created') {
+        user.created = Number(u[key]);
+        return;
+      }
+
+      if (key === 'Updated') {
+        user.updated = Number(u[key]);
+        return;
+      }
+
+      if (key === 'LastLogin') {
+        user.lastLogin = Number(u[key]);
+        return;
+      }
+
+      if (key === 'CreatedBy') {
+        user.createdBy = Number(u[key]);
+        return;
+      }
+
       // convert the first letter of the key to lowercase
       const newKey = key.charAt(0).toLowerCase() + key.slice(1);
       user[newKey] = u[key];
     });
+    console.log(user);
     return user as UserI;
   },
   projects: (state) => {
