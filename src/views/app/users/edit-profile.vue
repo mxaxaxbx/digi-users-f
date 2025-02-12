@@ -22,7 +22,15 @@ const Form = defineAsyncComponent(() => import('@/components/global/customform.v
 const loading = ref(false);
 const fields = ref<CustomFormStateI[]>([
   {
-    name: 'first-name',
+    name: 'username',
+    value: '',
+    type: 'text',
+    label: 'Username',
+    required: true,
+    rules: 'min:3,max:50',
+  },
+  {
+    name: 'firstName',
     value: '',
     type: 'text',
     label: 'First Name',
