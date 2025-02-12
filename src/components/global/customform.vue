@@ -10,11 +10,10 @@
         >
           {{ field.label }}:
         </label>
-        <input
-          :type="field.type"
-          :name="field.name"
+        <div
+          contenteditable="true"
           :id="field.name"
-          :value="field.value"
+          :name="field.name"
           :required="field.required"
           :placeholder="field.placeholder"
           :readonly="field.readonly"
@@ -29,8 +28,8 @@
             p-2.5
           "
           :class="{ 'border-red-500': field.error }"
-          @keyup="validateField"
-        />
+          @input="validateField"
+        >{{ field.value }}</div>
         <p v-if="field.error" class="text-red-500 text-sm mt-1">
           {{ field.error }}
         </p>
