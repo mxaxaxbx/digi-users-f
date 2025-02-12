@@ -12,6 +12,8 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     payload: SendCodeI,
   ) {
     await usersClient.post('api/auth/sendcode', payload);
+    context.commit('setToken', '');
+    context.commit('setUser', '');
   },
   async validatecode(
     context: ActionContext<AuthStateI, RootStateI>,
@@ -50,6 +52,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
   },
   logout(context: ActionContext<AuthStateI, RootStateI>) {
     context.commit('setToken', '');
+    context.commit('setUser', '');
     window.location.href = '/auth/login';
   },
 };
