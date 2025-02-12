@@ -14,7 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent, ref, computed } from 'vue';
+import {
+  defineAsyncComponent,
+  ref,
+  computed,
+  onMounted,
+} from 'vue';
 import { useStore } from 'vuex';
 
 import { CustomFormStateI } from '@/store/custom-form/state';
@@ -53,5 +58,25 @@ const fields = ref<CustomFormStateI[]>([
     rules: 'min:3,max:50',
   },
 ]);
+
+async function getUser() {
+  try {
+    loading.value = true;
+    await store.dispatch('auth/getUser');
+  } catch (error: any) {
+    console.log(error);
+    const message = error.response?.data?.error || 'Failed to get user';
+    store.dispatch('notification/addNotification', {
+      type: 'error',
+      message,
+    });
+  } finally {
+    loading.value = false;
+  }
+}
+
+onMounted(() => {
+  getUser();
+});
 
 </script>
