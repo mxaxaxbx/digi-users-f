@@ -23,7 +23,7 @@
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
-            focus:border-blue-500
+            focus:border-pink-500
             block w-full
             p-2.5
           "
@@ -55,7 +55,7 @@
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
-            focus:border-blue-500
+            focus:border-pink-500
             block w-full
             p-2.5
           "
@@ -93,7 +93,7 @@
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
-            focus:border-blue-500
+            focus:border-pink-500
             block w-full
             p-2.5
           "
@@ -205,7 +205,7 @@
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
-            focus:border-blue-500
+            focus:border-pink-500
             block w-full
             p-2.5
           "
@@ -241,7 +241,7 @@
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
-            focus:border-blue-500
+            focus:border-pink-500
             block w-full
             p-2.5
           "
@@ -277,7 +277,7 @@
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
-            focus:border-blue-500
+            focus:border-pink-500
             block w-full
             p-2.5
           "
@@ -294,13 +294,13 @@
       <button
         type="submit"
         class="
-          bg-blue-500
-          hover:bg-blue-700
+          bg-pink-500
+          hover:bg-pink-700
           text-white
           font-bold
           py-2 px-4
           rounded-lg
-          focus:border-blue-500
+          focus:border-pink-500
         "
         :class="{ 'cursor-not-allowed opacity-50': props.loading }"
       >

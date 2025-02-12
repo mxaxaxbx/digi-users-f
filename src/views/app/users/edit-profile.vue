@@ -5,7 +5,6 @@
     <div class="mb-5">
       <hr />
     </div>
-    {{ user }}
     <Form
       :fields="fields"
       :loading="loading"
@@ -63,6 +62,11 @@ async function getUser() {
   try {
     loading.value = true;
     await store.dispatch('auth/getUser');
+
+    fields.value.forEach((field: CustomFormStateI) => {
+      // eslint-disable-next-line no-param-reassign
+      field.value = (user.value as any)[field.name];
+    });
   } catch (error: any) {
     console.log(error);
     const message = error.response?.data?.error || 'Failed to get user';
