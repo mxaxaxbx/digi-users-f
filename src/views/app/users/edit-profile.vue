@@ -8,6 +8,7 @@
     <Form
       :fields="fields"
       :loading="loading"
+      @update="update"
     />
   </div>
 </template>
@@ -44,17 +45,19 @@ const fields = ref<CustomFormStateI[]>([
     name: 'firstName',
     value: '',
     type: 'text',
-    label: 'First Name',
-    required: true,
+    label: 'Nombres',
+    required: false,
     rules: 'min:3,max:50',
+    error: '',
   },
   {
     name: 'lastName',
     value: '',
     type: 'text',
-    label: 'Last Name',
+    label: 'Apellidos',
     required: true,
     rules: 'min:3,max:50',
+    error: '',
   },
 ]);
 
@@ -77,6 +80,14 @@ async function getUser() {
   } finally {
     loading.value = false;
   }
+}
+
+function update(updatedField: CustomFormStateI) {
+  const field = fields.value.find((f) => f.name === updatedField.name);
+  if (!field) return;
+
+  field.value = updatedField.value;
+  field.error = updatedField.error;
 }
 
 onMounted(() => {

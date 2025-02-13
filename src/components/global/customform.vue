@@ -323,6 +323,7 @@ const emits = defineEmits(['update', 'submit', 'updateQuery', 'addnew']);
 const store = useStore();
 
 const highlightedIndex = ref(0);
+const errors = ref<{ [key: string]: string }>({});
 
 const props = defineProps({
   fields: {
@@ -360,88 +361,65 @@ const validaterules = async (field: CustomFormStateI) => {
   const rules = field.rules?.split(',') ?? [];
   rules.forEach((rule) => {
     const [ruleName, ruleValue] = rule.split(':');
+    const fValue = field.value ?? '';
+
     switch (ruleName) {
       case 'min':
-        if (field.value.length < Number(ruleValue)) {
-          emits('update', {
-            ...field,
-            error: `El campo ${field.label} debe tener al menos ${ruleValue} caracteres`,
-          });
+        if (typeof fValue === 'string' && fValue.length < Number(ruleValue)) {
+          errors.value.min = `El campo ${field.label} debe tener mínimo ${ruleValue} caracteres`;
         } else {
-          emits('update', {
-            ...field,
-            error: '',
-          });
+          errors.value.min = '';
         }
         break;
 
       case 'max':
-        if (field.value.length > Number(ruleValue)) {
-          emits('update', {
-            ...field,
-            error: `El campo ${field.label} debe tener máximo ${ruleValue} caracteres`,
-          });
+        if (typeof fValue === 'string' && fValue.length > Number(ruleValue)) {
+          errors.value.max = `El campo ${field.label} debe tener máximo ${ruleValue} caracteres`;
         } else {
-          emits('update', {
-            ...field,
-            error: '',
-          });
+          errors.value.max = '';
         }
         break;
 
-      case 'email':
-        if (!field.value) {
-          emits('update', {
-            ...field,
-            error: '',
-          });
-          break;
-        }
-        // eslint-disable-next-line no-case-declarations
+      case 'email': {
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        if (!emailRegex.test(field.value)) {
-          emits('update', {
-            ...field,
-            error: `El campo ${field.label} debe ser un correo electrónico válido`,
-          });
+        if (typeof fValue === 'string' && !emailRegex.test(fValue)) {
+          errors.value.email = `El campo ${field.label} debe ser un correo válido`;
         } else {
-          emits('update', {
-            ...field,
-            error: '',
-          });
+          errors.value.email = '';
         }
         break;
+      }
 
       case 'datetime': {
         const date = moment.unix(Number(ruleValue));
         const dateFormated = date.format('YYYY-MM-DDTHH:mm');
         if (Number(field.value) < Number(ruleValue)) {
-          emits('update', {
-            ...field,
-            error: `El campo ${field.label} debe ser mayor a la fecha ${dateFormated}`,
-          });
+          errors.value.datetime = `La fecha debe ser mayor a ${dateFormated}`;
         } else {
-          emits('update', {
-            ...field,
-            error: '',
-          });
+          errors.value.datetime = '';
         }
         break;
       }
       default:
         break;
     }
+
+    const errorsStr = Object.values(errors.value).join('');
+    emits('update', {
+      ...field,
+      error: errorsStr,
+    });
   });
 };
 
 const validateField = (ev: Event) => {
   // get rules of field
-  const field = props.fields.find((f) => f.name === (ev.target as HTMLInputElement).name);
+  const field = props.fields.find((f) => f.name === (ev.target as HTMLElement).id);
   if (!field) return;
 
   emits('update', {
     ...field,
-    value: (ev.target as HTMLInputElement).value,
+    value: (ev.target as HTMLElement).textContent,
   });
 
   // validate field rules
