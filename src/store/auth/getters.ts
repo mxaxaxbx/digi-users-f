@@ -15,6 +15,10 @@ export const getters: GetterTree<AuthStateI, RootStateI> = {
     const user = localStorage.getItem('token');
     return !!user;
   },
+  token: (state) => {
+    const token = localStorage.getItem('token');
+    return token;
+  },
   user: (state) => {
     const encodedUser = localStorage.getItem('user');
     if (!encodedUser) return state.user;

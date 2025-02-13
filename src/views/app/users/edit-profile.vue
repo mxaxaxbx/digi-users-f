@@ -22,6 +22,7 @@ import {
   onMounted,
 } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter, useRoute } from 'vue-router';
 
 import { CustomFormStateI } from '@/store/custom-form/state';
 import { UserI } from '@/store/auth/state';
@@ -29,8 +30,11 @@ import { UserI } from '@/store/auth/state';
 const Form = defineAsyncComponent(() => import('@/components/global/customform.vue'));
 
 const store = useStore();
+const route = useRoute();
+const router = useRouter();
 
 const user = computed<UserI>(() => store.getters['auth/user']);
+const token = computed<string>(() => store.getters['auth/token']);
 
 const loading = ref(false);
 const fields = ref<CustomFormStateI[]>([
@@ -91,6 +95,37 @@ function update(updatedField: CustomFormStateI) {
   field.error = updatedField.error;
 }
 
+function redirectToApp() {
+  console.log('Redirecting to app');
+  const { app, to } = route.query;
+  switch (app) {
+    case 'fireweb': {
+      const { VUE_APP_URL_DG_FIREWEB_APP } = process.env;
+      const url = `${VUE_APP_URL_DG_FIREWEB_APP}/auth/confirmsession?token=${token.value}&to=${to}`;
+      window.location.href = url;
+      break;
+    }
+    case 'edu': {
+      const eduApp = process.env.VUE_APP_URL_DG_EDU_APP;
+      window.location.href = `${eduApp}/auth/confirmsession?token=${token.value}&to=${to}`;
+      break;
+    }
+    case 'care': {
+      const careApp = process.env.VUE_APP_URL_DG_CARE_APP;
+      window.location.href = `${careApp}/auth/confirmsession?token=${token.value}&to=${to}`;
+      break;
+    }
+    case 'storage': {
+      const storageApp = process.env.VUE_APP_URL_DG_STORAGE_APP;
+      window.location.href = `${storageApp}/auth/confirmsession?token=${token.value}&to=${to}`;
+      break;
+    }
+    default:
+      console.error('Invalid app');
+      router.push('/');
+  }
+}
+
 async function submit() {
   // check if there are errors
   const hasErrors = fields.value.some((field) => field.error);
@@ -108,6 +143,14 @@ async function submit() {
       type: 'success',
       message: 'Profile updated successfully',
     });
+
+    const { app } = route.query;
+    if (app) {
+      redirectToApp();
+      return;
+    }
+
+    router.push('/app');
   } catch (error: any) {
     console.log(error);
     const message = error.response?.data?.error || 'Failed to update profile';

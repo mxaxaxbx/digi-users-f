@@ -13,7 +13,7 @@ const route = useRoute();
 const loading = ref(false);
 
 function switchApp() {
-  const app = route.query.app as string;
+  const { app, to } = route.query;
   if (!app) {
     return;
   }
@@ -24,17 +24,17 @@ function switchApp() {
   switch (app) {
     case 'edu': {
       const eduApp = process.env.VUE_APP_URL_DG_EDU_APP;
-      window.location.href = `${eduApp}/auth/confirmsession?token=${token}`;
+      window.location.href = `${eduApp}/auth/confirmsession?token=${token}&to=${to}`;
       break;
     }
     case 'care': {
       const careApp = process.env.VUE_APP_URL_DG_CARE_APP;
-      window.location.href = `${careApp}/auth/confirmsession?token=${token}`;
+      window.location.href = `${careApp}/auth/confirmsession?token=${token}&to=${to}`;
       break;
     }
     case 'storage': {
       const storageApp = process.env.VUE_APP_URL_DG_STORAGE_APP;
-      window.location.href = `${storageApp}/auth/confirmsession?token=${token}`;
+      window.location.href = `${storageApp}/auth/confirmsession?token=${token}&to=${to}`;
       break;
     }
     default:
