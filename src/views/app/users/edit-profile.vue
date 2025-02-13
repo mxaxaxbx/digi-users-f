@@ -9,6 +9,7 @@
       :fields="fields"
       :loading="loading"
       @update="update"
+      @submit="submit"
     />
   </div>
 </template>
@@ -73,7 +74,7 @@ async function getUser() {
   } catch (error: any) {
     console.log(error);
     const message = error.response?.data?.error || 'Failed to get user';
-    store.dispatch('notification/addNotification', {
+    store.commit('notifications/addNotification', {
       type: 'error',
       message,
     });
@@ -88,6 +89,35 @@ function update(updatedField: CustomFormStateI) {
 
   field.value = updatedField.value;
   field.error = updatedField.error;
+}
+
+async function submit() {
+  // check if there are errors
+  const hasErrors = fields.value.some((field) => field.error);
+  if (hasErrors) return;
+
+  try {
+    loading.value = true;
+    const data = fields.value.reduce((acc, field) => {
+      acc[field.name] = field.value;
+      return acc;
+    }, {} as Record<string, any>);
+
+    await store.dispatch('auth/updateuserdata', data);
+    store.commit('notifications/addNotification', {
+      type: 'success',
+      message: 'Profile updated successfully',
+    });
+  } catch (error: any) {
+    console.log(error);
+    const message = error.response?.data?.error || 'Failed to update profile';
+    store.commit('notifications/addNotification', {
+      type: 'error',
+      message,
+    });
+  } finally {
+    loading.value = false;
+  }
 }
 
 onMounted(() => {

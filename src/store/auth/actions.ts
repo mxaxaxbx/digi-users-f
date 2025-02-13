@@ -1,10 +1,10 @@
 import { ActionTree, ActionContext } from 'vuex';
 
 import { usersClient } from '@/http-client';
-import { snakeToCamel } from '@/utils';
+import { camelToSnake, snakeToCamel } from '@/utils';
 
 import { RootStateI } from '../state';
-import { AuthStateI, SendCodeI } from './state';
+import { AuthStateI, SendCodeI, UserI } from './state';
 
 export const actions: ActionTree<AuthStateI, RootStateI> = {
   async sendcode(
@@ -60,6 +60,12 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
   async getUserPermissions(context: ActionContext<AuthStateI, RootStateI>) {
     const { data } = await usersClient.get('/api/auth/userperms');
     context.commit('setPermissions', data);
+  },
+  async updateuserdata(
+    context: ActionContext<AuthStateI, RootStateI>,
+    payload: UserI,
+  ) {
+    await usersClient.patch('/api/auth/updateuserdata', camelToSnake(payload));
   },
   logout(context: ActionContext<AuthStateI, RootStateI>) {
     context.commit('setToken', '');
