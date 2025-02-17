@@ -48,11 +48,12 @@ const router = useRouter();
 const token = ref<string>('');
 
 function redirectToApp() {
-  const { app, to } = route.query;
+  const { app, redirect } = route.query;
   switch (app) {
     case 'fireweb': {
+      const uri = `auth/confirmsession?token=${token.value}&redirect=${redirect}`;
       const { VUE_APP_URL_DG_FIREWEB_APP } = process.env;
-      const url = `${VUE_APP_URL_DG_FIREWEB_APP}/auth/confirmsession?token=${token.value}&to=${to}`;
+      const url = `${VUE_APP_URL_DG_FIREWEB_APP}/${uri}`;
       window.location.href = url;
       break;
     }
