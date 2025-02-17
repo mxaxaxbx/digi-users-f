@@ -96,28 +96,27 @@ function update(updatedField: CustomFormStateI) {
 }
 
 function redirectToApp() {
-  console.log('Redirecting to app');
-  const { app, to } = route.query;
+  const { app, redirect } = route.query;
   switch (app) {
     case 'fireweb': {
       const { VUE_APP_URL_DG_FIREWEB_APP } = process.env;
-      const url = `${VUE_APP_URL_DG_FIREWEB_APP}/auth/confirmsession?token=${token.value}&to=${to}`;
+      const url = `${VUE_APP_URL_DG_FIREWEB_APP}/auth/confirmsession?token=${token.value}&redirect=${redirect}`;
       window.location.href = url;
       break;
     }
     case 'edu': {
       const eduApp = process.env.VUE_APP_URL_DG_EDU_APP;
-      window.location.href = `${eduApp}/auth/confirmsession?token=${token.value}&to=${to}`;
+      window.location.href = `${eduApp}/auth/confirmsession?token=${token.value}&redirect=${redirect}`;
       break;
     }
     case 'care': {
       const careApp = process.env.VUE_APP_URL_DG_CARE_APP;
-      window.location.href = `${careApp}/auth/confirmsession?token=${token.value}&to=${to}`;
+      window.location.href = `${careApp}/auth/confirmsession?token=${token.value}&redirect=${redirect}`;
       break;
     }
     case 'storage': {
       const storageApp = process.env.VUE_APP_URL_DG_STORAGE_APP;
-      window.location.href = `${storageApp}/auth/confirmsession?token=${token.value}&to=${to}`;
+      window.location.href = `${storageApp}/auth/confirmsession?token=${token.value}&redirect=${redirect}`;
       break;
     }
     default:
