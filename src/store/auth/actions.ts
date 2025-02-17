@@ -27,7 +27,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     await context.dispatch('getUserProjects');
     await context.dispatch('getUserPermissions');
     if (payload.app) {
-      window.location.href = `/app/redirect?app=${payload.app}&to=${payload.to}`;
+      window.location.href = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
       return;
     }
     window.location.href = '/app';
@@ -36,7 +36,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context: ActionContext<AuthStateI, RootStateI>,
     payload: {
       app: string,
-      to: string,
+      redirect: string,
     },
   ) {
     const { data } = await usersClient.get('/api/auth/userdetailsv2');
@@ -44,7 +44,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     // get user details from getters
     const { user } = context.getters;
     if (user?.firstName === '') {
-      window.location.href = `/app/users/edit-profile?app=${payload.app ?? ''}&to=${payload.to ?? ''}`;
+      window.location.href = `/app/users/edit-profile?app=${payload.app ?? ''}&redirect=${payload.redirect ?? ''}`;
     }
   },
   async getUser(
