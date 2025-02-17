@@ -54,12 +54,40 @@ const routes: Array<RouteRecordRaw> = [
     path: '/app',
     name: 'app',
     component: () => import('../views/app/index.vue'),
-    children: [
-    ],
     meta: {
       title: 'Home',
       requiresAuth: true,
     },
+    children: [
+      // users
+      {
+        path: 'users',
+        name: 'users',
+        component: () => import('../views/app/users/index.vue'),
+        meta: {
+          title: 'Users',
+        },
+        children: [
+          {
+            path: 'edit-profile',
+            name: 'edit-profile',
+            component: () => import('../views/app/users/edit-profile.vue'),
+            meta: {
+              title: 'Edit Profile',
+            },
+          },
+        ],
+      },
+      // redirect
+      {
+        path: 'redirect',
+        name: 'redirect',
+        component: () => import('../views/app/redirect.vue'),
+        meta: {
+          title: 'Redirect',
+        },
+      },
+    ],
   },
   // privacy policy
   {
