@@ -47,6 +47,14 @@ const routes: Array<RouteRecordRaw> = [
           title: 'Login with Google',
         },
       },
+      {
+        path: 'validategoogletoken',
+        name: 'validategoogletoken',
+        component: () => import('../views/auth/validategoogletoken.vue'),
+        meta: {
+          title: 'Validate Google Token',
+        },
+      },
     ],
   },
   // app routes
