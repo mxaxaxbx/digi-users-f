@@ -119,6 +119,11 @@ function redirectToApp() {
       window.location.href = `${storageApp}/auth/confirmsession?token=${token.value}&redirect=${redirect}`;
       break;
     }
+    case 'atlas': {
+      const atlasApp = process.env.VUE_APP_URL_DG_ATLAS_APP;
+      window.location.href = `${atlasApp}/auth/confirmsession?token=${token.value}&redirect=${redirect}`;
+      break;
+    }
     default:
       console.error('Invalid app');
       router.push('/');
