@@ -58,6 +58,9 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context.commit('setProjects', data);
   },
   async getUserPermissions(context: ActionContext<AuthStateI, RootStateI>) {
+    if (context.state.projects.length === 0) {
+      return;
+    }
     const { data } = await usersClient.get('/api/auth/userperms');
     context.commit('setPermissions', data);
   },
