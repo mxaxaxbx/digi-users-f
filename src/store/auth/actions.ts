@@ -32,6 +32,23 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     }
     window.location.href = '/app';
   },
+  async loginWithToken(
+    context: ActionContext<AuthStateI, RootStateI>,
+    payload: {
+      token: string,
+      app: string,
+      redirect: string,
+    },
+  ) {
+    context.commit('setToken', payload.token);
+    await context.dispatch('getUserDetails', {
+      app: payload.app,
+      redirect: payload.redirect,
+    });
+    await context.dispatch('getUserProjects');
+    await context.dispatch('getUserPermissions');
+    window.location.href = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
+  },
   async getUserDetails(
     context: ActionContext<AuthStateI, RootStateI>,
     payload: {
@@ -74,5 +91,31 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context.commit('setToken', '');
     context.commit('setUser', '');
     window.location.href = '/auth/login';
+  },
+  async validategoogletoken(
+    context: ActionContext<AuthStateI, RootStateI>,
+    payload: string,
+  ) {
+    const formData = new FormData();
+    formData.append('code', payload);
+
+    const { data } = await usersClient.post(
+      '/api/auth/validategoogletoken',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      },
+    );
+
+    const app = sessionStorage.getItem('app');
+    const redirect = sessionStorage.getItem('redirect');
+
+    context.dispatch('loginWithToken', {
+      token: data,
+      app: app ?? '',
+      redirect: redirect ?? '',
+    });
   },
 };
