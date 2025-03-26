@@ -18,8 +18,6 @@ export const mutations: MutationTree<AuthStateI> = {
     }
     const { value } = decode(payload);
     localStorage.setItem('token', payload);
-    console.log('token', value);
-    console.log('token', payload);
     state.token = value as unknown as string;
   },
   setUser(state: AuthStateI, payload: string) {
