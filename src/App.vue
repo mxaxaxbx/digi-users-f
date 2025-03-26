@@ -24,7 +24,7 @@
     </div>
     <!-- content -->
     <div
-      class="pt-16"
+      class="pt-16 min-h-[calc(100vh-4rem)]"
       :class="{
       }"
     >
@@ -33,7 +33,7 @@
     <!-- footer -->
     <footer class="bg-gray-800 text-white py-8">
       <div class="container mx-auto text-center">
-        <p>&copy; 2024 digi systems. All rights reserved.</p>
+        <p>&copy; {{ currentYear }} digi systems. All rights reserved.</p>
       </div>
       <!-- privacy policy -->
       <router-link
@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent, computed } from 'vue';
+import { defineAsyncComponent, computed, ref } from 'vue';
 import { useStore } from 'vuex';
 
 const Notifications = defineAsyncComponent(() => import('./components/global/notifications.vue'));
@@ -57,6 +57,8 @@ const Sidebar = defineAsyncComponent(() => import('./components/global/sidebar.v
 const store = useStore();
 
 const showSidebar = computed(() => store.state.sidebar);
+
+const currentYear = ref(new Date().getFullYear());
 
 function toggleSidebar() {
   store.commit('toggleSidebar');
