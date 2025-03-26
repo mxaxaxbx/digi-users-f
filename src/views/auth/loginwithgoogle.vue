@@ -148,6 +148,10 @@ function generateUri() {
   uriquery.value = Object.keys(queryObject)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(queryObject[key])}`)
     .join('&');
+
+  const { app, redirect } = route.query;
+  sessionStorage.setItem('app', app as string);
+  sessionStorage.setItem('redirect', redirect as string);
 }
 
 onMounted(async () => {
