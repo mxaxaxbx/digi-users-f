@@ -45,13 +45,29 @@ const customPost = async <T = any, D = any>(
   data: D | undefined,
   config: AxiosRequestConfig<D> | undefined,
 ): Promise<AxiosResponse<T>> => {
-  const snakeData = camelToSnake(data);
-  const response = await baseHttpClient({
+  // Check if data is FormData
+  const isFormData = data instanceof FormData;
+
+  // Only transform to snake_case if not FormData
+  const processedData = isFormData ? data : camelToSnake(data);
+
+  // Create a deep copy of the config to avoid mutation issues
+  const mergedConfig: AxiosRequestConfig = {
+    ...(config || {}),
     method: 'POST',
     url,
-    data: snakeData,
-    ...config,
-  });
+    data: processedData,
+  };
+
+  // If it's FormData, ensure the correct Content-Type is set
+  if (isFormData) {
+    mergedConfig.headers = {
+      ...(mergedConfig.headers || {}),
+      'Content-Type': 'multipart/form-data',
+    };
+  }
+
+  const response = await baseHttpClient(mergedConfig);
   return response;
 };
 
