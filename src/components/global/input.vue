@@ -3,9 +3,29 @@
     <div
       ref="editableDiv"
       class="min-h-[40px] p-2 border border-gray-300 rounded-md cursor-text"
+      :class="{
+        'bg-gray-100': props.readonly,
+        'bg-white': !props.readonly,
+        'border-gray-300': !isFocused,
+        'border-blue-500': isFocused,
+      }"
       :contenteditable="!props.readonly"
       @input="handleInput"
+      @keydown="handleKeyDown"
+      @keyup="handleKeyUp"
+      @focus="handleFocus"
+      @blur="handleBlur"
+      @paste="handlePaste"
     ></div>
+
+    <div
+      v-if="placeholderVisble"
+      class="absolute top-2 left-2 text-gray-400"
+      @click="editableDiv?.focus()"
+      @keydown.enter="editableDiv?.focus()"
+    >
+      {{ props.placeholder }}
+    </div>
   </div>
 </template>
 
@@ -16,6 +36,7 @@ import {
   ref,
   watch,
   defineEmits,
+  computed,
 } from 'vue';
 
 const props = defineProps({
@@ -32,10 +53,6 @@ const props = defineProps({
     default: -1,
   },
   autofocus: {
-    type: Boolean,
-    default: false,
-  },
-  sanitize: {
     type: Boolean,
     default: false,
   },
@@ -81,6 +98,9 @@ const emit = defineEmits([
 
 const editableDiv = ref<HTMLDivElement | null>(null);
 const content = ref(props.modelValue);
+const isFocused = ref(false);
+
+const placeholderVisble = computed(() => !content.value && !isFocused.value);
 
 function handleInput(event: Event) {
   if (editableDiv.value) {
@@ -107,6 +127,48 @@ function handleInput(event: Event) {
     }
 
     content.value = text;
+  }
+}
+
+function handleKeyDown(event: KeyboardEvent) {
+  emit('keydown', event);
+
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    emit('enter', content.value);
+  }
+}
+
+function handleKeyUp(event: KeyboardEvent) {
+  emit('keyup', event);
+}
+
+function handleFocus(event: FocusEvent) {
+  isFocused.value = true;
+  emit('focus', event);
+}
+
+function handleBlur(event: FocusEvent) {
+  isFocused.value = false;
+  emit('blur', event);
+}
+
+function handlePaste(event: ClipboardEvent) {
+  event.preventDefault();
+
+  const text = event.clipboardData?.getData('text/plain') || '';
+  const sanitizedText = props.sanitize(text);
+
+  const selection = window.getSelection();
+  if (selection && selection.rangeCount > 0) {
+    const range = selection.getRangeAt(0);
+    range.deleteContents();
+    range.insertNode(document.createTextNode(sanitizedText));
+    range.collapse(false);
+
+    if (editableDiv.value) {
+      content.value = editableDiv.value.innerText;
+    }
   }
 }
 
