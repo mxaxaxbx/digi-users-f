@@ -1,3 +1,14 @@
+<template>
+  <div class="relative w-full">
+    <div
+      ref="editableDiv"
+      class="min-h-[40px] p-2 border border-gray-300 rounded-md cursor-text"
+      :contenteditable="!props.readonly"
+      @input="handleInput"
+    ></div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import {
   onMounted,
@@ -52,6 +63,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  sanitize: {
+    type: Function,
+    default: (text: string) => text,
+  },
 });
 
 const emit = defineEmits([
@@ -66,6 +81,34 @@ const emit = defineEmits([
 
 const editableDiv = ref<HTMLDivElement | null>(null);
 const content = ref(props.modelValue);
+
+function handleInput(event: Event) {
+  if (editableDiv.value) {
+    let text = editableDiv.value.innerText;
+
+    if (props.maxLength > 0 && text.length > props.maxLength) {
+      text = text.substring(0, props.maxLength);
+      editableDiv.value.innerText = text;
+
+      const selection = window.getSelection();
+      if (selection) {
+        const range = document.createRange();
+        range.selectNodeContents(editableDiv.value);
+        range.collapse(false);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+
+    const sanitizedText = props.sanitize(text);
+    if (sanitizedText !== text) {
+      editableDiv.value.innerText = sanitizedText;
+      text = sanitizedText;
+    }
+
+    content.value = text;
+  }
+}
 
 onMounted(() => {
   if (props.autofocus && editableDiv.value) {
