@@ -7,9 +7,10 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRouter();
 const loading = ref(false);
 
 function switchApp() {
@@ -20,7 +21,6 @@ function switchApp() {
 
   const token = localStorage.getItem('token');
 
-  loading.value = true;
   switch (app) {
     case 'edu': {
       const eduApp = process.env.VUE_APP_URL_DG_EDU_APP;
@@ -43,6 +43,9 @@ function switchApp() {
       break;
     }
     default:
+      console.log(`Invalid app specified in query: ${app}`);
+      loading.value = false;
+      router.push({ name: 'home' });
       break;
   }
 }
