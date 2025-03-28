@@ -67,6 +67,15 @@ const routes: Array<RouteRecordRaw> = [
       requiresAuth: true,
     },
     children: [
+      // redirect
+      {
+        path: 'redirect',
+        name: 'redirect',
+        component: () => import('../views/app/redirect.vue'),
+        meta: {
+          title: 'Redirect',
+        },
+      },
       // users
       {
         path: 'users',
@@ -86,14 +95,24 @@ const routes: Array<RouteRecordRaw> = [
           },
         ],
       },
-      // redirect
+      // projects
       {
-        path: 'redirect',
-        name: 'redirect',
-        component: () => import('../views/app/redirect.vue'),
+        path: 'projects',
+        name: 'projects',
+        component: () => import('../views/app/projects/index.vue'),
         meta: {
-          title: 'Redirect',
+          title: 'Projects',
         },
+        children: [
+          {
+            path: 'add',
+            name: 'add',
+            component: () => import('../views/app/projects/add.vue'),
+            meta: {
+              title: 'Add new project',
+            },
+          },
+        ],
       },
     ],
   },
