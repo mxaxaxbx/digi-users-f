@@ -2,7 +2,7 @@
   <div class="bg-white p-4 shadow-lg rounded-lg">
     <h1 class="text-2xl font-bold">Login with Google</h1>
     <!-- line -->
-     <hr class="my-3 border-gray-300 w-full border-2" />
+    <hr class="my-3 border-gray-300 w-full border-2" />
     <button
       @click="loginWithGoogle"
       class="
