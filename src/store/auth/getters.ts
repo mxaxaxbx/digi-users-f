@@ -60,8 +60,9 @@ export const getters: GetterTree<AuthStateI, RootStateI> = {
   projects: (state) => {
     const encodedProjects = localStorage.getItem('projects');
     if (!encodedProjects) return state.projects;
-    const projetcs = decode(encodedProjects).value as ProjectI[];
-    return JSON.parse(projetcs as unknown as string) as ProjectI[];
+    const { value } = decode(encodedProjects);
+    const projects = typeof value === 'string' ? JSON.parse(value) : value as unknown as ProjectI[];
+    return projects;
   },
   project: (state) => {
     const encodedProject = localStorage.getItem('project');
