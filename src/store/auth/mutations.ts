@@ -40,12 +40,11 @@ export const mutations: MutationTree<AuthStateI> = {
 
     const { value } = decode(payload);
     localStorage.setItem('projects', payload);
-    state.projects = value as unknown as ProjectI[];
+    state.projects = JSON.parse(value as unknown as string) as ProjectI[];
 
     const projectEncoded = localStorage.getItem('project');
     if (!projectEncoded && state.projects.length > 0) {
-      const selectedProject = state.projects[0] as any;
-      selectedProject.ID = Number(selectedProject.ID);
+      const selectedProject = state.projects[0] as ProjectI;
       const encodeProject = encode(selectedProject);
       localStorage.setItem('project', encodeProject);
     }
