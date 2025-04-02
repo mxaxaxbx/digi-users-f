@@ -42,6 +42,13 @@ function switchApp() {
       window.location.href = `${atlasApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
       break;
     }
+    case 'fireweb': {
+      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
+      const { VUE_APP_URL_DG_FIREWEB_APP } = process.env;
+      const url = `${VUE_APP_URL_DG_FIREWEB_APP}/${uri}`;
+      window.location.href = url;
+      break;
+    }
     default:
       console.log(`Invalid app specified in query: ${app}`);
       loading.value = false;
