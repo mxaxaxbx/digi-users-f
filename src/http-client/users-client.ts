@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { camelToSnake } from '@/utils/index';
 import { decode } from '@/utils/custom-enc-dec';
+import { ProjectI } from '@/store/auth/state';
 
 const URL_DIGIUSERS = process.env.VUE_APP_URL_DG_USERS;
 
@@ -82,9 +83,8 @@ baseHttpClient.interceptors.request.use((config) => {
   const project = localStorage.getItem('project');
   if (project) {
     const { value } = decode(project);
-    const pro = value as { [key: string]: any };
-    const projectId = pro.ID;
-    modifiedConfig.headers['Dg-Businessid'] = projectId;
+    const pro = value as ProjectI;
+    modifiedConfig.headers['Dg-Project-ID'] = pro.id;
   }
 
   return modifiedConfig;
