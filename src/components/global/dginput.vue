@@ -37,6 +37,7 @@ import {
   watch,
   defineEmits,
   computed,
+  nextTick,
 } from 'vue';
 
 const props = defineProps({
@@ -172,10 +173,19 @@ function handlePaste(event: ClipboardEvent) {
   }
 }
 
-onMounted(() => {
-  if (props.autofocus && editableDiv.value) {
-    editableDiv.value.focus();
+function updateContent() {
+  if (editableDiv.value) {
+    editableDiv.value.innerText = content.value || '';
   }
+}
+
+onMounted(() => {
+  nextTick(() => {
+    updateContent();
+    if (props.autofocus && editableDiv.value) {
+      editableDiv.value.focus();
+    }
+  });
 });
 
 watch(() => props.modelValue, (newValue) => {
