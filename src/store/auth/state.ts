@@ -1,6 +1,7 @@
 export interface ProjectI {
   id: number;
   name: string;
+  number: string;
 }
 
 export interface PermissionI {
