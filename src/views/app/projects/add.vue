@@ -38,8 +38,14 @@ import {
   ref,
   onMounted,
 } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 const dgInput = defineAsyncComponent(() => import('@/components/global/dginput.vue'));
+
+const router = useRouter();
+const route = useRoute();
+const store = useStore();
 
 const projectName = ref('');
 const loading = ref(false);
@@ -49,8 +55,37 @@ function generateRandomName() {
   projectName.value = `My Project ${randomNumber}`;
 }
 
-function submit() {
-  console.log('Project Name:', projectName.value);
+async function submit() {
+  loading.value = true;
+  try {
+    if (!projectName.value) {
+      store.commit('notifications/addNotification', {
+        message: 'Project name is required',
+        type: 'error',
+      });
+      return;
+    }
+    await store.dispatch('projects/createProject', {
+      name: projectName.value,
+      app: route.query.app ? route.query.app : '',
+    });
+
+    router.push({
+      path: '/app/redirect',
+      query: {
+        app: route.query.app ? route.query.app : '',
+        redirect: route.query.redirect ? route.query.redirect : '',
+      },
+    });
+  } catch (error: any) {
+    const message = error?.response?.data?.message || 'An error occurred while creating the project';
+    store.commit('notifications/addNotification', {
+      message,
+      type: 'error',
+    });
+  } finally {
+    loading.value = false;
+  }
 }
 
 onMounted(() => {
