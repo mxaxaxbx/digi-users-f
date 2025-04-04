@@ -41,7 +41,7 @@
           pb-10
         "
       >
-        <label for="projectID">
+        <label v-if="project?.id" for="projectID">
           <select
             v-model="project.id"
             @change="changeProject"
