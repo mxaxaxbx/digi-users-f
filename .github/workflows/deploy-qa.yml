@@ -29,7 +29,6 @@ jobs:
         run: |
           env="QA"
           printenv | grep VUE_APP_ > .env
-          cat .env
 
       -
         name: Setup Node.js
