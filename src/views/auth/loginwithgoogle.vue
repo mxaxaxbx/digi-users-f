@@ -38,6 +38,10 @@ const route = useRoute();
 const uriquery = ref<string>('');
 
 function generateUri() {
+  const { app, redirect } = route.query;
+  sessionStorage.setItem('app', app as string || ''); // Default to empty string if app is not provided
+  sessionStorage.setItem('redirect', redirect as string || ''); // Default to empty string if redirect is not provided
+
   const queryObject: any = {
     response_type: 'code',
     client_id: process.env.VUE_APP_GOOGLE_CLIENT_ID,
@@ -50,10 +54,6 @@ function generateUri() {
   uriquery.value = Object.keys(queryObject)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(queryObject[key])}`)
     .join('&');
-
-  const { app, redirect } = route.query;
-  sessionStorage.setItem('app', app as string);
-  sessionStorage.setItem('redirect', redirect as string);
 }
 
 onMounted(async () => {
