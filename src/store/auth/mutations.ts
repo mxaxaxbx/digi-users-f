@@ -18,8 +18,6 @@ export const mutations: MutationTree<AuthStateI> = {
     }
     const { value } = decode(payload);
     localStorage.setItem('token', payload);
-    console.log('token', value);
-    console.log('token', payload);
     state.token = value as unknown as string;
   },
   setUser(state: AuthStateI, payload: string) {
@@ -39,15 +37,14 @@ export const mutations: MutationTree<AuthStateI> = {
       state.projects = [];
       return;
     }
-    console.log('payload', payload);
+
     const { value } = decode(payload);
     localStorage.setItem('projects', payload);
-    state.projects = value as unknown as ProjectI[];
+    state.projects = typeof value === 'string' ? JSON.parse(value) : value as unknown as ProjectI[];
 
     const projectEncoded = localStorage.getItem('project');
-    if (!projectEncoded) {
-      const selectedProject = state.projects[0] as any;
-      selectedProject.ID = Number(selectedProject.ID);
+    if (!projectEncoded && state.projects.length > 0) {
+      const selectedProject = state.projects[0] as ProjectI;
       const encodeProject = encode(selectedProject);
       localStorage.setItem('project', encodeProject);
     }

@@ -2,9 +2,9 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { camelToSnake } from '@/utils/index';
 import { decode } from '@/utils/custom-enc-dec';
+import { ProjectI } from '@/store/auth/state';
 
-const ENVIRONMENT = process.env.VUE_APP_ENVIRONMENT ?? 'DEV';
-const URL_DIGIUSERS = process.env[`VUE_APP_URL_DG_USERS_${ENVIRONMENT}`];
+const URL_DIGIUSERS = process.env.VUE_APP_URL_DG_USERS;
 
 const baseHttpClient = axios.create({
   baseURL: URL_DIGIUSERS,
@@ -46,13 +46,29 @@ const customPost = async <T = any, D = any>(
   data: D | undefined,
   config: AxiosRequestConfig<D> | undefined,
 ): Promise<AxiosResponse<T>> => {
-  const snakeData = camelToSnake(data);
-  const response = await baseHttpClient({
+  // Check if data is FormData
+  const isFormData = data instanceof FormData;
+
+  // Only transform to snake_case if not FormData
+  const processedData = isFormData ? data : camelToSnake(data);
+
+  // Create a deep copy of the config to avoid mutation issues
+  const mergedConfig: AxiosRequestConfig = {
+    ...(config || {}),
     method: 'POST',
     url,
-    data: snakeData,
-    ...config,
-  });
+    data: processedData,
+  };
+
+  // If it's FormData, ensure the correct Content-Type is set
+  if (isFormData) {
+    mergedConfig.headers = {
+      ...(mergedConfig.headers || {}),
+      'Content-Type': 'multipart/form-data',
+    };
+  }
+
+  const response = await baseHttpClient(mergedConfig);
   return response;
 };
 
@@ -67,9 +83,8 @@ baseHttpClient.interceptors.request.use((config) => {
   const project = localStorage.getItem('project');
   if (project) {
     const { value } = decode(project);
-    const pro = value as { [key: string]: any };
-    const projectId = pro.ID;
-    modifiedConfig.headers['Dg-Businessid'] = projectId;
+    const pro = value as ProjectI;
+    modifiedConfig.headers['Dg-Project-ID'] = pro.id;
   }
 
   return modifiedConfig;

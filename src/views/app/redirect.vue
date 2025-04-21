@@ -7,9 +7,10 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRouter();
 const loading = ref(false);
 
 function switchApp() {
@@ -20,7 +21,6 @@ function switchApp() {
 
   const token = localStorage.getItem('token');
 
-  loading.value = true;
   switch (app) {
     case 'edu': {
       const eduApp = process.env.VUE_APP_URL_DG_EDU_APP;
@@ -37,7 +37,22 @@ function switchApp() {
       window.location.href = `${storageApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
       break;
     }
+    case 'atlas': {
+      const atlasApp = process.env.VUE_APP_URL_DG_ATLAS_APP;
+      window.location.href = `${atlasApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
+      break;
+    }
+    case 'fireweb': {
+      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
+      const { VUE_APP_URL_DG_FIREWEB_APP } = process.env;
+      const url = `${VUE_APP_URL_DG_FIREWEB_APP}/${uri}`;
+      window.location.href = url;
+      break;
+    }
     default:
+      console.log(`Invalid app specified in query: ${app}`);
+      loading.value = false;
+      router.push({ name: 'home' });
       break;
   }
 }
