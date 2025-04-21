@@ -23,6 +23,8 @@ jobs:
           VUE_APP_URL_DG_EDU_APP: ${{ secrets.VUE_APP_URL_DG_EDU_APP_P }}
           VUE_APP_URL_DG_FIREWEB_APP: ${{ secrets.VUE_APP_URL_DG_FIREWEB_APP_P }}
           VUE_APP_GOOGLE_CLIENT_ID: ${{ secrets.VUE_APP_GOOGLE_CLIENT_ID_P }}
+          VUE_APP_DIGI_USERS_F: ${{ secrets.VUE_APP_DIGI_USERS_F_P }}
+          VUE_APP_URL_DG_ATLAS_APP: ${{ secrets.VUE_APP_URL_DG_ATLAS_APP_P }}
         run: |
           env="P"
           printenv | grep VUE_APP_ > .env
