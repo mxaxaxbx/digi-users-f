@@ -8,7 +8,15 @@
     <url>
         <loc>https://www.digiapps.com.co/</loc>
         <lastmod>2024-12-26</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>monthly</changefreq>
         <priority>1.0</priority>
+    </url>
+
+    <!-- fireweb -->
+    <url>
+        <loc>https://fireweb.digiapps.com.co/</loc>
+        <lastmod>2025-05-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
     </url>
 </urlset>
