@@ -14,6 +14,6 @@ export const actions: ActionTree<ProjectStateI, RootStateI> = {
       app: string,
     },
   ) {
-    await usersClient.post(`api/projects/crate?app=${payload.app}`, payload);
+    await usersClient.post(`api/projects/create?app=${payload.app}`, payload);
   },
 };
