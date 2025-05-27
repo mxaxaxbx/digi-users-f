@@ -65,7 +65,7 @@ async function submit() {
       });
       return;
     }
-    await store.dispatch('projects/createProject', {
+    await store.dispatch('projects/create', {
       name: projectName.value,
       app: route.query.app ? route.query.app : '',
     });
