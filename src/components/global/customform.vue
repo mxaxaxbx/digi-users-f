@@ -10,26 +10,18 @@
         >
           {{ field.label }}:
         </label>
-        <div
-          contenteditable="true"
-          :id="field.name"
-          :name="field.name"
-          :required="field.required"
+        <dg-input
+          v-model="field.value"
           :placeholder="field.placeholder"
+          :type="field.type"
+          :name="field.name"
+          :id="field.name"
           :readonly="field.readonly"
           :disabled="field.disabled"
-          class="
-            bg-gray-50
-            border border-gray-300
-            text-gray-900 text-sm
-            rounded-lg
-            focus:border-pink-500
-            block w-full
-            p-2.5
-          "
+          :required="field.required"
           :class="{ 'border-red-500': field.error }"
           @input="validateField"
-        >{{ field.value }}</div>
+        />
         <p v-if="field.error" class="text-red-500 text-sm mt-1">
           {{ field.error }}
         </p>
@@ -312,11 +304,18 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref } from 'vue';
+import {
+  defineProps,
+  defineEmits,
+  ref,
+  defineAsyncComponent,
+} from 'vue';
 import { useStore } from 'vuex';
 import moment from 'moment';
 
 import { CustomFormStateI, FormOptionsI } from '@/store/custom-form/state';
+
+const DgInput = defineAsyncComponent(() => import('@/components/global/dginput.vue'));
 
 const emits = defineEmits(['update', 'submit', 'updateQuery', 'addnew']);
 
