@@ -70,6 +70,14 @@ async function submit() {
       app: route.query.app ? route.query.app : '',
     });
 
+    store.commit('notifications/addNotification', {
+      message: 'Creating project... Please wait a moment',
+      type: 'success',
+    });
+
+    // eslint-disable-next-line no-promise-executor-return
+    await new Promise((r) => setTimeout(r, 3000));
+
     router.push({
       path: '/app/redirect',
       query: {
