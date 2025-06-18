@@ -26,6 +26,7 @@ jobs:
           VUE_APP_GOOGLE_CLIENT_ID: ${{ secrets.VUE_APP_GOOGLE_CLIENT_ID_DEV }}
           VUE_APP_DIGI_USERS_F: ${{ secrets.VUE_APP_DIGI_USERS_F_DEV }}
           VUE_APP_URL_DG_ATLAS_APP: ${{ secrets.VUE_APP_URL_DG_ATLAS_APP_DEV }}
+          VUE_APP_DG_APP_SUBS: ${{ secrets.VUE_APP_DG_APP_SUBS_DEV }}
         run: |
           env="DEV"
           printenv | grep VUE_APP_ > .env
