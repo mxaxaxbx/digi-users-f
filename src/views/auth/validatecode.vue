@@ -61,7 +61,10 @@
       </div>
       <!-- change email address -->
       <div class="w-full my-10 flex justify-center">
-        <router-link to="/auth/login" class="underline cursor-pointer">
+        <router-link
+          :to="`/auth/login?app=${app}&redirect=${redirect}`"
+          class="underline cursor-pointer"
+        >
           Cambiar correo
         </router-link>
       </div>
@@ -70,8 +73,8 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
 import { ref, onMounted, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import moment from 'moment';
 
@@ -83,6 +86,8 @@ const loading = ref(false);
 const email = ref('');
 const code = ref<number[]>([0, 0, 0, 0, 0]);
 const availableIn = ref(0);
+const app = ref('');
+const redirect = ref('');
 
 const formattedAvailableIn = computed(() => {
   const minutes = Math.floor(availableIn.value / 60);
@@ -112,7 +117,15 @@ onMounted(() => {
   if (!route.query.email) {
     router.push({ path: '/auth/sendcode' });
   }
-  email.value = route.query.email as string;
+  email.value = typeof route.query.email === 'string'
+    ? route.query.email
+    : '';
+  app.value = typeof route.query.app === 'string'
+    ? route.query.app
+    : '';
+  redirect.value = typeof route.query.redirect === 'string'
+    ? route.query.redirect
+    : '';
   return () => clearInterval(timer);
 });
 
@@ -120,9 +133,10 @@ async function validatecode() {
   loading.value = true;
   try {
     await store.dispatch('auth/validatecode', {
-      email: route.query.email as string,
+      email: typeof route.query.email === 'string' ? route.query.email : '',
       code: code.value.join(''),
-      app: route.query.app as string,
+      app: typeof route.query.app === 'string' ? route.query.app : '',
+      redirect: typeof route.query.redirect === 'string' ? route.query.redirect : '',
     });
   } catch (err: any) {
     const message = err?.response?.data?.error || 'Ocurrió un error al validar el código';
@@ -222,7 +236,9 @@ async function resendCode() {
   try {
     await store.dispatch(
       'auth/sendcode',
-      { email: route.query.email as string },
+      {
+        email: typeof route.query.email === 'string' ? route.query.email : '',
+      },
     );
   } catch (err: any) {
     const message = err?.response?.data?.error || 'Ocurrió un error al enviar el código';
