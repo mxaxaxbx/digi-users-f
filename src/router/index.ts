@@ -149,7 +149,8 @@ router.beforeEach((to, from, next) => {
   }
 
   if (to.query.redirect && !to.path.startsWith('/auth')) {
-    return next(to.query.redirect as string);
+    // TODO pending validate over users
+    // return next(typeof to.query.redirect === 'string' ? to.query.redirect : '');
   }
 
   return next();
