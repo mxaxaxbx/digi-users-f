@@ -25,9 +25,10 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     // await new Promise((resolve) => setTimeout(resolve, 1000));
     await context.dispatch('getUserDetails', payload);
     await context.dispatch('getUserProjects');
-    await context.dispatch('getUserPermissions');
+    // await context.dispatch('getUserPermissions');
     if (payload.app) {
-      window.location.href = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
+      const url = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
+      window.location.href = url;
       return;
     }
     window.location.href = '/app';
@@ -47,7 +48,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     });
     await context.dispatch('getUserProjects');
     // TODO: validate permissions
-    // await context.dispatch('getUserPermissions');
+    await context.dispatch('getUserPermissions');
     window.location.href = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
   },
   async getUserDetails(
@@ -62,7 +63,8 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     // get user details from getters
     const { user } = context.getters;
     if (user?.firstName === '') {
-      window.location.href = `/app/users/edit-profile?app=${payload.app ?? ''}&redirect=${payload.redirect ?? ''}`;
+      const url = `/app/users/edit-profile?app=${payload.app ?? ''}&redirect=${payload.redirect ?? ''}`;
+      window.location.href = url;
     }
   },
   async getUser(
