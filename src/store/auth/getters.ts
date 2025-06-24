@@ -54,7 +54,6 @@ export const getters: GetterTree<AuthStateI, RootStateI> = {
       const newKey = key.charAt(0).toLowerCase() + key.slice(1);
       user[newKey] = u[key];
     });
-    console.log(user);
     return user as UserI;
   },
   projects: (state) => {
