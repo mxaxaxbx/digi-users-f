@@ -65,6 +65,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     if (user?.firstName === '') {
       const url = `/app/users/edit-profile?app=${payload.app ?? ''}&redirect=${payload.redirect ?? ''}`;
       window.location.href = url;
+      throw new Error('User details are incomplete, redirecting to edit profile');
     }
   },
   async getUser(
