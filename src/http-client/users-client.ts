@@ -24,7 +24,7 @@ function customErrorHandler(error: any) {
       const path = window.location.pathname;
       const query = window.location.search;
       localStorage.removeItem('token');
-      window.location.href = `/auth/login?redirect=${encodeURIComponent(path + query)}`;
+      window.location.href = `/auth/login?to=${encodeURIComponent(path + query)}`;
       break;
     }
     case 403:
