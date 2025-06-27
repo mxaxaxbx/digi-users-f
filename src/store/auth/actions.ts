@@ -61,7 +61,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     const { data } = await usersClient.get('/api/auth/userdetailsv2');
     context.commit('setUser', data);
     // get user details from getters
-    const { user } = context.getters;
+    const { user } = context.state;
     if (user?.firstName === '') {
       const url = `/app/users/edit-profile?app=${payload.app ?? ''}&redirect=${payload.redirect ?? ''}`;
       window.location.href = url;
