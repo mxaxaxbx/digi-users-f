@@ -55,6 +55,14 @@ const routes: Array<RouteRecordRaw> = [
           title: 'Validate Google Token',
         },
       },
+      {
+        path: 'confirmsession',
+        name: 'auth-confirmsession',
+        component: () => import('@/views/auth/confirmsession.vue'),
+        meta: {
+          title: 'Validating session...',
+        },
+      },
     ],
   },
   // app routes
