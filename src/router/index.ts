@@ -55,6 +55,14 @@ const routes: Array<RouteRecordRaw> = [
           title: 'Validate Google Token',
         },
       },
+      {
+        path: 'confirmsession',
+        name: 'auth-confirmsession',
+        component: () => import('@/views/auth/confirmsession.vue'),
+        meta: {
+          title: 'Validating session...',
+        },
+      },
     ],
   },
   // app routes
@@ -146,6 +154,10 @@ router.beforeEach((to, from, next) => {
         query: { redirect: to.fullPath },
       });
     }
+  }
+
+  if (to.query.to && !to.path.startsWith('/auth')) {
+    return next(typeof to.query.to === 'string' ? to.query.to : '');
   }
 
   return next();

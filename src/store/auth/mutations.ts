@@ -1,6 +1,7 @@
 import { MutationTree } from 'vuex';
 
 import { decode, encode } from '@/utils/custom-enc-dec';
+import { snakeToCamel } from '@/utils';
 
 import {
   AuthStateI,
@@ -29,7 +30,13 @@ export const mutations: MutationTree<AuthStateI> = {
 
     const { value } = decode(payload);
     localStorage.setItem('user', payload);
-    state.user = value as unknown as UserI;
+    const uObject = typeof value === 'string' ? JSON.parse(value) : value;
+    if (!uObject || typeof uObject !== 'object') {
+      localStorage.removeItem('user');
+      state.user = undefined;
+      return;
+    }
+    state.user = snakeToCamel(uObject) as UserI;
   },
   setProjects(state: AuthStateI, payload: string) {
     if (payload.length === 0) {

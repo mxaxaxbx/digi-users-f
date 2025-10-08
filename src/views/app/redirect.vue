@@ -49,6 +49,13 @@ function switchApp() {
       window.location.href = url;
       break;
     }
+    case 'subscriptions': {
+      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
+      const { VUE_APP_DG_APP_SUBS } = process.env;
+      const url = `${VUE_APP_DG_APP_SUBS}/${uri}`;
+      window.location.href = url;
+      break;
+    }
     default:
       console.log(`Invalid app specified in query: ${app}`);
       loading.value = false;
