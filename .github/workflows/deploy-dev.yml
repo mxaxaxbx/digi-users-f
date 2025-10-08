@@ -17,7 +17,6 @@ jobs:
       -
         name: Setup .env file
         env:
-          VUE_APP_ENVIRONMENT: DEV
           VUE_APP_URL_DG_USERS: ${{ secrets.VUE_APP_URL_DG_USERS_DEV }}
           VUE_APP_URL_DG_CARE_APP: ${{ secrets.VUE_APP_URL_DG_CARE_APP_DEV }}
           VUE_APP_URL_DG_EDU_APP: ${{ secrets.VUE_APP_URL_DG_EDU_APP_DEV }}
