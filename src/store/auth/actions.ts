@@ -118,8 +118,8 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
 
     context.dispatch('loginWithToken', {
       token: data,
-      app: app ?? '',
-      redirect: redirect ?? '',
+      app: typeof app === 'string' ? app : '',
+      redirect: typeof redirect === 'string' ? redirect : '',
     });
   },
 };
