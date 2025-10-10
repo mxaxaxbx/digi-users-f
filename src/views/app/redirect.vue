@@ -14,10 +14,10 @@ const router = useRouter();
 const loading = ref(false);
 
 function switchApp() {
-  const { app, redirect } = route.query;
-  if (!app) {
-    return;
-  }
+  const { app } = route.query;
+  let { redirect } = route.query;
+
+  redirect = redirect && redirect.includes('/auth/confirmsession') ? '' : redirect;
 
   const token = localStorage.getItem('token');
 
