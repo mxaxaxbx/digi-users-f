@@ -19,7 +19,12 @@ function switchApp() {
     return;
   }
 
+  console.log('app', app);
+  console.log('redirect', redirect);
+
   const token = localStorage.getItem('token');
+
+  console.log('token', token);
 
   switch (app) {
     case 'edu': {
@@ -46,7 +51,8 @@ function switchApp() {
       const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
       const { VUE_APP_URL_DG_FIREWEB_APP } = process.env;
       const url = `${VUE_APP_URL_DG_FIREWEB_APP}/${uri}`;
-      window.location.href = url;
+      console.log('url', url);
+      // window.location.href = url;
       break;
     }
     case 'subscriptions': {
