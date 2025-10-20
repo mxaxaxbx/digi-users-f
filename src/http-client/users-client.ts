@@ -21,8 +21,10 @@ function customErrorHandler(error: any) {
 
   switch (error.response.status) {
     case 401: {
-      // localStorage.removeItem('token');
-      // window.location.href = '/auth/login';
+      const path = window.location.pathname;
+      const query = window.location.search;
+      localStorage.removeItem('token');
+      window.location.href = `/auth/login?to=${encodeURIComponent(path + query)}`;
       break;
     }
     case 403:

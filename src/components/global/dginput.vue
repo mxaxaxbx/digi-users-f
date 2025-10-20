@@ -42,8 +42,8 @@ import {
 
 const props = defineProps({
   modelValue: {
-    type: String,
-    defualt: '',
+    type: [String, Number, Boolean, Object, Array, null],
+    default: '',
   },
   placeholder: {
     type: String,

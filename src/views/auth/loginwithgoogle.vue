@@ -38,9 +38,10 @@ const route = useRoute();
 const uriquery = ref<string>('');
 
 function generateUri() {
-  const { app, redirect } = route.query;
-  sessionStorage.setItem('app', app as string || ''); // Default to empty string if app is not provided
-  sessionStorage.setItem('redirect', redirect as string || ''); // Default to empty string if redirect is not provided
+  const app = typeof route.query.app === 'string' ? route.query.app : '';
+  const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '';
+  sessionStorage.setItem('app', app); // Default to empty string if app is not provided
+  sessionStorage.setItem('redirect', redirect); // Default to empty string if redirect is not provided
 
   const queryObject: any = {
     response_type: 'code',

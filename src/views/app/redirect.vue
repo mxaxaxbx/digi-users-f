@@ -14,10 +14,10 @@ const router = useRouter();
 const loading = ref(false);
 
 function switchApp() {
-  const { app, redirect } = route.query;
-  if (!app) {
-    return;
-  }
+  const { app } = route.query;
+  let { redirect } = route.query;
+
+  redirect = redirect && redirect.includes('/auth/confirmsession') ? '' : redirect;
 
   const token = localStorage.getItem('token');
 
@@ -46,6 +46,13 @@ function switchApp() {
       const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
       const { VUE_APP_URL_DG_FIREWEB_APP } = process.env;
       const url = `${VUE_APP_URL_DG_FIREWEB_APP}/${uri}`;
+      window.location.href = url;
+      break;
+    }
+    case 'subscriptions': {
+      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
+      const { VUE_APP_DG_APP_SUBS } = process.env;
+      const url = `${VUE_APP_DG_APP_SUBS}/${uri}`;
       window.location.href = url;
       break;
     }

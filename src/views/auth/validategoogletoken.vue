@@ -13,11 +13,11 @@ const route = useRoute();
 const loading = ref(false);
 
 async function validateGoogleToken() {
-  const { code } = route.query;
+  const code = typeof route.query.code === 'string' ? route.query.code : '';
   loading.value = true;
 
   try {
-    await store.dispatch('auth/validategoogletoken', code as string);
+    await store.dispatch('auth/validategoogletoken', code);
   } catch (error: any) {
     console.error(error);
     const message = error.response?.data?.error || 'Failed to validate Google token';

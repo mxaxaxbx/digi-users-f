@@ -17,7 +17,6 @@ jobs:
       -
         name: Setup .env file
         env:
-          VUE_APP_ENVIRONMENT: QA
           VUE_APP_URL_DG_USERS: ${{ secrets.VUE_APP_URL_DG_USERS_QA }}
           VUE_APP_URL_DG_CARE_APP: ${{ secrets.VUE_APP_URL_DG_CARE_APP_QA }}
           VUE_APP_URL_DG_EDU_APP: ${{ secrets.VUE_APP_URL_DG_EDU_APP_QA }}
@@ -26,8 +25,8 @@ jobs:
           VUE_APP_GOOGLE_CLIENT_ID: ${{ secrets.VUE_APP_GOOGLE_CLIENT_ID_QA }}
           VUE_APP_DIGI_USERS_F: ${{ secrets.VUE_APP_DIGI_USERS_F_QA }}
           VUE_APP_URL_DG_ATLAS_APP: ${{ secrets.VUE_APP_URL_DG_ATLAS_APP_QA }}
+          VUE_APP_DG_APP_SUBS: ${{ secrets.VUE_APP_DG_APP_SUBS_QA }}
         run: |
-          env="QA"
           printenv | grep VUE_APP_ > .env
 
       -

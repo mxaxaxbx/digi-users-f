@@ -25,9 +25,10 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     // await new Promise((resolve) => setTimeout(resolve, 1000));
     await context.dispatch('getUserDetails', payload);
     await context.dispatch('getUserProjects');
-    await context.dispatch('getUserPermissions');
+    // await context.dispatch('getUserPermissions');
     if (payload.app) {
-      window.location.href = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
+      const url = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
+      window.location.href = url;
       return;
     }
     window.location.href = '/app';
@@ -46,6 +47,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
       redirect: payload.redirect,
     });
     await context.dispatch('getUserProjects');
+    // TODO: validate permissions
     await context.dispatch('getUserPermissions');
     window.location.href = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
   },
@@ -59,9 +61,11 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     const { data } = await usersClient.get('/api/auth/userdetailsv2');
     context.commit('setUser', data);
     // get user details from getters
-    const { user } = context.getters;
+    const { user } = context.state;
     if (user?.firstName === '') {
-      window.location.href = `/app/users/edit-profile?app=${payload.app ?? ''}&redirect=${payload.redirect ?? ''}`;
+      const url = `/app/users/edit-profile?app=${payload.app ?? ''}&redirect=${payload.redirect ?? ''}`;
+      window.location.href = url;
+      throw new Error('User details are incomplete, redirecting to edit profile');
     }
   },
   async getUser(
@@ -114,8 +118,8 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
 
     context.dispatch('loginWithToken', {
       token: data,
-      app: app ?? '',
-      redirect: redirect ?? '',
+      app: typeof app === 'string' ? app : '',
+      redirect: typeof redirect === 'string' ? redirect : '',
     });
   },
 };
