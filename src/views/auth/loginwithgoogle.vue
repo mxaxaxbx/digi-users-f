@@ -32,7 +32,7 @@
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-const SCOPES = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/cloud-platform';
+const SCOPES = ref(['openid', 'email', 'profile', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']);
 
 const route = useRoute();
 const uriquery = ref<string>('');
@@ -43,11 +43,14 @@ function generateUri() {
   sessionStorage.setItem('app', app); // Default to empty string if app is not provided
   sessionStorage.setItem('redirect', redirect); // Default to empty string if redirect is not provided
 
+  // scopes to string
+  const scopes = SCOPES.value.join(' ');
+
   const queryObject: any = {
     response_type: 'code',
     client_id: process.env.VUE_APP_GOOGLE_CLIENT_ID,
     redirect_uri: `${process.env.VUE_APP_DIGI_USERS_F}/auth/validategoogletoken`,
-    scope: SCOPES,
+    scope: scopes,
     access_type: 'offline',
     prompt: 'consent',
   };
@@ -57,8 +60,25 @@ function generateUri() {
     .join('&');
 }
 
+function addNecessaryScopes() {
+  const app = typeof route.query.app === 'string' ? route.query.app : '';
+
+  switch (app) {
+    case 'fireweb': {
+      SCOPES.value.push('https://www.googleapis.com/auth/cloud-platform.readonly');
+      SCOPES.value.push('https://www.googleapis.com/auth/datastore');
+      return;
+    }
+
+    default: {
+      console.error('App not supported');
+    }
+  }
+}
+
 onMounted(async () => {
   try {
+    addNecessaryScopes();
     generateUri();
   } catch (error) {
     console.error(error);
