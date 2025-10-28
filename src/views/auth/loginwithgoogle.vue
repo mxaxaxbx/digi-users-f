@@ -65,7 +65,7 @@ function addNecessaryScopes() {
 
   switch (app) {
     case 'fireweb': {
-      SCOPES.value.push('https://www.googleapis.com/auth/cloud-platform.readonly');
+      SCOPES.value.push('https://www.googleapis.com/auth/cloud-platform.read-only');
       SCOPES.value.push('https://www.googleapis.com/auth/datastore');
       return;
     }
