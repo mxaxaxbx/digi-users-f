@@ -1,4 +1,10 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  RouteLocationNormalized,
+  RouteRecordRaw,
+  NavigationGuardNext,
+} from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -140,7 +146,11 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext,
+) => {
   if (to.meta.title) {
     document.title = `${to.meta.title} | digi systems`;
   }
