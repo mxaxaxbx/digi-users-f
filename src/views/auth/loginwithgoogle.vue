@@ -1,30 +1,62 @@
 <template>
-  <div class="bg-white p-4 shadow-lg rounded-lg">
-    <h1 class="text-2xl font-bold">Login with Google</h1>
-    <!-- line -->
-    <hr class="my-3 border-gray-300 w-full border-2" />
+  <div class="
+    flex flex-row justify-left items-left
+    font-alexandria
+    bg-[#252525]
+    w-[900px]
+    rounded-lg
+    border border-[#3a3a3a]
+    shadow-md
+    mx-auto
+    my-auto
+    p-4">
+  <div>
+    <img
+      src="/img/login-illustration.svg"
+      alt="Illustration"
+      class="
+      w-96
+      mr-12
+      "
+       />
+  </div>
+  <div class="flex flex-col justify-left items-center">
+    <img
+      src="/img/logo-fireweb.svg"
+      alt="Logo"
+      class="
+      w-36
+      mb-24"
+       />
+    <h1 class=" text-white text-4xl font-semibold mb-4">"It all starts here..."</h1>
+    <div class="flex items-left justify-left text-[#7f7f7f] mb-6">
+      <img src="/icon/icon-lock.svg" alt="icono" class="w-4 mr-2" />
+      <span>Sign in easily and securely with your Google account.</span>
+    </div>
     <a
       :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`"
       class="
         block
         bg-white
-        px-4 py-4
-        rounded-lg shadow-md border border-gray-300
+        px-8
+        py-2
+        rounded-full shadow-md border border-gray-300
         hover:border-gray-400
         focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
-        w-full
+        w-64
       "
     >
-      <span class="flex items-center">
+      <span class="flex items-left">
         <img
           src="https://img.icons8.com/color/48/000000/google-logo.png"
           alt="google"
           class="w-6 h-6"
         />
         <!-- <i class="fab fa-google text-2xl"></i> -->
-        <span class="ml-2 font-bold">Login with Google</span>
+        <span class="ml-2 font-bold">Sign with Google</span>
       </span>
     </a>
+  </div>
   </div>
 </template>
 
