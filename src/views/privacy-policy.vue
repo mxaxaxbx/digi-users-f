@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#1d1d1d] py-20 px-96">
+  <div class="bg-[#1d1d1d] py-20 mt-8 px-96">
     <h1 class="text-4xl text-white font-semibold mb-8">Privacy Policy</h1>
     <p class="mb-16 text-[#7f7f7f] font-medium">
       At Digi Systems, we are committed to protecting your privacy.

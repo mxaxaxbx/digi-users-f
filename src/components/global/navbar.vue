@@ -1,10 +1,12 @@
 <template>
   <nav
     class="
-      w-100
-      bg-gray-300
-      p-4
       flex items-center space-x-4
+      font-alexandria
+      bg-[#1d1d1d] text-white
+      w-full h-20
+      px-8
+      border-b border-[#3a3a3a]
     "
   >
     <button @click="toggleSidebar">
@@ -27,7 +29,7 @@
             relative
             flex items-center justify-center
             rounded-full
-            bg-gray-200 text-gray-700
+            bg-gray-600 text-gray-700
             hover:bg-gray-300
             focus:outline-none focus:ring-2 focus:ring-blue-500
             transition-all duration-150 h-10 w-10
@@ -44,7 +46,7 @@
           <!-- Fallback icon -->
           <i
             v-else
-            class="fas fa-user text-gray-500 text-lg"
+            class="fas fa-user text-[#7f7f7f] text-lg"
             aria-hidden="true"
           ></i>
 
@@ -93,7 +95,7 @@
           <router-link
             to="/app/users/edit-profile"
             class="
-              mt-2 text-blue-600
+              mt-2 text-[#3a3a3a]
               border border-gray-300 rounded-full
               px-4 py-1
               text-sm

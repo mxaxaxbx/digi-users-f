@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-200">
+  <div class="bg-[#1d1d1d]">
     <!-- notifications -->
     <Notifications />
     <!-- Dark overlay -->
