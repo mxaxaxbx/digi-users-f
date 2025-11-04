@@ -1,15 +1,41 @@
 <template>
-  <div class="bg-white p-4">
-    <h3 class="text-3xl font-bold text-center mt-8"> Iniciar sesión </h3>
+  <div class="flex flex-row h-screen">
+  <div
+    class="
+      flex flex-col
+      justify-start items-start
+      font-alexandria
+      bg-[#252525]
+      w-[750px]
+      h-full
+      border-r border-[#3a3a3a]
+      shadow-md
+      my-auto
+      py-4
+      px-8
+    "
+  >
     <!-- form -->
-    <div class="container mx-auto max-w-md">
-      <form class="mt-8" @submit.prevent="toCheckCode">
-        <div class="mb-4">
+    <div
+      class="
+      flex flex-col justify-left items-left
+      mx-auto
+      my-auto
+      w-[400px]
+      ">
+      <h1 class=" text-white text-[2rem] font-bold mb-2"> Iniciar sesión </h1>
+      <form class="" @submit.prevent="toCheckCode">
+        <div>
           <label
             for="email"
-            class="block text-sm font-medium text-gray-700"
+            class="
+              flex items-left justify-left
+              text-sm text-[#7f7f7f]
+              mb-1 ml-4
+              font-semibold
+              "
           >
-            Correo electrónico
+            Email
           </label>
           <input
             v-model="email"
@@ -17,14 +43,14 @@
             id="email"
             name="email"
             class="
-              mt-1 px-3 py-2
-              block
-              w-full
-              border border-gray-300
-              rounded-md shadow-sm
-              focus:outline-none focus:ring-pink-500 focus:border-pink-500
-              sm:text-sm
-            "
+              w-[400px]
+              bg-[#252525]
+              py-2 px-4 mb-6
+              text-white
+              rounded-full border border-[#3d3d3d]
+              hover:border-[#9CA3AF] hover:bg-[#2a2a2a]
+              focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
+              "
           />
         </div>
         <div class="mb-4">
@@ -34,11 +60,10 @@
               w-full
               flex justify-center
               py-2 px-4
-              border border-transparent
-              rounded-md shadow-sm
               text-sm font-medium text-white
-              bg-pink-600
-              hover:bg-pink-700
+              bg-pink-500
+              rounded-full
+              hover:ring-2 hover:ring-pink-400 hover:border-pink-500 hover:text-white
               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500
             "
             :disabled="loading"
@@ -49,6 +74,7 @@
         </div>
       </form>
     </div>
+  </div>
   </div>
 </template>
 

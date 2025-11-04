@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-5 rounded-lg shadow-lg">
+  <div class="bg-red-200 p-5 rounded-lg shadow-lg">
     <h1 class="text-2xl font-bold mb-5">Edit Profile</h1>
     <!-- line -->
     <div class="mb-5">

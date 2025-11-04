@@ -27,7 +27,9 @@
     items-left
     ">
     <h1 class=" text-white text-[2rem] font-bold mb-2">It all starts here...  &#58;&#41;</h1>
-    <div class="flex items-left justify-left
+    <div
+      class="
+      flex items-left justify-left
       text-[1.1rem] text-[#7f7f7f]
       mb-12
       font-light
