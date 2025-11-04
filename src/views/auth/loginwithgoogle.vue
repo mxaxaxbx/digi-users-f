@@ -1,33 +1,25 @@
 <template>
-  <div class="
-    flex flex-row justify-left items-left
-    font-alexandria
-    bg-[#252525]
-    w-[900px]
-    rounded-lg
-    border border-[#3a3a3a]
-    shadow-md
-    mx-auto
-    my-auto
-    p-4">
-  <div>
-    <img
-      src="/img/login-illustration.svg"
-      alt="Illustration"
-      class="
-      w-96
-      mr-12
-      "
-       />
-  </div>
-  <div class="flex flex-col justify-left items-center">
+  <div
+    class="
+      flex flex-col
+      justify-start items-start
+      font-alexandria
+      bg-[#252525]
+      w-[700px]
+      h-full
+      border border-[#3a3a3a]
+      shadow-md
+      my-auto
+      py-4
+      px-8
+    "
+  >
     <img
       src="/img/logo-fireweb.svg"
       alt="Logo"
-      class="
-      w-36
-      mb-24"
-       />
+      class="h-[25px] mt-1 mb-24"
+    />
+  <div class="flex flex-col justify-left items-left">
     <h1 class=" text-white text-4xl font-semibold mb-4">"It all starts here..."</h1>
     <div class="flex items-left justify-left text-[#7f7f7f] mb-6">
       <img src="/icon/icon-lock.svg" alt="icono" class="w-4 mr-2" />
