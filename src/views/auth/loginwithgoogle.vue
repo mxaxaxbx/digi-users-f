@@ -6,7 +6,7 @@
       justify-start items-start
       font-alexandria
       bg-[#252525]
-      w-[650px]
+      w-[750px]
       h-full
       border-r border-[#3a3a3a]
       shadow-md
