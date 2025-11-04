@@ -57,13 +57,13 @@
     </div>
     <span class="text-[#7f7f7f]/80 text-sm font-light mt-6 mb-2 text-center block">
       By continuing, you agree to our
-      <a href="/terms"
+      <a :href="`${usersLink}/privacy-policy`"
         class="text-[#7f7f7f]
           hover:text-white underline underline-offset-2 transition">
         Terms of Service
       </a>
       and
-      <a href="/privacy"
+      <a :href="`${usersLink}/privacy-policy`"
       class="text-[#7f7f7f]
       hover:text-white underline underline-offset-2 transition">
         Privacy Policy
