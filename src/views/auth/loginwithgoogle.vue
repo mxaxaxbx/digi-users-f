@@ -1,13 +1,14 @@
 <template>
+  <div class="flex h-screen flex-row">
   <div
     class="
       flex flex-col
       justify-start items-start
       font-alexandria
       bg-[#252525]
-      w-[700px]
+      w-[650px]
       h-full
-      border border-[#3a3a3a]
+      border-r border-[#3a3a3a]
       shadow-md
       my-auto
       py-4
@@ -19,37 +20,105 @@
       alt="Logo"
       class="h-[25px] mt-1 mb-24"
     />
-  <div class="flex flex-col justify-left items-left">
-    <h1 class=" text-white text-4xl font-semibold mb-4">"It all starts here..."</h1>
-    <div class="flex items-left justify-left text-[#7f7f7f] mb-6">
-      <img src="/icon/icon-lock.svg" alt="icono" class="w-4 mr-2" />
+  <div class="
+    flex flex-col justify-left
+    mx-auto
+    my-auto
+    items-left
+    ">
+    <h1 class=" text-white text-[2rem] font-bold mb-2">It all starts here...  &#58;&#41;</h1>
+    <div class="flex items-left justify-left
+      text-[1.1rem] text-[#7f7f7f]
+      mb-12
+      font-light
+      ">
       <span>Sign in easily and securely with your Google account.</span>
     </div>
-    <a
-      :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`"
-      class="
-        block
-        bg-white
-        px-8
-        py-2
-        rounded-full shadow-md border border-gray-300
-        hover:border-gray-400
-        focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
-        w-64
-      "
-    >
-      <span class="flex items-left">
+    <div class="flex justify-center w-full mb-20">
+      <a
+        :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`"
+        class="
+          flex items-center justify-center
+          bg-[#252525]
+          py-2
+          rounded-full border border-[#3d3d3d]
+          hover:border-[#9CA3AF] hover:bg-[#2a2a2a]
+          focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
+          w-full
+        "
+      >
         <img
           src="https://img.icons8.com/color/48/000000/google-logo.png"
           alt="google"
           class="w-6 h-6"
         />
-        <!-- <i class="fab fa-google text-2xl"></i> -->
-        <span class="ml-2 font-bold">Sign with Google</span>
-      </span>
-    </a>
+        <span class="ml-2 text-white font-semibold">Sign with Google</span>
+      </a>
+    </div>
+    <span class="text-[#7f7f7f]/80 text-sm font-light mt-6 mb-2 text-center block">
+      By continuing, you agree to our
+      <a href="/terms"
+        class="text-[#7f7f7f]
+          hover:text-white underline underline-offset-2 transition">
+        Terms of Service
+      </a>
+      and
+      <a href="/privacy"
+      class="text-[#7f7f7f]
+      hover:text-white underline underline-offset-2 transition">
+        Privacy Policy
+      </a>.
+    </span>
+  </div>
+  <div class="flex justify-center w-full mt-16 mb-4">
+    <img
+        src="/img/logo-digi.svg"
+        alt="digi-apps-logo"
+        class="
+          h-10 mt-1 mb-2
+          opacity-10 hover:opacity-100
+          transition-all duration-300 ease-in-out
+          ">
   </div>
   </div>
+  <div
+    class="
+      flex flex-col
+      justify-center items-center
+      font-alexandria
+      flex-1
+      h-full
+      my-auto
+    ">
+    <div class="
+      relative
+      w-[500px]
+      ">
+      <img
+        src="/icon/icon-comillas.svg"
+        alt="Background"
+        class="
+          absolute
+          h-16
+          top-[-50px] left-[-55px]
+          z-0
+      ">
+      <p class=" text-white text-2xl font-regular mb-10 relative z-10">
+        Honestly, this app makes things so much easier.
+        Everything feels smooth, simple, and actually helpful.
+        It’s rare to find something that works this well and still feels effortless. 😊
+      </p>
+      <div class="text-[#a3a3a3] text-center text-lg font-semibold flex items-center mb-30 ">
+      <img
+        src="/img/photo.png"
+        alt="Fer"
+        class="w-16 h-16 mr-4 rounded-full object-cover"
+      />
+      <spam>@saldefrutitas</spam>
+    </div>
+  </div>
+  </div>
+    </div>
 </template>
 
 <script setup lang="ts">
