@@ -4,7 +4,7 @@
       flex items-center space-x-4
       font-alexandria
       bg-[#1d1d1d] text-white
-      w-full h-20
+      w-full h-16
       px-8
       border-b border-[#3a3a3a]
     "
