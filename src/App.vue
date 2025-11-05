@@ -11,6 +11,7 @@
     ></div>
     <!-- menu -->
     <div
+      v-if="shouldShowNavbar"
       v-click-outside="clickOutside"
       class="
         w-full fixed
@@ -24,8 +25,9 @@
     </div>
     <!-- content -->
     <div
-      class="pt-16 min-h-[calc(100vh-4rem)]"
+      class="min-h-[calc(100vh-4rem)]"
       :class="{
+        'pt-16': shouldShowNavbar
       }"
     >
       <router-view />
@@ -49,14 +51,17 @@
 <script setup lang="ts">
 import { defineAsyncComponent, computed, ref } from 'vue';
 import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
 
 const Notifications = defineAsyncComponent(() => import('./components/global/notifications.vue'));
 const NavBar = defineAsyncComponent(() => import('./components/global/navbar.vue'));
 const Sidebar = defineAsyncComponent(() => import('./components/global/sidebar.vue'));
 
 const store = useStore();
+const route = useRoute();
 
 const showSidebar = computed(() => store.state.sidebar);
+const shouldShowNavbar = computed(() => !route.path.startsWith('/auth'));
 
 const currentYear = ref(new Date().getFullYear());
 
