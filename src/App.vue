@@ -32,8 +32,8 @@
     >
       <router-view />
     </div>
-    <!-- footer
-    <footer class="bg-gray-800 text-white py-8 h-0">
+    <!-- footer -->
+    <footer v-if="shouldShowFooter" class="bg-gray-800 text-white py-8 h-0">
       <div class="container mx-auto text-center">
         <p>&copy; {{ currentYear }} digi systems. All rights reserved.</p>
       </div>
@@ -43,7 +43,7 @@
       >
         Política de privacidad
       </router-link>
-    </footer>-->
+    </footer>
   </div>
 </template>
 
@@ -61,6 +61,7 @@ const route = useRoute();
 
 const showSidebar = computed(() => store.state.sidebar);
 const shouldShowNavbar = computed(() => !route.path.startsWith('/auth'));
+const shouldShowFooter = computed(() => !route.path.startsWith('/auth'));
 
 const currentYear = ref(new Date().getFullYear());
 
