@@ -38,15 +38,18 @@ onUnmounted(() => {
       leave-from-class="opacity-100 scale-100"
       leave-to-class="opacity-0 scale-95"
     >
-      <div
+    <div
         v-if="isOpen"
         class="
           absolute
           right-0
-          mt-2 w-96 p-2
-          bg-gray-200
-          --border rounded shadow-xl z-50
-        "
+          bg-[#1d1d1d]
+          w-80
+          mt-2 pt-8 pb-4
+          border-[0.5px] border-[#3d3d3d]
+          rounded-lg
+          shadow-lg z-50
+          overflow-hidden"
       >
         <slot name="content" :close="close" />
       </div>

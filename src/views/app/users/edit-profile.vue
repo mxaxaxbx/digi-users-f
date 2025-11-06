@@ -1,16 +1,39 @@
 <template>
-  <div class="bg-red-200 p-5 rounded-lg shadow-lg">
-    <h1 class="text-2xl font-bold mb-5">Edit Profile</h1>
-    <!-- line -->
-    <div class="mb-5">
-      <hr />
-    </div>
-    <Form
-      :fields="fields"
-      :loading="loading"
-      @update="update"
-      @submit="submit"
-    />
+  <div class="
+    font-alexandria
+    p-10
+    h-screen
+    ">
+    <div class="
+      flex flex-col items-left justify-center
+      bg-1d1d1d
+      mx-96
+      py-16
+      ">
+        <h1 class="
+          text-2xl text-white font-semibold
+          mb-6">Preferences</h1>
+
+          <!--form-->
+          <div class="
+          bg-[#252525]
+          border border-[#3d3d3d]
+          rounded-lg
+          py-6
+          px-8
+          ">
+          <h1 class="
+            text-md text-white font-medium
+            mb-6">Edit your profile information</h1>
+        <Form
+          :fields="fields"
+          :loading="loading"
+          @update="update"
+          @submit="submit"
+          class="text-white font-thin"
+        />
+        </div>
+  </div>
   </div>
 </template>
 

@@ -1,71 +1,76 @@
 <template>
   <div class="flex h-screen flex-row">
-  <div
-    class="
-      flex flex-col
-      justify-start items-start
-      font-alexandria
-      bg-[#252525]
-      w-[750px]
-      h-full
-      border-r border-[#3a3a3a]
-      shadow-md
-      my-auto
-      py-4
-      px-8
-    "
-  >
-    <img
-      src="/img/logo-fireweb.svg"
-      alt="Logo"
-      class="h-[25px] mt-1 mb-24"
-    />
-  <div class="
-    flex flex-col justify-left
-    mx-auto
-    my-auto
-    items-left
-    ">
-    <h1 class=" text-white text-[2rem] font-bold mb-2">It all starts here...  &#58;&#41;</h1>
     <div
       class="
-      flex items-left justify-left
-      text-[1.1rem] text-[#7f7f7f]
-      mb-12
-      font-light
+        flex flex-col
+        justify-start items-start
+        font-alexandria
+        bg-[#252525]
+        w-[750px]
+        h-full
+        border-r border-[#3a3a3a]
+        shadow-md
+        my-auto
+        py-4
+        px-8
       ">
-      <span>Sign in easily and securely with your Google account.</span>
-    </div>
-    <div class="flex justify-center w-full mb-20">
-      <a
-        :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`"
-        class="
-          flex items-center justify-center
-          bg-[#252525]
-          py-2
-          rounded-full border border-[#3d3d3d]
-          hover:border-[#9CA3AF] hover:bg-[#2a2a2a]
-          focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
-          w-full
-        "
-      >
+      <router-link
+              :to="isAuth ? '/app' : '/'"
+              class="text-white
+              ">
         <img
-          src="https://img.icons8.com/color/48/000000/google-logo.png"
-          alt="google"
-          class="w-6 h-6"
+          src="/img/logo-fireweb.svg"
+          alt="Logo"
+          class="h-[25px] mt-1 mb-24"
         />
-        <span class="ml-2 text-white font-semibold">Sign with Google</span>
-      </a>
-    </div>
-    <span class="text-[#7f7f7f]/80 text-sm font-light mt-6 mb-2 text-center block">
+      </router-link>
+      <div class="
+        flex flex-col justify-left
+        mx-auto
+        my-auto
+        items-left
+        ">
+        <h1 class=" text-white text-[2rem] font-bold mb-2">It all starts here...  &#58;&#41;</h1>
+        <div
+          class="
+          flex items-left justify-left
+          text-[1.1rem] text-[#7f7f7f]
+          mb-12
+          font-light
+          ">
+        <span>Sign in easily and securely with your Google account.</span>
+      </div>
+      <div class="flex justify-center w-full mb-20">
+        <a
+          :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`"
+          class="
+            flex items-center justify-center
+            bg-[#252525]
+            py-2
+            rounded-full border border-[#3d3d3d]
+            hover:border-[#9CA3AF] hover:bg-[#2a2a2a]
+            focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
+            w-full
+          ">
+          <img
+            src="https://img.icons8.com/color/48/000000/google-logo.png"
+            alt="google"
+            class="w-6 h-6"
+          />
+          <span class="ml-2 text-white font-semibold">Sign with Google</span>
+        </a>
+      </div>
+      <span class="text-[#7f7f7f]/80 text-sm font-light mt-6 mb-2 text-center block">
       By continuing, you agree to our
-      <a :href="`${usersLink}/privacy-policy`"
+      <a href="/privacy-policy"
+        target="_blank"
         class="text-[#7f7f7f]
           hover:text-white underline underline-offset-2 transition">
         Terms of Service
       </a>
       and
-      <a :href="`${usersLink}/privacy-policy`"
+      <a href="/privacy-policy"
+      target="_blank"
       class="text-[#7f7f7f]
       hover:text-white underline underline-offset-2 transition">
         Privacy Policy
