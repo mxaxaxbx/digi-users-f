@@ -32,7 +32,7 @@
           ">
           <span>Sign in easily and securely with your Google account.</span>
         </div>
-        <div class="flex justify-center w-full mb-20">
+        <div class="flex justify-center w-full mb-8">
           <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`" class="
             flex items-center justify-center
             bg-[#252525]
@@ -46,7 +46,69 @@
             <span class="ml-2 text-white font-semibold">Sign with Google</span>
           </a>
         </div>
-        <span class="text-[#7f7f7f]/80 text-sm font-light mt-6 mb-2 text-center block">
+        <div class="flex items-center w-full mb-6">
+          <span class="flex-grow h-px bg-[#3d3d3d]"></span>
+          <span class="px-4 text-white text-sm font-regular">or</span>
+          <span class="flex-grow h-px bg-[#3d3d3d]"></span>
+        </div>
+        <div class="flex flex-col justify-center w-full mb-6">
+          <span class="text-white text-base font-medium px-4 pb-1.5">
+            Email</span>
+          <input
+            Type:="email"
+            v-model="email"
+            placeholder="what’s-your@email.com"
+            class="
+            flex items-center justify-center
+            bg-[#252525]
+            text-white font-regular text-sm
+            py-2 px-4
+            placeholder:text-white/20 placeholder:font-light
+            rounded-full border border-[#3d3d3d]
+            hover:border-[#9CA3AF] hover:bg-[#2a2a2a]
+            focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
+            w-full
+          "/>
+          <div
+          v-if="showAlert"
+          class="
+          absolute left-72 top-112
+          flex items-center
+          bg-[#FFA600]/20
+          border border-[#FFA600]
+          text-white text-sm font-regular
+          px-4 py-1
+          rounded-full shadow-lg transition-all duration-300"
+        >
+        <img
+          src="/icon/icon-alert.svg"
+          alt="alert"
+          class="w-5 h-5 mr-2 "
+        />
+          {{ alertMessage }}
+        </div>
+        </div>
+        <div class="flex justify-center w-full mb-6">
+          <button
+            @click="submitEmail"
+            class="
+            flex items-center justify-center
+            w-full
+            bg-[#ED1C24]
+            py-2
+            rounded-full
+            hover:ring-4 hover:ring-[#ED1C24]/50
+              focus:ring-4 focus:ring-[#ED1C24]/50
+              transition-all duration-300 ease-in-out
+          ">
+            <span class="text-white font-semibold">Sign In</span>
+            <img
+              src="/icon/icon-signIn.svg"
+              alt="singIn"
+              class="w-6 h-6 ml-2" />
+        </button>
+        </div>
+        <span class="text-[#7f7f7f]/80 text-xs font-light mt-6 mb-2 text-center block">
           By continuing, you agree to our
           <a href="/privacy-policy" target="_blank" class="text-[#7f7f7f]
           hover:text-white underline underline-offset-2 transition">
@@ -118,6 +180,34 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+
+const email = ref('');
+const showAlert = ref(false);
+const alertMessage = ref('');
+
+function showCustomAlert(message) {
+  alertMessage.value = message;
+  showAlert.value = true;
+
+  setTimeout(() => {
+    showAlert.value = false;
+  }, 3000);
+}
+
+function submitEmail() {
+  const emailValue = email.value.trim();
+
+  // Expresión regular para validar email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(emailValue)) {
+    showCustomAlert('Please enter a valid email address.');
+    return;
+  }
+
+  console.log('Valid email:', emailValue);
+  showCustomAlert('Email looks good!');
+}
 
 const SCOPES = ref(['openid', 'email', 'profile', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']);
 
