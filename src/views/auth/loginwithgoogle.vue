@@ -64,7 +64,7 @@
             border
             "
             :class="isEmailInvalid ?
-            'bg-[#FFA600]/10 border-[#FFA600]' : 'bg-transparent border-transparent'"
+            'bg-[#5C451C]/10 border-[#FFA600]' : 'bg-transparent border-transparent'"
             >
           <div
           v-if="showAlert"
@@ -254,7 +254,7 @@ function showCustomAlert(message) {
 
   setTimeout(() => {
     showAlert.value = false;
-  }, 3000);
+  }, 6000);
 }
 
 function submitEmail() {
@@ -267,7 +267,7 @@ function submitEmail() {
 
     setTimeout(() => {
       isEmailInvalid.value = false;
-    }, 3000);
+    }, 6000);
 
     return;
   }
