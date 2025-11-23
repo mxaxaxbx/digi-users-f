@@ -5,7 +5,7 @@
         justify-start items-start
         font-alexandria
         bg-[#252525]
-        w-[750px]
+        w-[758px]
         h-full
         border-r border-[#3a3a3a]
         shadow-md
@@ -20,19 +20,21 @@
       <div class="
         flex flex-col justify-left
         mx-auto
+        px-auto
         my-auto
         items-left
         ">
-        <h1 class=" text-white text-[2rem] font-bold mb-2">It all starts here... &#58;&#41;</h1>
+        <h1 class=" text-white mx-8 text-[2rem] font-bold mb-2">
+          It all starts here... &#58;&#41;</h1>
         <div class="
           flex items-left justify-left
           text-[1.1rem] text-[#7f7f7f]
-          mb-12
+          mb-12 mx-8
           font-light
           ">
           <span>Sign in easily and securely with your Google account.</span>
         </div>
-        <div class="flex justify-center w-full mb-8">
+        <div class="flex justify-center w-ful mx-8 mb-12">
           <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`" class="
             flex items-center justify-center
             bg-[#252525]
@@ -46,40 +48,33 @@
             <span class="ml-2 text-white font-semibold">Sign with Google</span>
           </a>
         </div>
-        <div class="flex items-center w-full mb-6">
+        <div class="flex items-center w-full px-8">
           <span class="flex-grow h-px bg-[#3d3d3d]"></span>
           <span class="px-4 text-white text-sm font-regular">or</span>
           <span class="flex-grow h-px bg-[#3d3d3d]"></span>
         </div>
-        <div class="flex flex-col justify-center w-full mb-6">
-          <span class="text-white text-base font-medium px-4 pb-1.5">
-            Email</span>
-          <input
-            Type:="email"
-            v-model="email"
-            placeholder="what’s-your@email.com"
-            class="
-            flex items-center justify-center
-            bg-[#252525]
-            text-white font-regular text-sm
-            py-2 px-4
-            placeholder:text-white/20 placeholder:font-light
-            rounded-full border border-[#3d3d3d]
-            hover:border-[#9CA3AF] hover:bg-[#2a2a2a]
-            focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
+        <div
+          ref="emailInput"
+          class="
+            relative
+            flex flex-col justify-center
             w-full
-          "/>
+            mb-4 px-8 pt-10 pb-6
+            rounded-lg
+            border
+            "
+            :class="isEmailInvalid ?
+            'bg-[#FFA600]/10 border-[#FFA600]' : 'bg-transparent border-transparent'"
+            >
           <div
           v-if="showAlert"
           class="
-          absolute left-72 top-112
-          flex items-center
-          bg-[#FFA600]/20
-          border border-[#FFA600]
-          text-white text-sm font-regular
-          px-4 py-1
-          rounded-full shadow-lg transition-all duration-300"
-        >
+            absolute top-3 -mx-0
+            w-full
+            flex items-center
+            text-white text-xs font-regular
+            transition-all duration-300"
+          >
         <img
           src="/icon/icon-alert.svg"
           alt="alert"
@@ -87,8 +82,37 @@
         />
           {{ alertMessage }}
         </div>
+          <span class="text-white text-base font-medium px-4 pb-1.5">
+            Email</span>
+          <input
+            Type:="email"
+            v-model="email"
+            :placeholder="dynamicPlaceholder"
+            @keydown="handleKey"
+            @keyup="handleKey"
+            class="
+            flex items-center justify-center
+            bg-[#252525]
+            w-full
+            py-2 px-4
+            font-regular text-sm
+            placeholder:text-white/20 placeholder:font-light
+            rounded-full border
+            focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
+          "
+          :class="isEmailInvalid
+          ? [
+            'bg-[#FFA600]/5 border-[#FFA600]',
+            'placeholder:text-white/50 text-white',
+            'hover:border-white hover:bg-[#ffa600]/10'
+          ]
+          : [
+            'bg-[#252525] border-[#3d3d3d] text-white',
+            'hover:border-[#9CA3AF] hover:bg-[#2a2a2a]'
+          ]"
+          />
         </div>
-        <div class="flex justify-center w-full mb-6">
+        <div class="flex justify-center w-full mb-6 px-8">
           <button
             @click="submitEmail"
             class="
@@ -178,12 +202,51 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import {
+  computed,
+  onMounted,
+  onUnmounted,
+  ref,
+} from 'vue';
 import { useRoute } from 'vue-router';
 
+/* Dynamic placeholder for email input */
+/* eslint-disable */
+const isCapOn = ref(false);
+const normalPlaceholder = 'what’s-your@email.com';
+
+function handleKey(e: KeyboardEvent) {
+  if (
+    e.getModifierState &&
+    e.getModifierState('CapsLock') !== isCapOn.value
+  ) {
+    isCapOn.value = e.getModifierState('CapsLock');
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKey);
+  window.addEventListener('keyup', handleKey);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKey);
+  window.removeEventListener('keyup', handleKey);
+});
+
+const dynamicPlaceholder = computed(() => {
+  if (isCapOn.value) {
+    return normalPlaceholder.toUpperCase();
+  } else {
+    return normalPlaceholder.toLowerCase();
+  }
+});
+/* eslint-enable */
+/* Email valid */
 const email = ref('');
 const showAlert = ref(false);
 const alertMessage = ref('');
+const isEmailInvalid = ref(false);
 
 function showCustomAlert(message) {
   alertMessage.value = message;
@@ -196,16 +259,20 @@ function showCustomAlert(message) {
 
 function submitEmail() {
   const emailValue = email.value.trim();
-
-  // Expresión regular para validar email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRegex.test(emailValue)) {
-    showCustomAlert('Please enter a valid email address.');
+    isEmailInvalid.value = true;
+    showCustomAlert('WTF was that? Try a real email. You know; with an @ and stuff.');
+
+    setTimeout(() => {
+      isEmailInvalid.value = false;
+    }, 3000);
+
     return;
   }
 
-  console.log('Valid email:', emailValue);
+  isEmailInvalid.value = false;
   showCustomAlert('Email looks good!');
 }
 
