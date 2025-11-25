@@ -52,16 +52,27 @@
               w-full
               --bg-gradient-to-tr
               --from-slate-600 --to-slate-400
-              bg-white
+              bg-[#252525]
               text-[#3d3d3d] font-semibold
-            " :class="loading ? 'cursor-not-allowed bg-gray-400' : 'cursor-pointer'"
-            :disabled="loading">
+            "
+            :class="[
+              loading
+                ? 'cursor-not-allowed bg-white'
+                : allFilled
+                  ? 'cursor-pointer'
+                  : 'cursor-not-allowed text-[#3d3d3d] bg-[#252525]',
+                    'border border-[#3d3d3d]'
+              ]"
+              :disabled="loading || !allFilled"
+            >
             <span v-if="loading">
-              <i class="fas fa-spinner animate-spin mr-2"></i>
-              Enviando código...
+              <i class="fas fa-spinner animate-spin mr-2 font-bold"></i>
+              One sec… checking code!
             </span>
-            <span v-else>
-              Enviar código
+            <span v-else class="font-semibold">
+              <span v-if="missingDigits > 0" class="ml-2 text-md text-white/40">
+                {{ missingDigits }} digits left!
+              </span>
             </span>
           </button>
         </div>
@@ -106,10 +117,19 @@ const router = useRouter();
 
 const loading = ref(false);
 const email = ref('');
-const code = ref<number[]>([0, 0, 0, 0, 0]);
+const code = ref<(number | null)[]>([null, null, null, null, null, null]);
 const availableIn = ref(0);
 const app = ref('');
 const redirect = ref('');
+
+const allFilled = computed(() => (
+  code.value.every((val) => val !== null && val !== undefined)
+));
+
+// Computed que dice cuántos dígitos faltan
+const missingDigits = computed(() => (
+  code.value.filter((val) => val === null || val === undefined).length
+));
 
 const formattedAvailableIn = computed(() => {
   const minutes = Math.floor(availableIn.value / 60);
@@ -292,7 +312,7 @@ const setCode = (ev: Event) => {
     return;
   }
 
-  code.value[codeId] = Number(target.value[0]);
+  code.value.splice(codeId, 1, Number(target.value[0]));
 
   if (!target.value) {
     if (codeId > 0) {
