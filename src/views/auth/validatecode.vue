@@ -1,19 +1,26 @@
 <template>
-  <div class="h-screen flex justify-center items-center">
+  <div
+    class="
+      flex justify-center items-center
+      font-alexandria
+      h-screen w-screen
+      bg-[#1d1d1d]">
     <div class="
         -mt-5
-        h-screen
-        text-white
-        px-7 py-16
-        w-full sm:w-full md:w-1/2 lg:w-1/3
-        --shadow-lg --rounded
-        bg-gradient-to-br from-pink-900 to-pink-700
+        px-20 py-8
+        border border-[#3d3d3d]
+        rounded-lg
+        mx-auto
+        bg-[#252525]
+        shadow-lg
       ">
       <form class="" action="" method="POST" @submit.prevent="validatecode()">
-        <h1 class="w-full text-4xl text-center my-6"> Verificación de email </h1>
-        <h3 class="w-full text-center my-6 text-gray-200">
-          Ingrese el código que ha sido enviado a al correo {{ email }}
+        <h1 class="w-full text-3xl text-left text-white font-bold my-8">
+          Ready for Your<br>Verification Code?... &#58;&#41;</h1>
+        <h3 class="w-full text-center text-[#A3A3A3] text-md font-light">
+          A fresh code just landed in your inbox. Go take a look.
         </h3>
+        <p class="font-semibold text-center text-white">{{ email }}</p>
         <div class="w-full my-10">
           <div class="flex space-x-2 justify-center">
             <!-- eslint-disable-next-line  vuejs-accessibility/form-control-has-label -->
@@ -22,24 +29,31 @@
               :key="`code-${i}`"
               :id="`code-${i}`"
               :name="`code-${i}`"
-              @keyup.exact="setCode"
-              @keydown.prevent.ctrl.v="pasteCode"
+              @input="setCode"
+              @paste.prevent="pasteCode"
+              @click="lockCaret"
+              @focus="lockCaret"
+              @keydown="handleKeydown"
               type="text"
               maxlength="1"
               :disabled="loading"
-              class="w-10 p-2 rounded shadow text-black text-center codes"
+              class="w-10 p-2 rounded bg-[#1d1d1d]/50 border border-[#3d3d3d]
+              text-white text-center codes"
             />
           </div>
         </div>
 
         <div class="w-full my-10">
-          <button @click.prevent="validatecode()" type="submit" class="
-              p-2 rounded shadow
+          <button
+            @click.prevent="validatecode()"
+            type="submit"
+            class="
+              p-2 rounded-full shadow
               w-full
               --bg-gradient-to-tr
               --from-slate-600 --to-slate-400
               bg-white
-              text-black font-semibold
+              text-[#3d3d3d] font-semibold
             " :class="loading ? 'cursor-not-allowed bg-gray-400' : 'cursor-pointer'"
             :disabled="loading">
             <span v-if="loading">
@@ -53,14 +67,17 @@
         </div>
 
       </form>
-      <div class="w-full my-10 flex justify-center">
-        <button v-if="availableIn === 0" @click="resendCode()" class="underline cursor-pointer">
+      <div class="w-full my-10 flex justify-center text-white">
+        <button
+          v-if="availableIn === 0"
+          @click="resendCode()"
+          class="underline cursor-pointer">
           Reenviar código
         </button>
         <span v-else> Reenviar código en {{ formattedAvailableIn }} </span>
       </div>
       <!-- change email address -->
-      <div class="w-full my-10 flex justify-center">
+      <div class="w-full my-10 flex justify-center text-white">
         <router-link
           :to="`/auth/login?app=${app}&redirect=${redirect}`"
           class="underline cursor-pointer"
@@ -73,7 +90,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
+import {
+  ref,
+  onMounted,
+  onUnmounted,
+  computed,
+} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import moment from 'moment';
@@ -129,6 +151,37 @@ onMounted(() => {
   return () => clearInterval(timer);
 });
 
+onMounted(() => {
+  const handleGlobalPaste = (ev: ClipboardEvent) => {
+    const clipboardData = ev.clipboardData?.getData('text') || '';
+    const digits = clipboardData.replace(/\D/g, '').slice(0, 6).split('');
+    if (!digits.length) return;
+
+    ev.preventDefault(); // evita que se pegue en el input actual
+
+    const inputs = document.querySelectorAll<HTMLInputElement>('.codes');
+    digits.forEach((digit, idx) => {
+      const input = inputs[idx];
+      if (input) {
+        input.value = digit;
+        code.value[idx] = Number(digit);
+      }
+    });
+
+    // opcional: enfocar el último input pegado
+    const lastInput = inputs[digits.length - 1];
+    lastInput?.focus();
+    // eslint-disable-next-line no-use-before-define
+    validatecode();
+  };
+
+  document.addEventListener('paste', handleGlobalPaste);
+
+  onUnmounted(() => {
+    document.removeEventListener('paste', handleGlobalPaste);
+  });
+});
+
 async function validatecode() {
   loading.value = true;
   try {
@@ -148,6 +201,38 @@ async function validatecode() {
   } finally {
     loading.value = false;
   }
+}
+function lockCaret(e) {
+  const el = e.target;
+  if (el.selectionStart !== 1) {
+    el.setSelectionRange(1, 1);
+  }
+}
+
+function handleArrows(e) {
+  const el = e.target;
+  const index = Number(el.id.split('-')[1]);
+
+  if (e.key === 'ArrowRight') {
+    const nextInput = document.getElementById(`code-${index + 1}`);
+    if (nextInput) {
+      e.preventDefault();
+      nextInput.focus();
+    }
+  }
+
+  if (e.key === 'ArrowLeft') {
+    const prevInput = document.getElementById(`code-${index - 1}`);
+    if (prevInput) {
+      e.preventDefault();
+      prevInput.focus();
+    }
+  }
+}
+
+function handleKeydown(e) {
+  lockCaret(e);
+  handleArrows(e);
 }
 
 const pasteCode = async () => {
@@ -194,7 +279,7 @@ const pasteCode = async () => {
 const setCode = (ev: Event) => {
   ev.preventDefault();
   const target = ev.target as HTMLInputElement;
-
+  if (!target || !target.name) return;
   const codeId = Number(target.name.split('-')[1]) - 1;
 
   const isNumber = Number(target.value);
@@ -257,3 +342,9 @@ async function resendCode() {
 }
 
 </script>
+<style scoped>
+.codes {
+  user-select: none;
+  caret-color: transparent;
+}
+</style>
