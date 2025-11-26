@@ -21,8 +21,8 @@
           A fresh code just landed in your inbox. Go take a look.
         </h3>
         <p class="font-semibold text-center text-white">{{ email }}</p>
-        <div class="w-full my-10">
-          <div class="flex space-x-2 justify-center">
+        <div class="w-full my-8">
+          <div class="flex space-x-3 justify-center">
             <!-- eslint-disable-next-line  vuejs-accessibility/form-control-has-label -->
             <input
               v-for="i in 6"
@@ -31,19 +31,24 @@
               :name="`code-${i}`"
               @input="setCode"
               @paste.prevent="pasteCode"
-              @click="lockCaret"
               @focus="lockCaret"
               @keydown="handleKeydown"
               type="text"
               maxlength="1"
               :disabled="loading"
-              class="w-10 p-2 rounded bg-[#1d1d1d]/50 border border-[#3d3d3d]
-              text-white text-center codes"
+              :class="[
+              'w-10 p-2 rounded text-white text-center codes',
+              loading
+                ? 'bg-[#1d1d1d]/20 border border-[#3d3d3d]/30'
+                : wrongCode
+                  ? 'bg-[#5C451C]/20 border border-[#FFA600]/70 text-white'
+                  : 'bg-[#1d1d1d]/50 border border-[#3d3d3d]'
+            ]"
             />
           </div>
         </div>
 
-        <div class="w-full my-10">
+        <div class="w-full">
           <button
             @click.prevent="validatecode()"
             type="submit"
@@ -58,6 +63,8 @@
             :class="[
               loading
                 ? 'cursor-not-allowed bg-white'
+                : wrongCode
+                ? 'cursor-pointer bg-[#5C451C]/20 text-white border border-[#FFA600]/70'
                 : allFilled
                   ? 'cursor-pointer'
                   : 'cursor-not-allowed text-[#3d3d3d] bg-[#252525]',
@@ -69,6 +76,11 @@
               <i class="fas fa-spinner animate-spin mr-2 font-bold"></i>
               One sec… checking code!
             </span>
+            <span
+              v-else-if="wrongCode"
+              class="font-semibold text-white">
+              Nice try, but nope. Try again!
+          </span>
             <span v-else class="font-semibold">
               <span v-if="missingDigits > 0" class="ml-2 text-md text-white/40">
                 {{ missingDigits }} digits left!
@@ -121,6 +133,7 @@ const code = ref<(number | null)[]>([null, null, null, null, null, null]);
 const availableIn = ref(0);
 const app = ref('');
 const redirect = ref('');
+const wrongCode = ref(false);
 
 const allFilled = computed(() => (
   code.value.every((val) => val !== null && val !== undefined)
@@ -177,7 +190,7 @@ onMounted(() => {
     const digits = clipboardData.replace(/\D/g, '').slice(0, 6).split('');
     if (!digits.length) return;
 
-    ev.preventDefault(); // evita que se pegue en el input actual
+    ev.preventDefault();
 
     const inputs = document.querySelectorAll<HTMLInputElement>('.codes');
     digits.forEach((digit, idx) => {
@@ -204,6 +217,8 @@ onMounted(() => {
 
 async function validatecode() {
   loading.value = true;
+  wrongCode.value = false;
+
   try {
     await store.dispatch('auth/validatecode', {
       email: typeof route.query.email === 'string' ? route.query.email : '',
@@ -212,6 +227,7 @@ async function validatecode() {
       redirect: typeof route.query.redirect === 'string' ? route.query.redirect : '',
     });
   } catch (err: any) {
+    wrongCode.value = true;
     const message = err?.response?.data?.error || 'Ocurrió un error al validar el código';
     console.error('auth/validatecode validatecode', err);
     store.commit('notifications/addNotification', {
@@ -223,9 +239,9 @@ async function validatecode() {
   }
 }
 function lockCaret(e) {
-  const el = e.target;
-  if (el.selectionStart !== 1) {
-    el.setSelectionRange(1, 1);
+  const el = e.target as HTMLInputElement;
+  if (el.value.length === 1) {
+    el.setSelectionRange(0, 1);
   }
 }
 
@@ -297,41 +313,32 @@ const pasteCode = async () => {
 };
 
 const setCode = (ev: Event) => {
-  ev.preventDefault();
   const target = ev.target as HTMLInputElement;
   if (!target || !target.name) return;
+
   const codeId = Number(target.name.split('-')[1]) - 1;
 
-  const isNumber = Number(target.value);
+  const digit = target.value.slice(-1);
+
+  // validar número
+  const isNumber = Number(digit);
   if (Number.isNaN(isNumber)) {
+    target.value = '';
+    code.value[codeId] = null;
     store.dispatch('toast/showToast', {
       message: 'El código debe ser numérico',
       type: 'error',
     });
-    target.value = '';
     return;
   }
 
-  code.value.splice(codeId, 1, Number(target.value[0]));
-
-  if (!target.value) {
-    if (codeId > 0) {
-      const backInput = document.getElementById(`code-${codeId}`);
-      if (backInput) {
-        backInput.focus();
-      }
-    }
-    return;
-  }
+  target.value = digit;
+  code.value[codeId] = Number(digit);
 
   if (codeId < 5) {
     const nextInput = document.getElementById(`code-${codeId + 2}`);
-    if (nextInput) {
-      nextInput.focus();
-    }
-  }
-
-  if (codeId === 5) {
+    nextInput?.focus();
+  } else {
     validatecode();
   }
 };
@@ -366,5 +373,9 @@ async function resendCode() {
 .codes {
   user-select: none;
   caret-color: transparent;
+}
+.codes::selection {
+  background: transparent;
+  color: inherit;
 }
 </style>
