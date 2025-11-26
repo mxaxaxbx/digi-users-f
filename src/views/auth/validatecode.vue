@@ -20,8 +20,18 @@
         <h3 class="w-full text-center text-[#A3A3A3] text-md font-light">
           A fresh code just landed in your inbox. Go take a look.
         </h3>
+        <div class="flex w-full justify-center items-center my-2">
         <p class="font-semibold text-center text-white">{{ email }}</p>
-        <div class="w-full my-8">
+        <!-- change email address -->
+        <router-link
+          :to="`/auth/login?app=${app}&redirect=${redirect}`"
+          class="ml-2 text-xs text-white/50 font-light underline underline-offset-2 cursor-pointer
+            hover:text-white hover:font-normal transition-all duration-200
+            ">
+          Change
+        </router-link>
+        </div>
+        <div class="w-full my-10">
           <div class="flex space-x-3 justify-center">
             <!-- eslint-disable-next-line  vuejs-accessibility/form-control-has-label -->
             <input
@@ -48,7 +58,7 @@
           </div>
         </div>
 
-        <div class="w-full">
+        <div class="w-full mt-2">
           <button
             @click.prevent="validatecode()"
             type="submit"
@@ -90,23 +100,22 @@
         </div>
 
       </form>
-      <div class="w-full my-10 flex justify-center text-white">
+      <div class="w-full mt-8 flex justify-center">
         <button
           v-if="availableIn === 0"
           @click="resendCode()"
-          class="underline cursor-pointer">
-          Reenviar código
+          class="text-sm text-white/50 font-light py-1 underline underline-offset-2 cursor-pointer
+            hover:text-white hover:font-normal transition-all duration-200
+            ">
+          Resend Code?
         </button>
-        <span v-else> Reenviar código en {{ formattedAvailableIn }} </span>
-      </div>
-      <!-- change email address -->
-      <div class="w-full my-10 flex justify-center text-white">
-        <router-link
-          :to="`/auth/login?app=${app}&redirect=${redirect}`"
-          class="underline cursor-pointer"
-        >
-          Cambiar correo
-        </router-link>
+        <div
+          v-else
+          class="text-[#A3A3A3]">
+          <span class="text-sm font-light py-1 mr-2">
+            This code won’t stick around for long. It expires in…</span>
+          <span class="text-lg font-semibold">{{ formattedAvailableIn }} </span>
+          </div>
       </div>
     </div>
   </div>
