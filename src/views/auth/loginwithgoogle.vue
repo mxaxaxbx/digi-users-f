@@ -4,19 +4,38 @@
         flex flex-col
         justify-start items-start
         font-alexandria
-        bg-[#252525]
+        bg-[var(--bg)]
         w-[758px]
         h-full
-        border-r border-[#3a3a3a]
+        border-r border-[var(--border)]
         shadow-md
         my-auto
         py-4
         px-8
       ">
-      <router-link :to="isAuth ? '/app' : '/'" class="text-white
-              ">
-        <img src="/img/logo-fireweb.svg" alt="Logo" class="h-[25px] mt-1 mb-24" />
+      <div class="flex justify-between w-full mb-24">
+      <router-link
+        :to="isAuth
+        ? '/app'
+        : '/'
+        ">
+        <img
+          :src="isLight
+          ? '/img/logo-fireweb-light.svg'
+          : '/img/logo-fireweb.svg'"
+           alt="Logo" class="h-[25px] mt-1" />
       </router-link>
+      <button
+        @click="toggleTheme"
+        class="rounded-full"
+      >
+        <img
+            :src="isLight ? '/icon/icon-light.svg' : '/icon/icon-dark.svg'"
+            alt="theme toggle"
+            class="w-4 h-4 opacity-50 hover:opacity-100 transition"
+          />
+      </button>
+</div>
       <div class="
         flex flex-col justify-left
         mx-auto
@@ -24,7 +43,7 @@
         my-auto
         items-left
         ">
-        <h1 class=" text-white mx-8 text-[2rem] font-bold mb-2">
+        <h1 class=" text-[var(--text)] mx-8 text-[2rem] font-bold mb-2">
           It all starts here... &#58;&#41;</h1>
         <div class="
           flex items-left justify-left
@@ -37,21 +56,21 @@
         <div class="flex justify-center w-ful mx-8 mb-12">
           <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`" class="
             flex items-center justify-center
-            bg-[#252525]
+            bg-[var(--bg)]
             py-2
-            rounded-full border border-[#3d3d3d]
-            hover:border-[#9CA3AF] hover:bg-[#2a2a2a]
+            rounded-full border border-[var(--border)]
+            hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]
             focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
             w-full
           ">
             <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google" class="w-6 h-6" />
-            <span class="ml-2 text-white font-semibold">Sign with Google</span>
+            <span class="ml-2 text-[var(--text)] font-semibold">Sign with Google</span>
           </a>
         </div>
         <div class="flex items-center w-full px-8">
-          <span class="flex-grow h-px bg-[#3d3d3d]"></span>
-          <span class="px-4 text-white text-sm font-regular">or</span>
-          <span class="flex-grow h-px bg-[#3d3d3d]"></span>
+          <span class="flex-grow h-px bg-[var(--border)]"></span>
+          <span class="px-4 text-[var(--text)] text-sm font-regular">or</span>
+          <span class="flex-grow h-px bg-[var(--border)]"></span>
         </div>
         <div
           ref="emailInput"
@@ -64,7 +83,7 @@
             border
             "
             :class="isEmailInvalid ?
-            'bg-[#5C451C]/10 border-[#FFA600]' : 'bg-transparent border-transparent'"
+            'bg-[#ffa600]/10 border-[#FFA600]' : 'bg-transparent border-transparent'"
             >
           <div
           v-if="showAlert"
@@ -72,7 +91,7 @@
             absolute top-3 -mx-0
             w-full
             flex items-center
-            text-white text-xs font-regular
+            text-[var(--text)] text-xs font-regular
             transition-all duration-300"
           >
         <img
@@ -82,7 +101,7 @@
         />
           {{ alertMessage }}
         </div>
-          <span class="text-white text-base font-medium px-4 pb-1.5">
+          <span class="text-[var(--text)] text-base font-medium px-4 pb-1.5">
             Email</span>
           <input
             Type:="email"
@@ -92,23 +111,24 @@
             @keyup="handleKey"
             class="
             flex items-center justify-center
-            bg-[#252525]
+            bg-[var(--bg-secondary)]
             w-full
             py-2 px-4
             font-regular text-sm
-            placeholder:text-white/20 placeholder:font-light
             rounded-full border
+            placeholder:text-[var(--text)] placeholder:opacity-30 placeholder:font-light
             focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
+            focus:bg-[var(--hover-bg)]
           "
           :class="isEmailInvalid
           ? [
             'bg-[#FFA600]/5 border-[#FFA600]',
-            'placeholder:text-white/50 text-white',
-            'hover:border-white hover:bg-[#ffa600]/10'
+            'placeholder:text-[var(--text)]',
+            'hover:bg-[#ffa600]/10'
           ]
           : [
-            'bg-[#252525] border-[#3d3d3d] text-white',
-            'hover:border-[#9CA3AF] hover:bg-[#2a2a2a]'
+            'bg-[#252525] border-[var(--border)] text-[var(--text)]',
+            'hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]'
           ]"
           />
         </div>
@@ -135,12 +155,12 @@
         <span class="text-[#7f7f7f]/80 text-xs font-light mt-6 mb-2 text-center block">
           By continuing, you agree to our
           <a href="/privacy-policy" target="_blank" class="text-[#7f7f7f]
-          hover:text-white underline underline-offset-2 transition">
+          hover:text-[var(--text)] underline underline-offset-2 transition">
             Terms of Service
           </a>
           and
           <a href="/privacy-policy" target="_blank" class="text-[#7f7f7f]
-      hover:text-white underline underline-offset-2 transition">
+      hover:text-[var(--text)] underline underline-offset-2 transition">
             Privacy Policy
           </a>.
         </span>
@@ -158,6 +178,7 @@
       justify-center items-center
       font-alexandria
       flex-1
+      bg-[var(--bg-secondary)]
       h-full
       my-auto
     ">
@@ -181,7 +202,7 @@
           <p
             :key="currentIndex"
             class="
-              text-white text-2xl font-regular
+              text-[var(--text)] text-2xl font-semibold
               mb-10 relative z-10 transition-all duration-500
               ">
             {{ testimonials[currentIndex].text }}
@@ -247,6 +268,13 @@ const email = ref('');
 const showAlert = ref(false);
 const alertMessage = ref('');
 const isEmailInvalid = ref(false);
+
+const isLight = ref(false);
+
+const toggleTheme = () => {
+  isLight.value = !isLight.value;
+  document.documentElement.classList.toggle('light', isLight.value);
+};
 
 function showCustomAlert(message) {
   alertMessage.value = message;

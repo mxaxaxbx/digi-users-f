@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Tema base (dark) */
+:root {
+    --bg: #252525;
+    --bg-secondary: #1d1d1d;
+    --bg-input: #252525;
+    --text: #ffffff;
+    --border: #3d3d3d;
+
+    --hover-border: #9CA3AF;
+    --hover-bg: #2a2a2a;
+  }
+
+  /* Tema claro */
+.light {
+  --bg: #fBFBFB;
+  --bg-secondary: #F5F5F5;
+  --text: #252525;
+  --border: #DCDCDC;
+
+  --hover-border: #b9b9b9;
+  --hover-bg: #ffffff;
+}
