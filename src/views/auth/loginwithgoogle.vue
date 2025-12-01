@@ -289,11 +289,13 @@ const showAlert = ref(false);
 const alertMessage = ref('');
 const isEmailInvalid = ref(false);
 
-const isLight = ref(false);
+const isLight = computed(() => store.state.theme.theme === 'light');
 
 const toggleTheme = () => {
-  isLight.value = !isLight.value;
-  document.documentElement.classList.toggle('light', isLight.value);
+  store.dispatch('theme/toggleTheme');
+  const newTheme = store.state.theme.theme;
+
+  document.documentElement.classList.toggle('light', newTheme === 'light');
 };
 
 function showCustomAlert(message) {

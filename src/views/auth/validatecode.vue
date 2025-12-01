@@ -4,7 +4,7 @@
       flex justify-center items-center
       font-alexandria
       h-screen w-screen
-      bg-[var(--bg-secundary)]">
+      bg-[var(--bg)]">
     <div class="
         -mt-5
         px-20 py-8
