@@ -69,7 +69,7 @@
             :disabled="loading"
           >
             <i v-if="loading" class="fas fa-spinner animate-spin mr-2"></i>
-            Iniciar sesión
+            Iniciar
           </button>
         </div>
       </form>

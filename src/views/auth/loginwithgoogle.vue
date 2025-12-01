@@ -72,6 +72,8 @@
           <span class="px-4 text-[var(--text)] text-sm font-regular">or</span>
           <span class="flex-grow h-px bg-[var(--border)]"></span>
         </div>
+        <!-- Email input -->
+        <form @submit.prevent="submitEmail" class="w-full" novalidate>
         <div
           ref="emailInput"
           class="
@@ -83,7 +85,8 @@
             border
             "
             :class="isEmailInvalid ?
-            'bg-[#ffa600]/10 border-[#FFA600]' : 'bg-transparent border-transparent'"
+            'bg-[#ffa600]/10 border-[#FFA600] text-[var(--text)]'
+            : 'bg-transparent border-transparent'"
             >
           <div
           v-if="showAlert"
@@ -101,10 +104,14 @@
         />
           {{ alertMessage }}
         </div>
-          <span class="text-[var(--text)] text-base font-medium px-4 pb-1.5">
-            Email</span>
+        <label
+          for="email"
+          class="text-[var(--text)] text-base font-medium px-4 pb-1.5"
+        >
+          Email
+        </label>
           <input
-            Type:="email"
+            type="email"
             v-model="email"
             :placeholder="dynamicPlaceholder"
             @keydown="handleKey"
@@ -134,7 +141,7 @@
         </div>
         <div class="flex justify-center w-full mb-6 px-8">
           <button
-            @click="submitEmail"
+            type="submit"
             class="
             flex items-center justify-center
             w-full
@@ -147,11 +154,17 @@
           ">
             <span class="text-white font-semibold">Sign In</span>
             <img
+              v-if="!loading"
               src="/icon/icon-signIn.svg"
               alt="singIn"
               class="w-6 h-6 ml-2" />
+            <i
+              v-else
+              class="fas fa-spinner animate-spin text-white ml-2"
+            ></i>
         </button>
         </div>
+        </form>
         <span class="text-[#7f7f7f]/80 text-xs font-light mt-6 mb-2 text-center block">
           By continuing, you agree to our
           <a href="/privacy-policy" target="_blank" class="text-[#7f7f7f]
@@ -229,7 +242,14 @@ import {
   onUnmounted,
   ref,
 } from 'vue';
-import { useRoute } from 'vue-router';
+
+import { useRouter, useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+
+const router = useRouter();
+const route = useRoute();
+const store = useStore();
+const loading = ref(false);
 
 /* Dynamic placeholder for email input */
 /* eslint-disable */
@@ -285,7 +305,7 @@ function showCustomAlert(message) {
   }, 6000);
 }
 
-function submitEmail() {
+async function submitEmail() {
   const emailValue = email.value.trim();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -301,12 +321,31 @@ function submitEmail() {
   }
 
   isEmailInvalid.value = false;
-  showCustomAlert('Email looks good!');
+
+  try {
+    loading.value = true;
+
+    await store.dispatch('auth/sendcode', {
+      email: emailValue,
+    });
+
+    router.push({
+      path: '/auth/check-code',
+      query: {
+        email: emailValue,
+        app: route.query.app,
+      },
+    });
+  } catch (error: any) {
+    console.error(error);
+    showCustomAlert('Something went wrong while sending your code.');
+  } finally {
+    loading.value = false;
+  }
 }
 
 const SCOPES = ref(['openid', 'email', 'profile', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']);
 
-const route = useRoute();
 const uriquery = ref<string>('');
 
 function generateUri() {
@@ -382,10 +421,7 @@ const intervalMs = 10000;
 let timer = null;
 let paused = false;
 
-/**
- * Avanza al siguiente testimonio.
- * Protegemos contra arrays vacíos por si acaso.
- */
+/* Avanza al siguiente testimonio. */
 function next() {
   if (paused) {
     return;
@@ -413,7 +449,6 @@ function startRotation() {
 function pauseRotation() {
   paused = true;
 }
-
 /** Reanuda la rotación (usado en mouseleave / focusout) */
 function resumeRotation() {
   paused = false;
@@ -429,6 +464,7 @@ onUnmounted(() => {
     timer = null;
   }
 });
+
 </script>
 
 <style scoped>
