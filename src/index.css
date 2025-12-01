@@ -8,6 +8,8 @@
     --bg-secondary: #1d1d1d;
     --bg-input: #252525;
     --text: #ffffff;
+    --text-secondary: #A3A3A3;
+    --text-terceary: #3d3d3d;
     --border: #3d3d3d;
 
     --hover-border: #9CA3AF;
@@ -19,6 +21,8 @@
   --bg: #fBFBFB;
   --bg-secondary: #F5F5F5;
   --text: #252525;
+  --text-secondary: #A3A3A3;
+  --text-terceary: #dcdcdc;
   --border: #DCDCDC;
 
   --hover-border: #b9b9b9;

@@ -27,7 +27,7 @@
       </router-link>
       <button
         @click="toggleTheme"
-        class="rounded-full"
+        class="rounded-full p-1"
       >
         <img
             :src="isLight ? '/icon/icon-light.svg' : '/icon/icon-dark.svg'"

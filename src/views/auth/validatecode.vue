@@ -6,32 +6,35 @@
       h-screen w-screen
       bg-[var(--bg)]">
     <div class="
-        -mt-5
+        -mt-5 mx-auto
         px-20 py-8
-        border border-[#3d3d3d]
         rounded-lg
-        mx-auto
-        bg-[#252525]
-        shadow-lg
+        border border-[var(--border)]
+        bg-[var(--bg)]
+        shadow-sm
       ">
       <form class="" action="" method="POST" @submit.prevent="validatecode()">
-        <h1 class="w-full text-3xl text-left text-white font-bold my-8">
+        <h1 class="w-full text-3xl text-left text-[var(--text)] font-bold my-8">
           Ready for Your<br>Verification Code?... &#58;&#41;</h1>
-        <h3 class="w-full text-center text-[#A3A3A3] text-md font-light">
+        <h3 class="w-full text-center text-[var(--text-secondary)] text-md font-light">
           A fresh code just landed in your inbox. Go take a look.
         </h3>
         <div class="flex w-full justify-center items-center my-2">
-        <p class="font-semibold text-center text-white">{{ email }}</p>
+        <p class="font-semibold text-center text-[var(--text)]">{{ email }}</p>
         <!-- change email address -->
         <router-link
-          :to="`/auth/login?app=${app}&redirect=${redirect}`"
-          class="ml-2 text-xs text-white/50 font-light underline underline-offset-2 cursor-pointer
-            hover:text-white hover:font-normal transition-all duration-200
+          :to="`/auth/loginwithgoogle?app=${app}&redirect=${redirect}`"
+          class="
+            underline underline-offset-2 cursor-pointer
+            ml-2
+            text-xs text-[var(--text-secondary)] font-light
+            hover:text-[var(--text)] hover:font-normal
+            transition-all duration-200
             ">
           Change
         </router-link>
         </div>
-        <div class="w-full my-10">
+        <div class="w-full my-10 ">
           <div class="flex space-x-3 justify-center">
             <!-- eslint-disable-next-line  vuejs-accessibility/form-control-has-label -->
             <input
@@ -47,12 +50,12 @@
               maxlength="1"
               :disabled="loading"
               :class="[
-              'w-10 p-2 rounded text-white text-center codes',
+              'w-10 p-2 rounded text-[var(--text)] text-center codes',
               loading
-                ? 'bg-[#1d1d1d]/20 border border-[#3d3d3d]/30'
+                ? 'bg-[var(--bg-secundary)] border border-[var(--border)] opacity-30'
                 : wrongCode
-                  ? 'bg-[#5C451C]/20 border border-[#FFA600]/70 text-white'
-                  : 'bg-[#1d1d1d]/50 border border-[#3d3d3d]'
+                  ? 'bg-[#ffa600]/5 border border-[#ffa600] text-[var(--text)]'
+                  : 'bg-[var(--bg-secondary)] border border-[var(--border)]'
             ]"
             />
           </div>
@@ -63,22 +66,20 @@
             @click.prevent="validatecode()"
             type="submit"
             class="
-              p-2 rounded-full shadow
+              p-2 rounded-full
               w-full
-              --bg-gradient-to-tr
-              --from-slate-600 --to-slate-400
-              bg-[#252525]
-              text-[#3d3d3d] font-semibold
+              bg-[var(--bg)]
+              text-[var(--text)] font-semibold
             "
             :class="[
               loading
-                ? 'cursor-not-allowed bg-white'
+                ? 'cursor-not-allowed'
                 : wrongCode
-                ? 'cursor-pointer bg-[#5C451C]/20 text-white border border-[#FFA600]/70'
+                ? 'cursor-pointer bg-[#ffa600]/5 text-[var(--text)] border border-[#ffa600]'
                 : allFilled
                   ? 'cursor-pointer'
-                  : 'cursor-not-allowed text-[#3d3d3d] bg-[#252525]',
-                    'border border-[#3d3d3d]'
+                  : 'cursor-not-allowed text-[var(--text-terceary) bg-[var(--bg)]',
+                    'border border-[var(--border)]'
               ]"
               :disabled="loading || !allFilled"
             >
@@ -88,11 +89,11 @@
             </span>
             <span
               v-else-if="wrongCode"
-              class="font-semibold text-white">
+              class="font-semibold text-[var(--text)]">
               Nice try, but nope. Try again!
           </span>
             <span v-else class="font-semibold">
-              <span v-if="missingDigits > 0" class="ml-2 text-md text-white/40">
+              <span v-if="missingDigits > 0" class="ml-2 text-md text-[var(--text)] opacity-50">
                 {{ missingDigits }} digits left!
               </span>
             </span>
@@ -104,14 +105,18 @@
         <button
           v-if="availableIn === 0"
           @click="resendCode()"
-          class="text-sm text-white/50 font-light py-1 underline underline-offset-2 cursor-pointer
-            hover:text-white hover:font-normal transition-all duration-200
+          class="
+            underline underline-offset-2 cursor-pointer
+            py-1
+            text-sm text-[var(--text-secondary)] font-light
+            hover:text-[var(--text)] hover:font-normal
+            transition-all duration-200
             ">
           Resend Code?
         </button>
         <div
           v-else
-          class="text-[#A3A3A3]">
+          class="text-[var(--text-secondary)]">
           <span class="text-sm font-light py-1 mr-2">
             This code won’t stick around for long. It expires in…</span>
           <span class="text-lg font-semibold">{{ formattedAvailableIn }} </span>
