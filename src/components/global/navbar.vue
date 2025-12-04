@@ -4,7 +4,7 @@
       font-alexandria
       bg-[#1d1d1d] text-white
       w-full h-16
-      px-8 pt-1
+      px-8 pt-2
       border-b border-[#3d3d3d]
     "
   >
@@ -20,7 +20,7 @@
           class="text-red-600"
         >
           <img
-            src="https:///assets.digiapps.com.co/logo.png"
+            src="/img/logo-digi.svg"
             alt="Logo"
             class="
             h-[25px]

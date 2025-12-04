@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="bg-pink-600 text-white">
+    <section class="bg-[#F83B66] text-white">
       <div class="container mx-auto px-4 py-20 text-center">
         <h1 class="text-5xl font-bold">Welcome to Digi Systems</h1>
         <p class="mt-4 text-lg">
@@ -9,7 +9,7 @@
         </p>
         <a
           href="#products"
-          class="mt-6 inline-block bg-white text-pink-600 py-3 px-6 rounded-lg hover:bg-gray-200"
+          class="mt-6 inline-block bg-white text-[#F83B66] py-3 px-6 rounded-lg hover:bg-gray-200"
         >
           Explore Products
         </a>
@@ -17,7 +17,7 @@
     </section>
     <!-- Products Section -->
     <section id="products" class="container mx-auto px-4 py-20">
-      <h2 class="text-3xl font-bold text-center mb-12 text-pink-500">Our Products</h2>
+      <h2 class="text-3xl font-bold text-center mb-12 text-[#F83B66]">Our Products</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         <!-- Digi-Care -->
         <div class="bg-white shadow-lg rounded-lg p-6 text-center">
@@ -29,7 +29,7 @@
           <a
             :href="careAppLink"
             target="_blank"
-            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
           >
             Learn More
           </a>
@@ -45,7 +45,7 @@
           <a
             :href="eduAppLink"
             target="_blank"
-            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
           >
             Learn More
           </a>
@@ -60,7 +60,7 @@
           </p>
           <a
             :href="storageAppLink"
-            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
           >
             Learn More
           </a>
@@ -76,7 +76,7 @@
           <a
             :href="firewebLink"
             target="_blank"
-            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
           >
             Learn More
           </a>

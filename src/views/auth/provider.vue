@@ -18,9 +18,40 @@
           ? '/app'
           : '/'
           ">
-          <img :src="isLight
+          <!-- logo fireweb -->
+          <img
+            v-if="app === 'fireweb'"
+            :src="isLight
             ? '/img/logo-fireweb-light.svg'
             : '/img/logo-fireweb.svg'" alt="Logo" class="h-[25px] mt-1" />
+
+          <!-- logo sky -->
+          <img
+            v-else-if="app === 'sky'"
+            :src="isLight
+              ? '/img/logo-sky-light.svg'
+              : '/img/logo-sky.svg'"
+            alt="sky Logo"
+            class="h-[25px] mt-1"
+          />
+          <!-- logo Utils -->
+          <img
+            v-else-if="app === 'utils'"
+            :src="isLight
+              ? '/img/logo-utils-light.svg'
+              : '/img/logo-utils.svg'"
+            alt="utils Logo"
+            class="h-[25px] mt-1"
+          />
+          <!-- logo Utils -->
+          <img
+            v-else
+            :src="isLight
+              ? '/img/logo-digi-light.svg'
+              : '/img/logo-digi.svg'"
+            alt="utils Logo"
+            class="h-[25px] mt-1"
+          />
         </router-link>
         <button @click="toggleTheme" class="rounded-full p-1">
           <img :src="isLight ? '/icon/icon-light.svg' : '/icon/icon-dark.svg'" alt="theme toggle"
@@ -58,82 +89,117 @@
             <span class="ml-2 text-[var(--text)] font-semibold">Sign with Google</span>
           </a>
         </div>
-        <div class="flex items-center w-full px-8">
-          <span class="flex-grow h-px bg-[var(--border)]"></span>
-          <span class="px-4 text-[var(--text)] text-sm font-regular">or</span>
-          <span class="flex-grow h-px bg-[var(--border)]"></span>
-        </div>
-        <!-- Email input -->
-        <form @submit.prevent="submitEmail" class="w-full" novalidate>
-          <div ref="emailInput" class="
-            relative
-            flex flex-col justify-center
-            w-full
-            mb-4 px-8 pt-10 pb-6
-            rounded-lg
-            border
-            " :class="isEmailInvalid ?
-              'bg-[#ffa600]/10 border-[#FFA600] text-[var(--text)]'
-              : 'bg-transparent border-transparent'">
-            <div v-if="showAlert" class="
-            absolute top-3 -mx-0
-            w-full
-            flex items-center
-            text-[var(--text)] text-xs font-regular
-            transition-all duration-300">
-              <img src="/icon/icon-alert.svg" alt="alert" class="w-5 h-5 mr-2 " />
-              {{ alertMessage }}
+        <div v-show="app !== 'fireweb'">
+          <div class="flex items-center w-full px-8">
+            <span class="flex-grow h-px bg-[var(--border)]"></span>
+            <span class="px-4 text-[var(--text)] text-sm font-regular">or</span>
+            <span class="flex-grow h-px bg-[var(--border)]"></span>
+          </div>
+          <!-- Email input -->
+          <form @submit.prevent="submitEmail" class="w-full" novalidate>
+            <div ref="emailInput" class="
+              relative
+              flex flex-col justify-center
+              w-full
+              mb-4 px-8 pt-10 pb-6
+              rounded-lg
+              border
+              " :class="isEmailInvalid ?
+                'bg-[#ffa600]/10 border-[#FFA600] text-[var(--text)]'
+                : 'bg-transparent border-transparent'">
+              <div v-if="showAlert" class="
+              absolute top-3 -mx-0
+              w-full
+              flex items-center
+              text-[var(--text)] text-xs font-regular
+              transition-all duration-300">
+                <img src="/icon/icon-alert.svg" alt="alert" class="w-5 h-5 mr-2 " />
+                {{ alertMessage }}
+              </div>
+              <label for="email" class="text-[var(--text)] text-base font-medium px-4 pb-1.5">
+                Email
+              </label>
+              <input
+                type="email"
+                v-model="email"
+                :placeholder="dynamicPlaceholder"
+                @keydown="handleKey"
+                @keyup="handleKey"
+                class="
+                  flex items-center justify-center
+                  bg-[var(--bg-secondary)]
+                  w-full
+                  py-2 px-4
+                  font-regular text-sm
+                  rounded-full border
+                  placeholder:text-[var(--text)] placeholder:opacity-30 placeholder:font-light
+                  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
+                  focus:bg-[var(--hover-bg)]
+                "
+                :class="isEmailInvalid
+                  ? [
+                    'bg-[#FFA600]/5 border-[#FFA600]',
+                    'placeholder:text-[var(--text)]',
+                    'hover:bg-[#ffa600]/10'
+                  ]
+                  : [
+                    'bg-[#252525] border-[var(--border)] text-[var(--text)]',
+                    'hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]'
+                  ]
+                "
+              />
             </div>
-            <label for="email" class="text-[var(--text)] text-base font-medium px-4 pb-1.5">
-              Email
-            </label>
-            <input
-              type="email"
-              v-model="email"
-              :placeholder="dynamicPlaceholder"
-              @keydown="handleKey"
-              @keyup="handleKey"
-              class="
-                flex items-center justify-center
-                bg-[var(--bg-secondary)]
-                w-full
-                py-2 px-4
-                font-regular text-sm
-                rounded-full border
-                placeholder:text-[var(--text)] placeholder:opacity-30 placeholder:font-light
-                focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
-                focus:bg-[var(--hover-bg)]
-              "
-              :class="isEmailInvalid
-                ? [
-                  'bg-[#FFA600]/5 border-[#FFA600]',
-                  'placeholder:text-[var(--text)]',
-                  'hover:bg-[#ffa600]/10'
-                ]
-                : [
-                  'bg-[#252525] border-[var(--border)] text-[var(--text)]',
-                  'hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]'
-                ]
-              "
-            />
-          </div>
-          <div class="flex justify-center w-full mb-6 px-8">
-            <button type="submit" class="
-            flex items-center justify-center
-            w-full
-            bg-[#ED1C24]
-            py-2
-            rounded-full
-            hover:ring-4 hover:ring-[#ED1C24]/50
-              focus:ring-4 focus:ring-[#ED1C24]/50
-              transition-all duration-300 ease-in-out
-          ">
-              <span class="text-white font-semibold">Sign In</span>
-              <img v-if="!loading" src="/icon/icon-signIn.svg" alt="singIn" class="w-6 h-6 ml-2" />
-              <i v-else class="fas fa-spinner animate-spin text-white ml-2"></i>
-            </button>
-          </div>
-        </form>
+            <div class="flex justify-center w-full mb-6 px-8">
+              <button
+                type="submit"
+                :class="[
+                    'flex items-center justify-center w-full',
+                    'py-2 rounded-full transition-all duration-300 ease-in-out',
+
+                    app === 'digi'
+                      ? 'bg-[#F83B66]'
+                      : app === 'fireweb'
+                        ? 'bg-[#ED1C24]'
+                        : app === 'utils'
+                          ? 'bg-[#FFC506]'
+                          : app === 'sky'
+                            ? 'bg-[#0B77F3]'
+                            : 'bg-[#F83B66]',
+
+                    // hover ring
+                    app === 'digi'
+                      ? 'hover:ring-4 hover:ring-[#F83B66]/50'
+                      : app === 'fireweb'
+                        ? 'hover:ring-4 hover:ring-[#ED1C24]/50'
+                        : app === 'utils'
+                          ? 'hover:ring-4 hover:ring-[#FFC506]/50'
+                          : app === 'sky'
+                            ? 'hover:ring-4 hover:ring-[#0B77F3]/50'
+                            : 'hover:ring-4 hover:ring-gray-400/50',
+
+                    // focus ring
+                    app === 'digi'
+                      ? 'focus:ring-4 focus:ring-[#F83B66]/50'
+                      : app === 'fireweb'
+                        ? 'focus:ring-4 focus:ring-[#ED1C24]/50'
+                        : app === 'utils'
+                          ? 'focus:ring-4 focus:ring-[#FFC506]/50'
+                          : app === 'sky'
+                            ? 'focus:ring-4 focus:ring-[#2E86DE]/50'
+                            : 'focus:ring-4 focus:ring-gray-400/50'
+                  ]"
+            >
+                <span class="text-white font-semibold">Sign In</span>
+                <img
+                  v-if="!loading"
+                  src="/icon/icon-signIn.svg"
+                  alt="singIn"
+                  class="w-6 h-6 ml-2" />
+                <i v-else class="fas fa-spinner animate-spin text-white ml-2"></i>
+              </button>
+            </div>
+          </form>
+        </div>
         <span class="text-[#7f7f7f]/80 text-xs font-light mt-6 mb-2 text-center block">
           By continuing, you agree to our
           <a href="/privacy-policy" target="_blank" class="text-[#7f7f7f]
@@ -148,11 +214,16 @@
         </span>
       </div>
       <div class="flex justify-center w-full mt-16 mb-4">
-        <img src="/img/logo-digi.svg" alt="digi-apps-logo" class="
-          h-10 mt-1 mb-2
+        <img
+        :src="isLight
+              ? '/img/logo-digi-light.svg'
+              : '/img/logo-digi.svg'"
+        alt="sky Logo"
+        class="
+          h-6 mt-1 mb-2
           opacity-10 hover:opacity-100
           transition-all duration-300 ease-in-out
-          ">
+          "/>
       </div>
     </div>
     <div class="
@@ -220,6 +291,8 @@ const loading = ref(false);
 /* eslint-disable */
 const isCapOn = ref(false);
 const normalPlaceholder = 'what’s-your@email.com';
+
+const app = computed(() => typeof route.query.app === 'string' ? route.query.app : '');
 
 function handleKey(e: KeyboardEvent) {
   if (
@@ -316,9 +389,8 @@ const SCOPES = ref(['openid', 'email', 'profile', 'https://www.googleapis.com/au
 const uriquery = ref<string>('');
 
 function generateUri() {
-  const app = typeof route.query.app === 'string' ? route.query.app : '';
   const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '';
-  sessionStorage.setItem('app', app); // Default to empty string if app is not provided
+  sessionStorage.setItem('app', app.value); // Default to empty string if app is not provided
   sessionStorage.setItem('redirect', redirect); // Default to empty string if redirect is not provided
 
   // scopes to string
@@ -339,9 +411,7 @@ function generateUri() {
 }
 
 function addNecessaryScopes() {
-  const app = typeof route.query.app === 'string' ? route.query.app : '';
-
-  switch (app) {
+  switch (app.value) {
     case 'fireweb': {
       SCOPES.value.push('https://www.googleapis.com/auth/cloud-platform.read-only');
       SCOPES.value.push('https://www.googleapis.com/auth/datastore');
