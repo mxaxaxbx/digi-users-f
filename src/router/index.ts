@@ -54,6 +54,14 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: 'provider',
+        name: 'provider',
+        component: () => import('../views/auth/provider.vue'),
+        meta: {
+          title: 'Select a provider to login',
+        },
+      },
+      {
         path: 'validategoogletoken',
         name: 'validategoogletoken',
         component: () => import('../views/auth/validategoogletoken.vue'),
