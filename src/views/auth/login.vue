@@ -5,10 +5,10 @@
       flex flex-col
       justify-start items-start
       font-alexandria
-      bg-[#252525]
+      bg-[var(--bg)]
       w-[750px]
       h-full
-      border-r border-[#3a3a3a]
+      border-r border-[var(--border)]
       shadow-md
       my-auto
       py-4
@@ -23,7 +23,7 @@
       my-auto
       w-[400px]
       ">
-      <h1 class=" text-white text-[2rem] font-bold mb-2"> Iniciar sesión </h1>
+      <h1 class=" text-[var(--text)] text-[2rem] font-bold mb-2"> Iniciar sesión </h1>
       <form class="" @submit.prevent="toCheckCode">
         <div>
           <label

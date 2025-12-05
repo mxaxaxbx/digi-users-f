@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#1d1d1d]">
+  <div class="bg-[var(--bg)]">
     <!-- notifications -->
     <Notifications />
     <!-- Dark overlay -->
@@ -33,7 +33,7 @@
       <router-view />
     </div>
     <!-- footer -->
-    <footer v-if="shouldShowFooter" class="bg-gray-800 text-white py-8 h-0">
+    <footer v-if="shouldShowFooter" class="bg-[var(--bg)] text-[var(--text)] py-8">
       <div class="container mx-auto text-center">
         <p>&copy; {{ currentYear }} digi systems. All rights reserved.</p>
       </div>

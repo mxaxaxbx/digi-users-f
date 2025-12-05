@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="bg-[#F83B66] text-white">
+    <section class="bg-[var(--bg)] text-[var(--text)]">
       <div class="container mx-auto px-4 py-20 text-center">
         <h1 class="text-5xl font-bold">Welcome to Digi Systems</h1>
         <p class="mt-4 text-lg">

@@ -2,10 +2,10 @@
   <nav
     class="
       font-alexandria
-      bg-[#1d1d1d] text-white
+      bg-[var(--bg)] text-white
       w-full h-16
       px-8 pt-2
-      border-b border-[#3d3d3d]
+      border-b border-[var(--border)]
     "
   >
   <!--
@@ -20,7 +20,9 @@
           class="text-red-600"
         >
           <img
-            src="/img/logo-digi.svg"
+            :src="isLight
+            ? '/img/logo-digi-light.svg'
+            : '/img/logo-digi.svg'"
             alt="Logo"
             class="
             h-[25px]
@@ -29,6 +31,13 @@
         </router-link>
       </div>
 <div class="flex items-center space-x-6">
+  <button
+        @click="toggleTheme"
+        class="
+        rounded-full mt-1">
+          <img :src="isLight ? '/icon/icon-light.svg' : '/icon/icon-dark.svg'" alt="theme toggle"
+            class="w-4 h-4 opacity-70 hover:opacity-100 transition" />
+        </button>
         <!--dropdown-->
     <Dropdown v-if="isAuthenticated">
       <template #trigger="{ toggle }">
@@ -233,14 +242,14 @@
             </div>
           </template>
         </Dropdown>
-    <router-link v-else to="/auth/login" class="
+    <router-link v-else to="/auth/provider" class="
             flex items-center
-            bg-[#2a2a2a]
-            border border-[#3d3d3d]
+            bg-[#FF3374]
+            border border-[#FF3374]
             rounded-full
             py-4 px-6
             h-8
-            text-white text-sm font-regular
+            text-white text-sm font-semibold
             hover:border-[#FF3374] hover:bg-[#FF3374]
             hover:ring-4 hover:ring-[#FF3374]/50
             transition ease-in duration-150
@@ -259,8 +268,9 @@
 <script setup lang="ts">
 import { ref, computed, defineAsyncComponent } from 'vue';
 import { useStore } from 'vuex';
-
 import { UserI } from '@/store/auth/state';
+
+const loading = ref(false);
 
 const Dropdown = defineAsyncComponent(() => import('@/components/global/dropdown.vue'));
 
@@ -268,8 +278,14 @@ const store = useStore();
 
 const isAuthenticated = computed<boolean>(() => store.getters['auth/isAuthenticated']);
 const user = computed<UserI>(() => store.getters['auth/user']);
+const isLight = computed(() => store.state.theme.theme === 'light');
 
-const loading = ref(false);
+const toggleTheme = () => {
+  store.dispatch('theme/toggleTheme');
+  const newTheme = store.state.theme.theme;
+
+  document.documentElement.classList.toggle('light', newTheme === 'light');
+};
 
 function logout() {
   store.dispatch('auth/logout');

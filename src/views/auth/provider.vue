@@ -4,7 +4,7 @@
         flex flex-col
         justify-start items-start
         font-alexandria
-        bg-[var(--bg)]
+        bg-[var(--bg-secondary)]
         w-[758px]
         h-full
         border-r border-[var(--border)]
@@ -78,7 +78,7 @@
         <div class="flex justify-center w-ful mx-8 mb-12">
           <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`" class="
             flex items-center justify-center
-            bg-[var(--bg)]
+            bg-[var(--bg-secondary)]
             py-2
             rounded-full border border-[var(--border)]
             hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]
@@ -127,7 +127,7 @@
                 @keyup="handleKey"
                 class="
                   flex items-center justify-center
-                  bg-[var(--bg-secondary)]
+                  bg-[var(--bg)]
                   w-full
                   py-2 px-4
                   font-regular text-sm
@@ -175,7 +175,7 @@
                           ? 'hover:ring-4 hover:ring-[#FFC506]/50'
                           : app === 'sky'
                             ? 'hover:ring-4 hover:ring-[#0B77F3]/50'
-                            : 'hover:ring-4 hover:ring-gray-400/50',
+                            : 'hover:ring-4 hover:ring-[#F83B66]/50',
 
                     // focus ring
                     app === 'digi'
@@ -186,7 +186,7 @@
                           ? 'focus:ring-4 focus:ring-[#FFC506]/50'
                           : app === 'sky'
                             ? 'focus:ring-4 focus:ring-[#2E86DE]/50'
-                            : 'focus:ring-4 focus:ring-gray-400/50'
+                            : 'focus:ring-4 focus:ring-[#F83B660]/50'
                   ]"
             >
                 <span class="text-white font-semibold">Sign In</span>
@@ -231,7 +231,7 @@
       justify-center items-center
       font-alexandria
       flex-1
-      bg-[var(--bg-secondary)]
+      bg-[var(--bg)]
       h-full
       my-auto
     ">

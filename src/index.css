@@ -2,21 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tema base (dark) */
+/* Tema oscuro */
 :root {
-    --bg: #252525;
-    --bg-secondary: #1d1d1d;
-    --bg-input: #252525;
-    --text: #ffffff;
-    --text-secondary: #A3A3A3;
-    --text-terceary: #3d3d3d;
-    --border: #3d3d3d;
+  --bg: #1d1d1d;
+  --bg-secondary: #252525;
+  --bg-input: #252525;
+  --text: #ffffff;
+  --text-secondary: #A3A3A3;
+  --text-terceary: #3d3d3d;
+  --border: #3d3d3d;
 
-    --hover-border: #9CA3AF;
-    --hover-bg: #2a2a2a;
-  }
+  --hover-border: #9CA3AF;
+  --hover-bg: #2a2a2a;
+}
 
-  /* Tema claro */
+/* Tema claro */
 .light {
   --bg: #fBFBFB;
   --bg-secondary: #F5F5F5;
@@ -27,4 +27,12 @@
 
   --hover-border: #b9b9b9;
   --hover-bg: #ffffff;
+}
+* {
+  transition:
+    background-color 0.8s ease,
+    color 0.8s ease,
+    border-color 0.8s ease,
+    fill 0.8s ease,
+    stroke 0.8s ease;
 }
