@@ -14,10 +14,7 @@
         px-8
       ">
       <div class="flex justify-between w-full mb-24">
-        <router-link :to="isAuth
-          ? '/app'
-          : '/'
-          ">
+        <div class="">
           <!-- logo fireweb -->
           <img
             v-if="app === 'fireweb'"
@@ -52,7 +49,7 @@
             alt="utils Logo"
             class="h-[25px] mt-1"
           />
-        </router-link>
+        </div>
         <button @click="toggleTheme" class="rounded-full p-1">
           <img :src="isLight ? '/icon/icon-light.svg' : '/icon/icon-dark.svg'" alt="theme toggle"
             class="w-4 h-4 opacity-50 hover:opacity-100 transition" />
