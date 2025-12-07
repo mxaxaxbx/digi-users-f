@@ -154,6 +154,17 @@ const router = createRouter({
   routes,
 });
 
+router.afterEach(() => {
+  const app = document.querySelector('#app');
+  if (!app) return;
+
+  app.classList.add('page-transition');
+
+  setTimeout(() => {
+    app.classList.remove('page-transition');
+  }, 300); // duración suave
+});
+
 router.beforeEach((
   to: RouteLocationNormalized,
   from: RouteLocationNormalized,

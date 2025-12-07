@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--bg)]">
+  <div class="bg-[var(--bg)] font-alexandria w-full">
     <!-- notifications -->
     <Notifications />
     <!-- Dark overlay -->
@@ -33,20 +33,136 @@
       <router-view />
     </div>
     <!-- footer -->
-    <footer v-if="shouldShowFooter" class="bg-[var(--bg)] text-[var(--text)] py-8">
-      <div class="container mx-auto text-center">
-        <p>&copy; {{ currentYear }} digi systems. All rights reserved.</p>
+    <footer
+      v-if="shouldShowFooter"
+      class="bg-[var(--bg)] group">
+      <div class="w-full h-px bg-line"></div>
+      <div
+        class="
+        container mx-auto px-24 text-center">
+        <div
+          class="
+            flex justify-between
+            w-full
+            py-16
+            mb-8
+          ">
+          <router-link
+            :to="isAuth ? '/app' : '/'"
+            class=""
+          >
+            <img
+              :src="isLight
+              ? '/img/logo-digi-light.svg'
+              : '/img/logo-digi.svg'"
+              alt="Logo"
+              class="
+              h-6 opacity-30 group-hover:opacity-100
+              courser-pointer"
+            />
+          </router-link>
+          <div
+            class="
+              flex space-x-20 mr-20 opacity-30
+              group-hover:opacity-100 transition-all duration-500 ease-in-out
+            ">
+          <div class="text-left">
+            <h3 class="text-sm text-[var(--text)] font-regular mb-4">Products</h3>
+            <ul
+              class="
+                space-y-2
+                text-xs text-[var(--text)] font-light
+                pl-1
+              ">
+              <li><a
+                href="#"
+                class="
+                  opacity-50 hover:opacity-100
+                  transition-all duration-300 ease-in-out
+                  ">
+                  Sky</a></li>
+              <li><a
+                href="#"
+                class="
+                  opacity-50 hover:opacity-100
+                  transition-all duration-300 ease-in-out
+                  ">Fireweb</a></li>
+              <li><a
+                href="#"
+                class="
+                  opacity-50 hover:opacity-100
+                  transition-all duration-300 ease-in-out
+                  ">DigiCare</a></li>
+            </ul>
+          </div>
+          <div class="text-left">
+            <h3 class="text-sm text-[var(--text)] font-regular mb-4">Contact Us</h3>
+            <ul
+              class="
+                space-y-2
+                text-xs text-[var(--text)] font-light
+                pl-1
+              ">
+              <li><a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=support@digiapps.com.co"
+                target="_blank"
+                class="
+                  opacity-50 hover:opacity-100
+                  transition-all duration-300 ease-in-out
+                  ">
+                  Help Center</a></li>
+              <li><a
+                href="#"
+                class="
+                  opacity-50 hover:opacity-100
+                  transition-all duration-300 ease-in-out
+                  ">Discord</a></li>
+            </ul>
+          </div>
+          <div class="text-left">
+            <h3 class="text-sm text-[var(--text)] font-regular mb-4">Legal</h3>
+            <ul
+              class="
+                space-y-2
+                text-xs text-[var(--text)] font-light
+                pl-1
+              ">
+              <li><router-link
+                to="/privacy-policy"
+                class="
+                  opacity-50 hover:opacity-100
+                  transition-all duration-300 ease-in-out
+                  ">
+                  Privacy Policy</router-link></li>
+            </ul>
+          </div>
+        </div>
+        </div>
+        <div
+          class="
+            flex justify-between items-center
+            border-t border-[var(--border)]
+            pt-8
+            pb-20
+          ">
+        <p class="text-xs text-[var(--text-secondary)] font-light">&copy;
+          {{ currentYear }} digi systems All rights reserved.</p>
+          <button
+          @click="toggleTheme"
+          class="
+          rounded-full">
+          <img
+            :src="isLight
+            ? '/icon/icon-light.svg'
+            : '/icon/icon-dark.svg'"
+            alt="theme toggle"
+            class="w-5 h-5 opacity-70 hover:opacity-100 transition" />
+        </button>
+        </div>
       </div>
-      <router-link
-        to="/privacy-policy"
-        class="block text-center text-gray-400 hover:text-white"
-      >
-        Política de privacidad
-      </router-link>
     </footer>
   </div>
 </template>
-
 <script setup lang="ts">
 import { defineAsyncComponent, computed, ref } from 'vue';
 import { useStore } from 'vuex';
@@ -62,8 +178,16 @@ const route = useRoute();
 const showSidebar = computed(() => store.state.sidebar);
 const shouldShowNavbar = computed(() => !route.path.startsWith('/auth'));
 const shouldShowFooter = computed(() => !route.path.startsWith('/auth'));
+const isLight = computed(() => store.state.theme.theme === 'light');
 
 const currentYear = ref(new Date().getFullYear());
+
+const toggleTheme = () => {
+  store.dispatch('theme/toggleTheme');
+  const newTheme = store.state.theme.theme;
+
+  document.documentElement.classList.toggle('light', newTheme === 'light');
+};
 
 function toggleSidebar() {
   store.commit('toggleSidebar');

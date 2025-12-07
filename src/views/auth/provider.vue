@@ -5,7 +5,7 @@
         justify-start items-start
         font-alexandria
         bg-[var(--bg-secondary)]
-        w-[758px]
+        w-[768px]
         h-full
         border-r border-[var(--border)]
         shadow-md
@@ -58,21 +58,20 @@
       <div class="
         flex flex-col justify-left
         mx-auto
-        px-auto
         my-auto
         items-left
         ">
-        <h1 class=" text-[var(--text)] mx-8 text-[2rem] font-bold mb-2">
+        <h1 class=" text-[var(--text)] mx-12 text-[2.5rem] font-bold mb-2">
           It all starts here... &#58;&#41;</h1>
         <div class="
           flex items-left justify-left
           text-[1.1rem] text-[#7f7f7f]
-          mb-12 mx-8
+          mb-12 mx-12
           font-light
           ">
           <span>Sign in easily and securely with your Google account.</span>
         </div>
-        <div class="flex justify-center w-ful mx-8 mb-12">
+        <div class="flex justify-center w-ful mx-14 mb-12">
           <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`" class="
             flex items-center justify-center
             bg-[var(--bg-secondary)]
@@ -83,17 +82,17 @@
             w-full
           ">
             <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google" class="w-6 h-6" />
-            <span class="ml-2 text-[var(--text)] font-semibold">Sign with Google</span>
+            <span class="ml-2 text-[var(--text)] font-regular">Sign with Google</span>
           </a>
         </div>
         <div v-show="app !== 'fireweb'">
-          <div class="flex items-center w-full px-8">
+          <div class="flex items-center w-full px-14">
             <span class="flex-grow h-px bg-[var(--border)]"></span>
             <span class="px-4 text-[var(--text)] text-sm font-regular">or</span>
             <span class="flex-grow h-px bg-[var(--border)]"></span>
           </div>
           <!-- Email input -->
-          <form @submit.prevent="submitEmail" class="w-full" novalidate>
+          <form @submit.prevent="submitEmail" class=" px-4 " novalidate>
             <div ref="emailInput" class="
               relative
               flex flex-col justify-center
@@ -113,7 +112,7 @@
                 <img src="/icon/icon-alert.svg" alt="alert" class="w-5 h-5 mr-2 " />
                 {{ alertMessage }}
               </div>
-              <label for="email" class="text-[var(--text)] text-base font-medium px-4 pb-1.5">
+              <label for="email" class="text-[var(--text)] text-base font-light px-4 pb-1.5">
                 Email
               </label>
               <input
@@ -127,7 +126,7 @@
                   bg-[var(--bg)]
                   w-full
                   py-2 px-4
-                  font-regular text-sm
+                  font-light text-sm
                   rounded-full border
                   placeholder:text-[var(--text)] placeholder:opacity-30 placeholder:font-light
                   focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
@@ -250,7 +249,7 @@
         <!-- Commentaries -->
         <transition name="fade" mode="out-in">
           <p :key="currentIndex" class="
-              text-[var(--text)] text-2xl font-semibold
+              text-[var(--text)] text-2xl font-light
               mb-10 relative z-10 transition-all duration-500
               ">
             {{ testimonials[currentIndex].text }}
@@ -258,7 +257,7 @@
         </transition>
 
         <!-- Avatar + name -->
-        <div class="text-[#a3a3a3] text-center text-lg font-semibold flex items-center mb-30">
+        <div class="text-[#a3a3a3] text-center text-lg font-regular flex items-center mb-30">
           <img :src="testimonials[currentIndex].avatar" :alt="testimonials[currentIndex].handle"
             class="w-16 h-16 mr-4 rounded-full object-cover" />
           <span>@{{ testimonials[currentIndex].handle }}</span>
