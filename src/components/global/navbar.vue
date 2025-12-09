@@ -4,7 +4,7 @@
       font-alexandria
       bg-[var(--bg)] text-white
       w-full h-16
-      px-8 my-2
+      px-8 pt-1.5
       border-b border-[var(--border)]
     "
   >
@@ -237,10 +237,10 @@
             </Dropdown>
     <router-link v-else to="/auth/provider" class="
             flex items-center
-            bg-[#FF3374]
-            border border-[#FF3374]
+            bg-[#2a2a2a]
+            border border-[#3d3d3d]
             rounded-full
-            py-4 px-6
+            pl-4 pr-3 py-2
             h-8
             text-white text-sm font-semibold
             hover:border-[#FF3374] hover:bg-[#FF3374]

@@ -87,10 +87,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
 const eduAppLink = ref(process.env.VUE_APP_URL_DG_EDU_APP);
 const firewebLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
 const storageAppLink = ref(process.env.VUE_APP_URL_DG_STORAGE_APP);
+
+onMounted(() => {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+});
 </script>

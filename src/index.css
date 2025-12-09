@@ -72,11 +72,12 @@
 
 #app {
   transition:
-    opacity 0.1s ease,
+    opacity 0.5s ease,
     filter 0.35s ease;
 }
 
 #app.page-transition {
   opacity: 0.9;
-  filter: blur(6px);
+  filter: blur(10px);
 }
+
