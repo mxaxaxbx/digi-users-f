@@ -1,11 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  content: [],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        alexandria: ['Alexandria', 'sans-serif'],
+      },
       fontWeight: {
-        extrablack: '1000',
+        normal: '400',
+        semibold: '600',
+        bold: '700',
+        extrablack: '900',
       },
       spacing: {
         25: '6.25rem',

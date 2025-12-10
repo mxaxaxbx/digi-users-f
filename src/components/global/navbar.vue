@@ -243,7 +243,7 @@
             rounded-full
             pl-4 pr-3 py-2
             h-8
-            text-white text-sm font-semibold
+            text-white text-sm font-regular
             hover:border-[#FF3374] hover:bg-[#FF3374]
             hover:ring-4 hover:ring-[#FF3374]/50
             transition ease-in duration-150

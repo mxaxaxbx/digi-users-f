@@ -4,10 +4,11 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import './index.css';
-
 // directives
 import clickOutside from './directives/click-outside';
+
+import './index.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const savedTheme = localStorage.getItem('theme') || 'dark';
 document.documentElement.classList.toggle('light', savedTheme === 'light');
@@ -25,5 +26,3 @@ createApp(App)
   .use(router)
   .use(clickOutside)
   .mount('#app');
-
-store.dispatch('theme/initTheme');

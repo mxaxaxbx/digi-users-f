@@ -2,10 +2,10 @@
   <div class="flex h-screen flex-row">
     <div class="
         flex flex-col
-        justify-start items-start
-        font-alexandria
+        justify-center items-start
+        font-sans
         bg-[var(--bg-secondary)]
-        w-[768px]
+        w-[750px]
         h-full
         border-r border-[var(--border)]
         shadow-md
@@ -57,21 +57,20 @@
       </div>
       <div class="
         flex flex-col justify-left
-        mx-auto
-        my-auto
+        mx-auto my-auto
         items-left
         ">
-        <h1 class=" text-[var(--text)] mx-12 text-[2.5rem] font-bold mb-2">
+        <h1 class=" text-[var(--text)] px-4 text-[2.5rem] font-bold mb-2">
           It all starts here... &#58;&#41;</h1>
         <div class="
           flex items-left justify-left
           text-[1.1rem] text-[#7f7f7f]
-          mb-12 mx-12
-          font-light
+          mb-12 mx-auto px-4
+          font-base
           ">
           <span>Sign in easily and securely with your Google account.</span>
         </div>
-        <div class="flex justify-center w-ful mx-14 mb-12">
+        <div class="flex justify-center w-full mx-auto px-4 mb-12">
           <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`" class="
             flex items-center justify-center
             bg-[var(--bg-secondary)]
@@ -82,22 +81,22 @@
             w-full
           ">
             <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google" class="w-6 h-6" />
-            <span class="ml-2 text-[var(--text)] font-regular">Sign with Google</span>
+            <span class="ml-2 text-[var(--text)] font-semibold">Sign with Google</span>
           </a>
         </div>
         <div v-show="app !== 'fireweb'">
-          <div class="flex items-center w-full px-14">
+          <div class="flex items-center w-full px-4">
             <span class="flex-grow h-px bg-[var(--border)]"></span>
             <span class="px-4 text-[var(--text)] text-sm font-regular">or</span>
             <span class="flex-grow h-px bg-[var(--border)]"></span>
           </div>
           <!-- Email input -->
-          <form @submit.prevent="submitEmail" class=" px-4 " novalidate>
+          <form @submit.prevent="submitEmail" class="" novalidate>
             <div ref="emailInput" class="
               relative
               flex flex-col justify-center
-              w-full
-              mb-4 px-8 pt-10 pb-6
+              w-full px-4
+              mb-4 pt-10 pb-6
               rounded-lg
               border
               " :class="isEmailInvalid ?
@@ -145,7 +144,7 @@
                 "
               />
             </div>
-            <div class="flex justify-center w-full mb-6 px-8">
+            <div class="flex justify-center w-full px-4 mb-6">
               <button
                 type="submit"
                 :class="[

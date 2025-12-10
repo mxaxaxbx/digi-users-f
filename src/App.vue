@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--bg)] font-alexandria w-full">
+  <div class="bg-[var(--bg)] font-sans w-full">
     <!-- notifications -->
     <Notifications />
     <!-- Dark overlay -->
@@ -67,70 +67,70 @@
               group-hover:opacity-100 transition-all duration-500 ease-in-out
             ">
           <div class="text-left">
-            <h3 class="text-sm text-[var(--text)] font-regular mb-4">Products</h3>
+            <h3 class="text-md text-[var(--text)] font-semibold mb-4">Products</h3>
             <ul
               class="
                 space-y-2
-                text-xs text-[var(--text)] font-light
+                text-sm text-[var(--text)] font-regular
                 pl-1
               ">
               <li><a
                 href="#"
                 class="
-                  opacity-50 hover:opacity-100
+                  opacity-60 hover:opacity-100
                   transition-all duration-300 ease-in-out
                   ">
                   Sky</a></li>
               <li><a
-                href="https://fireweb.digiapps.com.co/"
+                href="#"
                 class="
-                  opacity-50 hover:opacity-100
+                  opacity-60 hover:opacity-100
                   transition-all duration-300 ease-in-out
                   ">Fireweb</a></li>
               <li><a
                 href="#"
                 class="
-                  opacity-50 hover:opacity-100
+                  opacity-60 hover:opacity-100
                   transition-all duration-300 ease-in-out
                   ">DigiCare</a></li>
             </ul>
           </div>
           <div class="text-left">
-            <h3 class="text-sm text-[var(--text)] font-regular mb-4">Contact Us</h3>
+            <h3 class="text-md text-[var(--text)] font-semibold mb-4">Contact Us</h3>
             <ul
               class="
                 space-y-2
-                text-xs text-[var(--text)] font-light
+                text-sm text-[var(--text)] font-regular
                 pl-1
               ">
               <li><a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=support@digiapps.com.co"
                 target="_blank"
                 class="
-                  opacity-50 hover:opacity-100
+                  opacity-60 hover:opacity-100
                   transition-all duration-300 ease-in-out
                   ">
                   Help Center</a></li>
               <li><a
                 href="#"
                 class="
-                  opacity-50 hover:opacity-100
+                  opacity-60 hover:opacity-100
                   transition-all duration-300 ease-in-out
                   ">Discord</a></li>
             </ul>
           </div>
           <div class="text-left">
-            <h3 class="text-sm text-[var(--text)] font-regular mb-4">Legal</h3>
+            <h3 class="text-md text-[var(--text)] font-semibold mb-4">Legal</h3>
             <ul
               class="
                 space-y-2
-                text-xs text-[var(--text)] font-light
+                text-sm text-[var(--text)] font-regular
                 pl-1
               ">
               <li><router-link
                 to="/privacy-policy"
                 class="
-                  opacity-50 hover:opacity-100
+                  opacity-60 hover:opacity-100
                   transition-all duration-300 ease-in-out
                   ">
                   Privacy Policy</router-link></li>
@@ -145,7 +145,7 @@
             pt-8
             pb-20
           ">
-        <p class="text-xs text-[var(--text-secondary)] font-light">&copy;
+        <p class="text-xs text-[var(--text-secondary)] font-semibold">&copy;
           {{ currentYear }} digi systems All rights reserved.</p>
           <button
           @click="toggleTheme"
@@ -208,5 +208,8 @@ function clickOutside() {
   height: 100%;
   /* background-color: rgba(0, 0, 0, 0.9); /* Change the alpha value for darkness */
   z-index: 20; /* Ensure it's above the sidebar */
+}
+#app {
+  font-family: 'Alexandria', sans-serif;
 }
 </style>
