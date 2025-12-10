@@ -18,6 +18,7 @@
         <router-link
           :to="isAuth ? '/app' : '/'"
           class="text-red-600"
+          @click="scrollTop"
         >
           <img
             :src="isLight
@@ -80,7 +81,7 @@
                   h-[12px] w-[12px]
                   rounded-full
                   bg-green-500
-                  border-2 border-[#1d1d1d]
+                  border-2 border-[var(--bg)]
                 ">
               </span>
             </button>
@@ -235,7 +236,7 @@
                 </div>
               </template>
             </Dropdown>
-    <router-link v-else to="/auth/provider" class="
+            <router-link v-else to="/auth/provider" class="
             flex items-center
             bg-[#2a2a2a]
             border border-[#3d3d3d]
@@ -268,6 +269,10 @@ const loading = ref(false);
 const Dropdown = defineAsyncComponent(() => import('@/components/global/dropdown.vue'));
 
 const store = useStore();
+
+const scrollTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
 const isAuthenticated = computed<boolean>(() => store.getters['auth/isAuthenticated']);
 const user = computed<UserI>(() => store.getters['auth/user']);

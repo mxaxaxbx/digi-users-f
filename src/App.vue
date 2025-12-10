@@ -30,7 +30,7 @@
         'pt-16': shouldShowNavbar
       }"
     >
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </div>
     <!-- footer -->
     <footer
@@ -82,7 +82,7 @@
                   ">
                   Sky</a></li>
               <li><a
-                href="#"
+                href="https://fireweb.digiapps.com.co/"
                 class="
                   opacity-50 hover:opacity-100
                   transition-all duration-300 ease-in-out

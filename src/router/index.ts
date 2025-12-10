@@ -152,8 +152,10 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0, behavior: 'smooth' };
+  },
 });
-
 router.afterEach(() => {
   const app = document.querySelector('#app');
   if (!app) return;
