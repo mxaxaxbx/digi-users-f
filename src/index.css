@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body {
-  font-family: 'Alexandria', sans-serif !important;
-}
-
-@layer base {
-  body {
-    @apply font-alexandria;
-  }
-}
 /* Tema oscuro */
 :root {
   --bg: #1d1d1d;
