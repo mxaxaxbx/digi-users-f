@@ -70,13 +70,3 @@
   opacity: 1; /* ← esta es la que da el efecto suave */
 }
 
-#app {
-  transition:
-    opacity 0.5s ease,
-    filter 0.35s ease;
-}
-
-#app.page-transition {
-  opacity: 0.9;
-  filter: blur(10px);
-}

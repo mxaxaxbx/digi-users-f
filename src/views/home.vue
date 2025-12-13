@@ -1,43 +1,56 @@
 <template>
-  <div class="font-alexandria">
+  <div class="font-sans">
     <!-- Hero Section -->
     <section class="bg-[var(--bg)] text-[var(--text)]">
-      <div class="relative w-full h-screen overflow-hidden">
-      <canvas
-        ref="canvas"
-        class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
-        style="background: transparent"
-      ></canvas>
-
-      <!-- Contenido sobre el canvas -->
-      <div class="container flex flex-col z-10 mx-auto items-center justify-center mt-48">
-        <img
-          src="/img/logo-digi.svg"
-          alt="Digi Systems Logo"
-          class="h-8 mb-16">
-        <h1 class="text-8xl font-semibold text-[var(--text)]">Enter Orbit</h1>
-        <h1 class="text-6xl font-light text-[var(--text-secondary)]">reach new heights</h1>
-        <p class="mt-10 text-lg text-[var(--text-secondary)]">
+      <div class="relative w-full h-full">
+        <canvas
+          ref="canvas"
+          class="absolute top-0 left-0 w-full h-full z-10 pointer-events-none"
+          style="background: transparent"
+        ></canvas>
+            <!-- Contenido sobre el canvas -->
+        <div class="container flex flex-col z-10 mx-auto items-center justify-center mt-36">
+          <div class="flex items-center justify-center mb-6">
+            <img
+                  src="/img/logo-digi.svg"
+                  alt="Digi Systems Logo"
+                  class="h-8">
+            <span class="ml-3 text-lg opacity-50 font-thin font-sans"></span>
+          </div>
+          <h1 class="text-8xl font-semibold text-[var(--text)]">Enter Orbit</h1>
+          <h1 class="text-6xl font-light text-[var(--text-secondary)]">reach new heights</h1>
+          <p class="mt-10 text-lg text-[var(--text-secondary)]">
+            Empowering healthcare, education, and storage with complete solutions
+          </p>
+          <p class="mt-2 text-lg text-[var(--text-secondary)]">
           Empowering healthcare, education, and storage with complete solutions
-        </p>
+          </p>
           <a
-            href="#products"
-            class="mt-10 inline-block bg-[#F83B66] text-white
-              py-2 px-6 rounded-full hover:border-[#FF3374] hover:bg-[#FF3374]
-              hover:ring-4 hover:ring-[#FF3374]/50
-              transition ease-in duration-150
-              ">
-            Explore Products
+                href="#products"
+                class="mt-10 inline-block bg-[#F83B66] text-white
+                  py-2 px-6 rounded-full hover:border-[#FF3374] hover:bg-[#FF3374]
+                  hover:ring-4 hover:ring-[#FF3374]/50
+                  transition ease-in duration-150
+                  ">
+                  Explore Products
           </a>
         </div>
-      </div>
-    </section>
+        <div ref="track" class="overflow-hidden mt-20 mx-auto w-[800px] border">
+          <div ref="inner" class="flex gap-16">
+            <img src="/img/logo-digi-gray.svg" alt="01" class="h-6 shrink-0" />
+    <img src="/img/logo-fireweb-gray.svg" alt="01" class="h-6 shrink-0" />
+    <img src="/img/logo-utils-gray.svg" alt="01" class="h-6 shrink-0" />
+    <img src="/img/logo-orbeat-gray.svg" alt="01" class="h-6 shrink-0" />
+    <img src="/img/logo-care-gray.svg" alt="01" class="h-6 shrink-0" />
+    <img src="/img/logo-orbeat-gray.svg" alt="01" class="h-6 shrink-0" />
+        </div>
+        </div>
     <!-- Products Section -->
-    <section id="products" class="container mx-auto px-4 py-20">
-      <h2 class="text-3xl font-bold text-center mb-12 text-[#F83B66]">Our Products</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div id="products" class="container mx-auto px-4 mt-24">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 z-50">
         <!-- Digi-Care -->
-        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+        <div class="bg-[var(--bg)] border border-[var(--border)]
+          shadow-lg rounded-lg p-6 text-center">
           <h3 class="text-xl font-bold mb-4">Digi-Care Health System</h3>
           <p class="text-gray-600 mb-4">
             Comprehensive healthcare solutions designed to
@@ -53,7 +66,8 @@
         </div>
 
         <!-- Digi-Edu -->
-        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+        <div class="bg-[var(--bg)] border border-[var(--border)]
+          shadow-lg rounded-lg p-6 text-center">
           <h3 class="text-xl font-bold mb-4">Digi-Edu Courses</h3>
           <p class="text-gray-600 mb-4">
             Empowering education through online courses, learning modules,
@@ -69,7 +83,8 @@
         </div>
 
         <!-- Digi-Storage -->
-        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+        <div class="bg-[var(--bg)] border border-[var(--border)]
+          shadow-lg rounded-lg p-6 text-center">
           <h3 class="text-xl font-bold mb-4">Digi-Storage File Storage</h3>
           <p class="text-gray-600 mb-4">
             Secure cloud storage solutions to store, manage,
@@ -84,7 +99,8 @@
         </div>
 
         <!-- fireweb -->
-        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+        <div class="bg-[var(--bg)] border border-[var(--border)]
+        shadow-lg rounded-lg p-6 text-center">
           <h3 class="text-xl font-bold mb-4">Fireweb</h3>
           <p class="text-gray-600 mb-4">
             A web-based application for managing
@@ -99,6 +115,8 @@
           </a>
         </div>
       </div>
+    </div>
+    </div>
     </section>
   </div>
 </template>
@@ -319,6 +337,37 @@ onMounted(() => {
     window.removeEventListener("resize", resize);
   });
 });
+
+const inner = ref<HTMLElement | null>(null)
+let rafId = 0
+const speed = 0.9
+let offset = 0
+
+function loop() {
+  if (!inner.value) return
+
+  const first = inner.value.children[0] as HTMLElement
+  const firstWidth = first.offsetWidth + 64 // space-x-16 = 4rem = 64px
+
+  offset -= speed
+  inner.value.style.transform = `translateX(${offset}px)`
+
+  // cuando el primero sale completamente
+  if (-offset >= firstWidth) {
+    offset += firstWidth
+    inner.value.appendChild(first)
+  }
+
+  rafId = requestAnimationFrame(loop)
+}
+
+onMounted(() => {
+  rafId = requestAnimationFrame(loop)
+})
+
+onBeforeUnmount(() => {
+  cancelAnimationFrame(rafId)
+})
 
 onMounted(() => {
   window.scrollTo(0, 0);
