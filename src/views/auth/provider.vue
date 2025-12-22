@@ -40,6 +40,15 @@
             alt="utils Logo"
             class="h-[25px] mt-1"
           />
+          <!-- logo inventory -->
+          <img
+            v-else-if="app === 'inventory'"
+            :src="isLight
+              ? '/img/logo-inventory-light.svg'
+              : '/img/logo-inventory.svg'"
+            alt="inventory Logo"
+            class="h-[25px] mt-1"
+          />
           <!-- logo Utils -->
           <img
             v-else
@@ -450,7 +459,7 @@ const testimonials = [
 
 const currentIndex = ref(0);
 const intervalMs = 10000;
-let timer = null;
+let timer: number | null = 0;
 let paused = false;
 
 /* Avanza al siguiente testimonio. */
