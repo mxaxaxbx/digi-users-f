@@ -19,9 +19,6 @@ module.exports = {
         50: '9.5rem',
         60: '15.5rem',
       },
-      fontFamily: {
-        alexandria: ['Alexandria', 'sans-serif'],
-      },
     },
   },
   plugins: [],
