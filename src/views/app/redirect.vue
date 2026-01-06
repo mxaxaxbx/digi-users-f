@@ -56,6 +56,13 @@ function switchApp() {
       window.location.href = url;
       break;
     }
+    case 'inventory': {
+      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
+      const { VUE_APP_DG_APP_INVENTORY } = process.env;
+      const url = `${VUE_APP_DG_APP_INVENTORY}/${uri}`;
+      window.location.href = url;
+      break;
+    }
     default:
       console.log(`Invalid app specified in query: ${app}`);
       loading.value = false;
