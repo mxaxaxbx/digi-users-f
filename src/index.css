@@ -6,14 +6,17 @@
 :root {
   --bg: #1d1d1d;
   --bg-secondary: #252525;
-  --bg-input: #252525;
+  --color-primary: #F83B66;
   --text: #ffffff;
   --text-secondary: #A3A3A3;
   --text-terceary: #3d3d3d;
   --border: #3d3d3d;
 
-  --hover-border: #9CA3AF;
-  --hover-bg: #2a2a2a;
+  --hover-border: #F83B66;
+  --hover-bg: #36252D;
+
+  --hover-bg-gray: #2a2a2a;
+  --hover-border-gray: #9CA3AF;
 }
 
 /* Tema claro */
@@ -25,8 +28,11 @@
   --text-terceary: #dcdcdc;
   --border: #DCDCDC;
 
-  --hover-border: #b9b9b9;
-  --hover-bg: #ffffff;
+  --hover-border: #F83B66;
+  --hover-bg: #FFE2EB;
+
+  --hover-bg-gray: #ffffff;
+  --hover-border-gray: #b9b9b9;
 }
 * {
   transition:
@@ -70,3 +76,22 @@
   opacity: 1; /* ← esta es la que da el efecto suave */
 }
 
+.bg-slide {
+  --fade: 80px;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black var(--fade),
+    black calc(100% - var(--fade)),
+    transparent
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black var(--fade),
+    black calc(100% - var(--fade)),
+    transparent
+  );
+}

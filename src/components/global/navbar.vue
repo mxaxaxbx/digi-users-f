@@ -1,10 +1,10 @@
 <template>
   <nav
     class="
-      font-alexandria
+      font-alexandria font-sans
       bg-[var(--bg)] text-white
-      w-full h-16
-      px-8 pt-1.5
+      w-full h-12
+      px-4 pt-1.5
       border-b border-[var(--border)]
     "
   >
@@ -236,22 +236,25 @@
                 </div>
               </template>
             </Dropdown>
-            <router-link v-else to="/auth/provider" class="
-            flex items-center
-            bg-[#2a2a2a]
-            border border-[#3d3d3d]
-            rounded-full
-            pl-4 pr-3 py-2
-            h-8
-            text-white text-sm font-regular
-            hover:border-[#FF3374] hover:bg-[#FF3374]
-            hover:ring-4 hover:ring-[#FF3374]/50
-            transition ease-in duration-150
-            ">
+            <router-link
+              v-else to="/auth/provider"
+              class="
+                flex items-center
+                bg-[var(--bg-secondary)]
+                border border-[var(--color-primary)]
+                text-[var(--color-primary)] text-sm font-regular
+                pl-3 pr-2 py-0.5
+                rounded-full
+
+                hover:bg-[var(--hover-bg)]
+                hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                transition-all duration-300 ease-in-out
+              ">
             Sign In
-            <img src="/icon/icon-signIn.svg"
+            <img src="/icon/icon-signIn-color.svg"
                   alt="icon"
-                  class="ml-2 w-[20px]"/>
+                  class="ml-2 h-4"/>
     </router-link>
      <!--Login-->
     </div>

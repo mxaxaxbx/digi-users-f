@@ -1,19 +1,16 @@
 <template>
-  <div class="flex h-screen flex-row">
+  <div class="flex h-screen flex-row ">
     <div class="
         flex flex-col
         justify-center items-start
         font-sans
         bg-[var(--bg-secondary)]
-        w-[750px]
-        h-full
         border-r border-[var(--border)]
+        w-[750px] h-screen
+        my-auto py-4 px-8
         shadow-md
-        my-auto
-        py-4
-        px-8
       ">
-      <div class="flex justify-between w-full mb-24">
+      <div class="flex justify-between w-full sm:mb-24 mb-4 ">
         <div class="">
           <!-- logo fireweb -->
           <img
@@ -60,25 +57,27 @@
         mx-auto my-auto
         items-left
         ">
-        <h1 class=" text-[var(--text)] px-4 text-[2.5rem] font-bold mb-2">
+        <h1 class=" text-[var(--text)] px-4 text-3xl sm:text-[2.5rem] font-bold mb-2">
           It all starts here... &#58;&#41;</h1>
         <div class="
           flex items-left justify-left
-          text-[1.1rem] text-[#7f7f7f]
-          mb-12 mx-auto px-4
+          sm:text-[1.1rem] text-md text-[#7f7f7f]
+          sm:mb-12 mb-8 mx-auto px-4
           font-base
           ">
           <span>Sign in easily and securely with your Google account.</span>
         </div>
-        <div class="flex justify-center w-full mx-auto px-4 mb-12">
-          <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`" class="
-            flex items-center justify-center
-            bg-[var(--bg-secondary)]
-            py-2
-            rounded-full border border-[var(--border)]
-            hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]
-            focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
-            w-full
+        <div class="flex justify-center w-full mx-auto px-4 mb-8 sm:mb-12">
+          <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`"
+            class="
+              flex items-center justify-center
+              bg-[var(--bg-secondary)]
+              border border-[var(--border)]
+              w-full py-2
+              rounded-full
+
+              hover:border-[var(--hover-border-gray)] hover:bg-[var(--hover-bg-gray)]
+              focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
           ">
             <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google" class="w-6 h-6" />
             <span class="ml-2 text-[var(--text)] font-semibold">Sign with Google</span>
@@ -95,23 +94,27 @@
             <div ref="emailInput" class="
               relative
               flex flex-col justify-center
-              w-full px-4
-              mb-4 pt-10 pb-6
+              w-full
+              px-4 pt-4 pb-4 mb-4
               rounded-lg
+
+              sm:pt-10 sm:pb-6
+
               border
               " :class="isEmailInvalid ?
                 'bg-[#ffa600]/10 border-[#FFA600] text-[var(--text)]'
                 : 'bg-transparent border-transparent'">
               <div v-if="showAlert" class="
               absolute top-3 -mx-0
-              w-full
               flex items-center
+              w-full
               text-[var(--text)] text-xs font-regular
               transition-all duration-300">
                 <img src="/icon/icon-alert.svg" alt="alert" class="w-5 h-5 mr-2 " />
                 {{ alertMessage }}
               </div>
-              <label for="email" class="text-[var(--text)] text-base font-light px-4 pb-1.5">
+              <label for="email"
+              class="text-[var(--text)] text-base font-regular px-4 pb-1.5">
                 Email
               </label>
               <input
@@ -127,9 +130,14 @@
                   py-2 px-4
                   font-light text-sm
                   rounded-full border
-                  placeholder:text-[var(--text)] placeholder:opacity-30 placeholder:font-light
-                  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
-                  focus:bg-[var(--hover-bg)]
+
+                  placeholder:text-[var(--text)]
+                  placeholder:opacity-30
+                  placeholder:font-light
+
+                  focus:outline-none focus:ring-2
+                  focus:ring-gray-500 focus:ring-opacity-50
+                  focus:bg-[var(--hover-bg-gray)]
                 "
                 :class="isEmailInvalid
                   ? [
@@ -139,12 +147,12 @@
                   ]
                   : [
                     'bg-[#252525] border-[var(--border)] text-[var(--text)]',
-                    'hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]'
+                    'hover:border-[var(--hover-border-grey)] hover:bg-[var(--hover-bg-grey)]'
                   ]
                 "
               />
             </div>
-            <div class="flex justify-center w-full px-4 mb-6">
+            <div class="flex justify-center w-full px-4 mb-2 sm:mb-6">
               <button
                 type="submit"
                 :class="[
@@ -163,14 +171,14 @@
 
                     // hover ring
                     app === 'digi'
-                      ? 'hover:ring-4 hover:ring-[#F83B66]/50'
+                      ? 'hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]'
                       : app === 'fireweb'
                         ? 'hover:ring-4 hover:ring-[#ED1C24]/50'
                         : app === 'utils'
                           ? 'hover:ring-4 hover:ring-[#FFC506]/50'
                           : app === 'sky'
                             ? 'hover:ring-4 hover:ring-[#0B77F3]/50'
-                            : 'hover:ring-4 hover:ring-[#F83B66]/50',
+                            : 'hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]',
 
                     // focus ring
                     app === 'digi'
@@ -195,7 +203,12 @@
             </div>
           </form>
         </div>
-        <span class="text-[#7f7f7f]/80 text-xs font-light mt-6 mb-2 text-center block">
+        <span
+          class="
+            text-[#7f7f7f]/80 text-xs font-light
+            text-center block
+            mt-6 mb-0 sm:mb-2
+            ">
           By continuing, you agree to our
           <a href="/privacy-policy" target="_blank" class="text-[#7f7f7f]
           hover:text-[var(--text)] underline underline-offset-2 transition">
@@ -208,7 +221,7 @@
           </a>.
         </span>
       </div>
-      <div class="flex justify-center w-full mt-16 mb-4">
+      <div class="flex justify-center w-full mt-0 mb-0 sm:mt-16 sm:mb-4">
         <img
         :src="isLight
               ? '/img/logo-digi-light.svg'
@@ -229,9 +242,10 @@
       bg-[var(--bg)]
       h-full
       my-auto
-    ">
+      hidden sm:flex
+      ">
       <div
-        class="relative w-[500px]"
+        class="relative w-[500px] mx-auto px-12"
         @mouseenter="pauseRotation"
         @mouseleave="resumeRotation"
         @focusin="pauseRotation"
@@ -242,7 +256,7 @@
         <img
           src="/icon/icon-comillas.svg"
           alt="Background"
-          class="absolute h-16 -top-12 -left-14 z-0 opacity-30"
+          class="absolute h-16 -top-12 sm:-left-[-20px] lg:-left-16 z-0 opacity-30"
         />
 
         <!-- Commentaries -->

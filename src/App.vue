@@ -36,131 +36,149 @@
     <footer
       v-if="shouldShowFooter"
       class="bg-[var(--bg)] group">
-      <div class="w-full h-px bg-line"></div>
-      <div
-        class="
-        container mx-auto px-24 text-center">
+        <div class="w-full h-px bg-line"></div>
         <div
           class="
-            flex justify-between
-            w-full
-            py-16
-            mb-8
+            container
+            mx-auto px-12
+            text-center
+
+            sm:px-24
           ">
-          <router-link
-            :to="isAuth ? '/app' : '/'"
-            class=""
-          >
-            <img
-              :src="isLight
-              ? '/img/logo-digi-light.svg'
-              : '/img/logo-digi.svg'"
-              alt="Logo"
-              class="
-              h-6 opacity-30 group-hover:opacity-100
-              courser-pointer"
-            />
-          </router-link>
           <div
             class="
-              flex space-x-20 mr-20 opacity-30
-              group-hover:opacity-100 transition-all duration-500 ease-in-out
+              flex flex-col
+              justify-between
+              w-full
+              py-16 mb-8
+
+              sm:flex-row sm:items-start
             ">
-          <div class="text-left">
-            <h3 class="text-md text-[var(--text)] font-semibold mb-4">Products</h3>
-            <ul
-              class="
-                space-y-2
-                text-sm text-[var(--text)] font-regular
-                pl-1
+            <router-link
+              :to="isAuth ? '/app' : '/'"
+              class="mb-10 sm:mb-0
               ">
-              <li><a
-                href="#"
+              <img
+                :src="isLight
+                ? '/img/logo-digi-light.svg'
+                : '/img/logo-digi.svg'"
+                alt="Logo"
                 class="
-                  opacity-60 hover:opacity-100
-                  transition-all duration-300 ease-in-out
-                  ">
-                  Sky</a></li>
-              <li><a
-                href="#"
-                class="
-                  opacity-60 hover:opacity-100
-                  transition-all duration-300 ease-in-out
-                  ">Fireweb</a></li>
-              <li><a
-                href="#"
-                class="
-                  opacity-60 hover:opacity-100
-                  transition-all duration-300 ease-in-out
-                  ">DigiCare</a></li>
-            </ul>
-          </div>
-          <div class="text-left">
-            <h3 class="text-md text-[var(--text)] font-semibold mb-4">Contact Us</h3>
-            <ul
+                  h-6 opacity-30
+                  group-hover:opacity-100
+                  courser-pointer
+                "/>
+            </router-link>
+            <div
               class="
-                space-y-2
-                text-sm text-[var(--text)] font-regular
-                pl-1
+                flex space-x-12
+                mr-0
+                opacity-30
+                group-hover:opacity-100
+                transition-all duration-500 ease-in-out
+
+                sm:mr-20 sm:mx-0
+                sm:space-x-20
               ">
-              <li><a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=support@digiapps.com.co"
-                target="_blank"
-                class="
-                  opacity-60 hover:opacity-100
-                  transition-all duration-300 ease-in-out
+              <div class="text-left">
+                <h3 class="text-sm text-[var(--text)] font-regular mb-4">Products</h3>
+                <ul
+                  class="
+                    space-y-2
+                    text-xs text-[var(--text)] font-light
+                    pl-1
                   ">
-                  Help Center</a></li>
-              <li><a
-                href="#"
-                class="
-                  opacity-60 hover:opacity-100
-                  transition-all duration-300 ease-in-out
-                  ">Discord</a></li>
-            </ul>
-          </div>
-          <div class="text-left">
-            <h3 class="text-md text-[var(--text)] font-semibold mb-4">Legal</h3>
-            <ul
+                  <li><a
+                    href="#"
+                    class="
+                      opacity-50 hover:opacity-100
+                      transition-all duration-300 ease-in-out
+                    ">Sky
+                  </a></li>
+                  <li><a
+                    href="#"
+                    class="
+                      opacity-50 hover:opacity-100
+                      transition-all duration-300 ease-in-out
+                    ">Fireweb
+                  </a></li>
+                  <li><a
+                    href="#"
+                    class="
+                      opacity-50 hover:opacity-100
+                      transition-all duration-300 ease-in-out
+                    ">DigiCare
+                  </a></li>
+                </ul>
+              </div>
+              <div class="text-left">
+                <h3 class="text-sm text-[var(--text)] font-regular mb-4">Contact Us</h3>
+                <ul
+                  class="
+                    space-y-2
+                    text-xs text-[var(--text)] font-light
+                    pl-1
+                  ">
+                  <li><a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=support@digiapps.com.co"
+                    target="_blank"
+                    class="
+                      opacity-50 hover:opacity-100
+                      transition-all duration-300 ease-in-out
+                    ">Help Center
+                  </a></li>
+                  <li><a
+                    href="https://discord.gg/UsGXbTkJSE"
+                    target="_blank"
+                    class="
+                      opacity-50 hover:opacity-100
+                      transition-all duration-300 ease-in-out
+                    ">Discord
+                  </a></li>
+                </ul>
+              </div>
+              <div class="text-left">
+                <h3 class="text-sm text-[var(--text)] font-regular mb-4">Legal</h3>
+                <ul
+                  class="
+                    space-y-2
+                    text-xs text-[var(--text)] font-light
+                    pl-1
+                  ">
+                  <li><a
+                    :href="`${digiSystemslink}/privacy-policy`"
+                    class="
+                      opacity-50 hover:opacity-100
+                      transition-all duration-300 ease-in-out
+                    ">Privacy Policy
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+            </div>
+            <div
               class="
-                space-y-2
-                text-sm text-[var(--text)] font-regular
-                pl-1
+                flex justify-between items-center
+                border-t border-[var(--border)]
+                pt-8
+                pb-20
               ">
-              <li><router-link
-                to="/privacy-policy"
-                class="
-                  opacity-60 hover:opacity-100
-                  transition-all duration-300 ease-in-out
-                  ">
-                  Privacy Policy</router-link></li>
-            </ul>
+            <p class="text-xs text-[var(--text-secondary)] font-light">&copy;
+              {{ currentYear }} digi systems All rights reserved.</p>
+              <button
+              @click="toggleTheme"
+              class="
+              rounded-full">
+              <img
+                :src="isLight
+                ? '/icon/icon-light.svg'
+                : '/icon/icon-dark.svg'"
+                alt="theme toggle"
+                class="w-5 h-5 opacity-70 hover:opacity-100 transition" />
+            </button>
+            </div>
           </div>
-        </div>
-        </div>
-        <div
-          class="
-            flex justify-between items-center
-            border-t border-[var(--border)]
-            pt-8
-            pb-20
-          ">
-        <p class="text-xs text-[var(--text-secondary)] font-semibold">&copy;
-          {{ currentYear }} digi systems All rights reserved.</p>
-          <button
-          @click="toggleTheme"
-          class="
-          rounded-full">
-          <img
-            :src="isLight
-            ? '/icon/icon-light.svg'
-            : '/icon/icon-dark.svg'"
-            alt="theme toggle"
-            class="w-5 h-5 opacity-70 hover:opacity-100 transition" />
-        </button>
-        </div>
-      </div>
-    </footer>
+        </footer>
   </div>
 </template>
 <script setup lang="ts">
