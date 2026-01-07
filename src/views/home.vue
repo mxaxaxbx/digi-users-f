@@ -116,8 +116,9 @@
           </p>
           <a
             :href="careAppLink"
-            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
-            ">
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
+            target="_blank"
+          >
             Learn More
           </a>
         </div>
@@ -154,13 +155,9 @@ import { onMounted, onBeforeUnmount, ref, watch, computed } from "vue";
 import { useStore } from 'vuex';
 
 const skyAppLink = ref(process.env.VUE_APP_SKY_URL);
-console.log("Sky App Link:", skyAppLink.value);
 const firewebAppLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
-console.log("Fireweb App Link:", firewebAppLink.value);
 const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
-console.log("Care App Link:", careAppLink.value);
 const utilsAppLink = ref(process.env.VUE_APP_UTILS_URL);
-console.log("Utils App Link:", utilsAppLink.value); 
 
 const store = useStore();
 
