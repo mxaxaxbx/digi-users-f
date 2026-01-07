@@ -23,8 +23,8 @@
           <img
             v-else-if="app === 'sky'"
             :src="isLight
-              ? '/img/logo-sky-light.svg'
-              : '/img/logo-sky.svg'"
+              ? '/img/logo-sky.svg'
+              : '/img/logo-sky-light.svg'"
             alt="sky Logo"
             class="h-[25px] mt-1"
           />

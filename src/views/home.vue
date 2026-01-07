@@ -76,7 +76,7 @@
               streamline medical services and patient care.
             </p>
             <a
-              :href="careAppLink"
+              :href="skyAppLink"
               target="_blank"
               class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
             >
@@ -95,7 +95,7 @@
             and certification programs.
           </p>
           <a
-            :href="eduAppLink"
+            :href="firewebAppLink"
             target="_blank"
             class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
             ">
@@ -115,7 +115,7 @@
             and share files with ease and reliability.
           </p>
           <a
-            :href="storageAppLink"
+            :href="careAppLink"
             class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
             ">
             Learn More
@@ -134,27 +134,8 @@
             firestore databases using a user-friendly interface.
           </p>
           <a
-            :href="firewebLink"
+            :href="utilsAppLink"
             target="_blank"
-            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
-            ">
-            Learn More
-          </a>
-        </div>
-
-        <!-- digi Orbeat-->
-        <div
-          class="
-            bg-[var(--bg)] border border-[var(--border)]
-            shadow-lg rounded-lg p-6 text-center
-          ">
-          <h3 class="text-xl font-bold mb-4">Orbeat</h3>
-          <p class="text-gray-600 mb-4">
-            Secure cloud storage solutions to store, manage,
-            and share files with ease and reliability.
-          </p>
-          <a
-            :href="storageAppLink"
             class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
             ">
             Learn More
@@ -172,12 +153,14 @@ import { onMounted, onBeforeUnmount, ref, watch, computed } from "vue";
 
 import { useStore } from 'vuex';
 
+const skyAppLink = ref(process.env.VUE_APP_SKY_URL);
+console.log("Sky App Link:", skyAppLink.value);
+const firewebAppLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
+console.log("Fireweb App Link:", firewebAppLink.value);
 const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
-const eduAppLink = ref(process.env.VUE_APP_URL_DG_EDU_APP);
-const firewebLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
-const storageAppLink = ref(process.env.VUE_APP_URL_DG_STORAGE_APP);
-
-const isLight = computed(() => store.state.theme.theme === 'light');
+console.log("Care App Link:", careAppLink.value);
+const utilsAppLink = ref(process.env.VUE_APP_UTILS_URL);
+console.log("Utils App Link:", utilsAppLink.value); 
 
 const store = useStore();
 

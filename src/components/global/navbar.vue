@@ -26,7 +26,7 @@
             : '/img/logo-digi.svg'"
             alt="Logo"
             class="
-            h-[25px]
+            h-5
             courser-pointer"
           />
         </router-link>
@@ -37,23 +37,22 @@
           <template #trigger="{ toggle }">
             <button
               @click="toggle"
-              class="
-                    relative
-                    flex items-center justify-center
-                    bg-[#FF3374]
-                    rounded-full
-                    text-white
-                    h-8
-                    w-8
-                    hover:ring-4 hover:ring-[#FF3374]/50
-                    focus:ring-4 focus:ring-[#FF3374]/50
-                    transition-all duration-300 ease-in-out
-                  "
-                >
+                class="
+                  relative flex items-center justify-center
+                  bg-[var(--color-primary)]
+                  h-6 w-6
+                  mr-0
+                  rounded-full
+                  text-white
+
+                  hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                  focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                  transition-all duration-300 ease-in-out
+                ">
               <!-- User initials -->
               <span
                 v-if="user.firstName && user.lastName"
-                class="font-thin text-sm uppercase"
+                class="font-light text-sm uppercase"
               >
                 {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
               </span>
@@ -72,18 +71,16 @@
                   aria-hidden="true"
                 ></i>
 
-                  <!-- Optional status indicator -->
-              <span
-                class="
+                <!-- Optional status indicator -->
+                <span class="
                   absolute
-                  bottom-0 right-[-2px]
+                  bottom-[-1.5px] right-[-3.5px]
                   block
-                  h-[12px] w-[12px]
+                  h-[10px] w-[10px]
                   rounded-full
                   bg-green-500
                   border-2 border-[var(--bg)]
-                ">
-              </span>
+                "></span>
             </button>
           </template>
 
@@ -98,55 +95,64 @@
                         rounded-full
                         w-20 h-20
                         border-2 border-white
-                        object-cover border"
-                    />
+                        object-cover border
+                    "/>
                   </div>
 
-                  <h2 class="mt-4 text-lg font-semibold text-white">¡Hi,
+                  <h2 class="mt-4 text-lg font-semibold text-[var(--text)]">¡Hi,
                     {{ user.firstName }} {{ user.lastName }}!
                   </h2>
 
                   <!-- Email -->
                   <div class="text-center mt-0">
-                    <p class="text-[#7f7f7f] text-xs font-thin">
+                    <p class="text-[#a3a3a3] text-xs font-light">
                       {{ user.email }}
                     </p>
                   </div>
 
               <!-- Manage Account Button -->
-              <a
-                    :href="`${usersLink}/app/users/edit-profile`"
-                    class="
-                    bg-[#1d1d1d]
-                      text-white text-xs font-thin text-center
-                      border border-[#FF3374] rounded-full
-                      px-auto py-[10px] mt-6
-                      w-60
-                      hover:bg-[#FF3374]
-                      transition ease-in duration-150
-                    "
-                  >
-                    Manage your digi Account
+              <a :href="`${usersLink}/app/users/edit-profile`"
+                class="
+                  bg-[var(--bg-secondary)]
+                  border border-[var(--color-primary)]
+                  rounded-full
+                  w-48 px-auto py-1 mt-6
+                  text-[var(--color-primary)] text-xs text-center font-medium
+
+                  hover:bg-[var(--hover-bg)]
+                  hover:text-[var(--text)]
+                  hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                  focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                  transition-all duration-300 ease-in-out"
+                target="_blank">
+                Manage your digi Account
                   </a>
                 </div>
 
-                <div class="flex flex-col items-start mx-8 mb-6">
+                <div class="flex flex-col items-center mx-8 mb-6">
                   <!-- community -->
-                  <h1 class="text-xs font-regular ml-4 text-[#3d3d3d] mb-2">Community</h1>
+                  <h1 class="text-xs font-regular ml-5 sm:ml-8 text-[#3d3d3d] mb-2 self-start
+                      ">Community
+                  </h1>
 
                   <a
                     href="https://discord.com/invite/UsGXbTkJSE"
                     target="_blank"
                     class="
                       flex items-center justify-between
-                      w-60 px-4 py-2
-                      rounded-full border border-[#3d3d3d]
-                      bg-[#252525] text-white
-                      font-medium text-sm
-                      transition-all duration-300
-                      hover:border-[#BEBEBE] hover:bg-[#2a2a2a]
-                    "
-                  >
+                      w-72 px-2 py-2
+                      bg-[var(--bg-secondary)]
+                      border border-[var(--border)]
+                      rounded-full
+                      text-[#868686] font-regular text-sm
+
+                      sm:w-52 sm:text-xs sm:py-1
+
+                      hover:bg-[var(--hover-bg)] hover:border-[var(--hover-border)]
+                      hover:shadow-[0_0_2px_1px_rgba(248,59,102,0.5)]
+                      focus:shadow-[0_0_2px_1px_rgba(248,59,102,0.5)]
+                      transition-colors duration-300
+                    ">
                     <div class="flex items-center gap-2">
                       <img
                         src="/icon/icon-discordd.svg"
@@ -158,27 +164,34 @@
                     <img
                       src="/icon/icon-outPage.svg"
                       alt="External link"
-                      class="w-[20px]"
+                      class="h-4"
                     />
                   </a>
                 </div>
-                <div class="flex flex-col items-start mx-8 mb-6">
+                <div class="flex flex-col items-center mx-8 mb-6">
                   <!-- Support -->
-                  <h1 class="text-xs font-regular ml-4 text-[#3d3d3d] mb-2">Support</h1>
+                  <h1 class="text-xs font-regular ml-5 sm:ml-8 text-[#3d3d3d] mb-2 self-start
+                      ">Support
+                  </h1>
 
                   <a
                     href="https://mail.google.com/mail/?view=cm&fs=1&to=support@digiapps.com.co"
                     target="_blank"
                     class="
                       flex items-center justify-between
-                      w-60 px-4 py-2
-                      rounded-full border border-[#3d3d3d]
-                      bg-[#252525] text-white
-                      font-medium text-[13px]
-                      transition-all duration-300
-                      hover:border-[#BEBEBE] hover:bg-[#2a2a2a]
-                    "
-                  >
+                      w-72 px-2 py-2
+                      bg-[var(--bg-secondary)]
+                      border border-[var(--border)]
+                      rounded-full
+                      text-[#868686] font-regular text-sm
+
+                      sm:w-52 sm:text-xs sm:py-1
+
+                      hover:bg-[var(--hover-bg)] hover:border-[var(--hover-border)]
+                      hover:shadow-[0_0_2px_1px_rgba(248,59,102,0.5)]
+                      focus:shadow-[0_0_2px_1px_rgba(248,59,102,0.5)]
+                      transition-colors duration-300
+                    ">
                     <div class="flex items-center gap-2">
                       <img
                         src="/icon/icon-mail.svg"
@@ -196,21 +209,21 @@
                     @click="logout"
                     class="
                       flex items-center justify-around
-                      bg-[#FF3374]
-                      w-44
+                      bg-[var(--color-primary)]
+                      w-36
                       rounded-full
-                      px-4 py-2
-                      text-sm font-regular
-                      hover:ring-4 hover:ring-[#FF3374]/50
-                      transition-all duration-300 ease-in-out
+                      py-1
+                      text-sm text-white font-regular
 
-                    "
-                  >
+                      hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                      focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                      transition-all duration-300 ease-in-out
+                    ">
                     <span class="flex items-center space-x-2">
                       <span>Sign out</span>
                       <img src="/icon/icon-logOut.svg"
                       alt="icon"
-                      class="ml-2 w-[20px]"/>
+                      class="ml-2 h-4"/>
                     </span>
                   </button>
                 </div>

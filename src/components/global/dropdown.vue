@@ -39,18 +39,27 @@ onUnmounted(() => {
       leave-to-class="opacity-0 scale-95"
     >
     <div
-        v-if="isOpen"
-        class="
-          absolute
-          right-0
-          bg-[#1d1d1d]
-          w-80
-          mt-2 pt-8 pb-4
-          border-[0.5px] border-[#3d3d3d]
-          rounded-lg
-          shadow-lg z-50
-          overflow-hidden"
-      >
+      v-if="isOpen"
+      class="
+        fixed inset-0
+        w-screen h-screen
+        pt-10 mt-10
+        bg-[var(--bg)]
+
+        border border-[var(--border)]
+        rounded-lg
+        shadow-lg z-50
+
+        sm:absolute sm:inset-auto
+        sm:right-0
+        sm:pt-8 sm:pb-6
+        sm:mt-2
+        sm:h-auto sm:w-80
+        sm:right-0
+
+        -translate-y-1
+        overflow-hidden
+        ">
         <slot name="content" :close="close" />
       </div>
     </transition>
