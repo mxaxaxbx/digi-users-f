@@ -2,25 +2,40 @@
   <div
     class="
       flex justify-center items-center
-      font-alexandria
-      h-screen w-screen
+      font-alexandria font-sans
+      h-screen w-full
       bg-[var(--bg)]">
     <div class="
         -mt-5 mx-auto
-        px-20 py-8
+        px-auto pb-24 pt-16 sm:px-8
         rounded-lg
-        border border-[var(--border)]
         bg-[var(--bg)]
         shadow-sm
+
+        sm:border border-[var(--border)]
       ">
-      <form class="" action="" method="POST" @submit.prevent="validatecode()">
-        <h1 class="w-full text-3xl text-left text-[var(--text)] font-bold my-8">
+      <img
+        :src="isLight
+        ? '/img/logo-digi-light.svg'
+        : '/img/logo-digi.svg'"
+        alt="utils Logo"
+        class="h-[25px] ml-6 mb-20"
+        />
+      <form class="px-6 h-full" action="" method="POST" @submit.prevent="validatecode()">
+        <h1
+          class="
+            w-full
+            my-8
+            text-2xl text-left text-[var(--text)]
+            font-bold
+            sm:text-3xl
+          ">
           Ready for Your<br>Verification Code?... &#58;&#41;</h1>
-        <h3 class="w-full text-center text-[var(--text-secondary)] text-md font-light">
+        <h3 class="w-full text-center text-[var(--text-secondary)] text-md sm:text-md font-light">
           A fresh code just landed in your inbox. Go take a look.
         </h3>
         <div class="flex w-full justify-center items-center my-2">
-        <p class="font-semibold text-center text-[var(--text)]">{{ email }}</p>
+        <p class="font-semibold text-center text-sm sm:text-md text-[var(--text)]">{{ email }}</p>
         <!-- change email address -->
         <router-link
           :to="`/auth/loginwithgoogle?app=${app}&redirect=${redirect}`"
@@ -83,8 +98,12 @@
               ]"
               :disabled="loading || !allFilled"
             >
-            <span v-if="loading">
-              <i class="fas fa-spinner animate-spin mr-2 font-bold"></i>
+            <span v-if="loading"
+              class="flex justify-center items-center font-regular
+              ">
+               <svg class="animate-spin color-spin mr-4" width="20" height="20" viewBox="0 0 86 86" fill="var(--text-secondary)" xmlns="http://www.w3.org/2000/svg">
+                <path d="M43 0C49.608 0 55.8671 1.49206 61.4609 4.15527C63.289 2.80154 65.5506 2 68 2C74.0751 2 79 6.92487 79 13C79 14.7395 78.5939 16.3835 77.875 17.8457C82.9856 24.9189 86 33.6068 86 43C86 66.7482 66.7482 86 43 86C19.2518 86 0 66.7482 0 43C0 19.2518 19.2518 0 43 0ZM43 8C23.67 8 8 23.67 8 43C8 62.33 23.67 78 43 78C62.33 78 78 62.33 78 43C78 35.685 75.7543 28.8952 71.917 23.2793C70.6999 23.7434 69.3801 24 68 24C61.9249 24 57 19.0751 57 13C57 12.3154 57.0659 11.6461 57.1855 10.9961C52.8493 9.07124 48.05 8 43 8ZM43 20C55.7025 20 66 30.2975 66 43C66 55.7025 55.7025 66 43 66C30.2975 66 20 55.7025 20 43C20 30.2975 30.2975 20 43 20Z"/>
+              </svg>
               One sec… checking code!
             </span>
             <span
@@ -116,8 +135,8 @@
         </button>
         <div
           v-else
-          class="text-[var(--text-secondary)]">
-          <span class="text-sm font-light py-1 mr-2">
+          class="text-[var(--text-secondary)] mx-6 text-center">
+          <span class="text-xs sm:text-sm font-light py-1 mr-2">
             This code won’t stick around for long. It expires in…</span>
           <span class="text-lg font-semibold">{{ formattedAvailableIn }} </span>
           </div>
@@ -392,4 +411,10 @@ async function resendCode() {
   background: transparent;
   color: inherit;
 }
+.color-spin {
+  animation:
+    spin 1s linear infinite,
+    colorSpin 1s ease-in-out infinite;
+}
+
 </style>
