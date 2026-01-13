@@ -1,19 +1,16 @@
 <template>
-  <div class="flex h-screen flex-row">
+  <div class="flex h-screen flex-row ">
     <div class="
         flex flex-col
         justify-center items-start
         font-sans
         bg-[var(--bg-secondary)]
-        w-[750px]
-        h-full
         border-r border-[var(--border)]
+        w-[750px] h-full
+        my-auto py-4 px-8
         shadow-md
-        my-auto
-        py-4
-        px-8
       ">
-      <div class="flex justify-between w-full mb-24">
+      <div class="flex justify-between w-full sm:mb-24 mb-4 ">
         <div class="">
           <!-- logo fireweb -->
           <img
@@ -26,8 +23,8 @@
           <img
             v-else-if="app === 'sky'"
             :src="isLight
-              ? '/img/logo-sky-light.svg'
-              : '/img/logo-sky.svg'"
+              ? '/img/logo-sky.svg'
+              : '/img/logo-sky-light.svg'"
             alt="sky Logo"
             class="h-[25px] mt-1"
           />
@@ -49,7 +46,7 @@
             alt="inventory Logo"
             class="h-[25px] mt-1"
           />
-          <!-- logo Utils -->
+          <!-- logo digi -->
           <img
             v-else
             :src="isLight
@@ -59,7 +56,7 @@
             class="h-[25px] mt-1"
           />
         </div>
-        <button @click="toggleTheme" class="rounded-full p-1">
+        <button @click="toggleTheme" class="rounded-full px-1.5">
           <img :src="isLight ? '/icon/icon-light.svg' : '/icon/icon-dark.svg'" alt="theme toggle"
             class="w-4 h-4 opacity-50 hover:opacity-100 transition" />
         </button>
@@ -69,25 +66,27 @@
         mx-auto my-auto
         items-left
         ">
-        <h1 class=" text-[var(--text)] px-4 text-[2.5rem] font-bold mb-2">
+        <h1 class=" text-[var(--text)] px-4 text-3xl sm:text-[2.5rem] font-bold mb-2">
           It all starts here... &#58;&#41;</h1>
         <div class="
           flex items-left justify-left
-          text-[1.1rem] text-[#7f7f7f]
-          mb-12 mx-auto px-4
+          sm:text-[1.1rem] text-md text-[#7f7f7f]
+          sm:mb-12 mb-8 mx-auto px-4
           font-base
           ">
           <span>Sign in easily and securely with your Google account.</span>
         </div>
-        <div class="flex justify-center w-full mx-auto px-4 mb-12">
-          <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`" class="
-            flex items-center justify-center
-            bg-[var(--bg-secondary)]
-            py-2
-            rounded-full border border-[var(--border)]
-            hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]
-            focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
-            w-full
+        <div class="flex justify-center w-full mx-auto px-4 mb-8 sm:mb-12">
+          <a :href="`https://accounts.google.com/o/oauth2/v2/auth?${uriquery}`"
+            class="
+              flex items-center justify-center
+              bg-[var(--bg-secondary)]
+              border border-[var(--border)]
+              w-full py-2
+              rounded-full
+
+              hover:border-[var(--hover-border-gray)] hover:bg-[var(--hover-bg-gray)]
+              focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
           ">
             <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google" class="w-6 h-6" />
             <span class="ml-2 text-[var(--text)] font-semibold">Sign with Google</span>
@@ -104,23 +103,27 @@
             <div ref="emailInput" class="
               relative
               flex flex-col justify-center
-              w-full px-4
-              mb-4 pt-10 pb-6
+              w-full
+              px-4 pt-4 pb-4 mb-4
               rounded-lg
+
+              sm:pt-10 sm:pb-6
+
               border
               " :class="isEmailInvalid ?
                 'bg-[#ffa600]/10 border-[#FFA600] text-[var(--text)]'
                 : 'bg-transparent border-transparent'">
               <div v-if="showAlert" class="
               absolute top-3 -mx-0
-              w-full
               flex items-center
+              w-full
               text-[var(--text)] text-xs font-regular
               transition-all duration-300">
                 <img src="/icon/icon-alert.svg" alt="alert" class="w-5 h-5 mr-2 " />
                 {{ alertMessage }}
               </div>
-              <label for="email" class="text-[var(--text)] text-base font-light px-4 pb-1.5">
+              <label for="email"
+              class="text-[var(--text)] text-base font-regular px-4 pb-1.5">
                 Email
               </label>
               <input
@@ -138,9 +141,14 @@
                   py-2 px-4
                   font-light text-sm
                   rounded-full border
-                  placeholder:text-[var(--text)] placeholder:opacity-30 placeholder:font-light
-                  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50
-                  focus:bg-[var(--hover-bg)]
+
+                  placeholder:text-[var(--text)]
+                  placeholder:opacity-30
+                  placeholder:font-light
+
+                  focus:outline-none focus:ring-2
+                  focus:ring-gray-500 focus:ring-opacity-50
+                  focus:bg-[var(--hover-bg-gray)]
                 "
                 :class="isEmailInvalid
                   ? [
@@ -150,12 +158,12 @@
                   ]
                   : [
                     'bg-[#252525] border-[var(--border)] text-[var(--text)]',
-                    'hover:border-[var(--hover-border)] hover:bg-[var(--hover-bg)]'
+                    'hover:border-[var(--hover-border-grey)] hover:bg-[var(--hover-bg-grey)]'
                   ]
                 "
               />
             </div>
-            <div class="flex justify-center w-full px-4 mb-6">
+            <div class="flex justify-center w-full px-4 mb-2 sm:mb-6">
               <button
                 type="submit"
                 :class="[
@@ -174,25 +182,25 @@
 
                     // hover ring
                     app === 'digi'
-                      ? 'hover:ring-4 hover:ring-[#F83B66]/50'
+                      ? 'hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]'
                       : app === 'fireweb'
                         ? 'hover:ring-4 hover:ring-[#ED1C24]/50'
                         : app === 'utils'
-                          ? 'hover:ring-4 hover:ring-[#FFC506]/50'
+                          ? 'hover:shadow-[0_0_3px_3px_rgba(255,197,6,0.5)]'
                           : app === 'sky'
-                            ? 'hover:ring-4 hover:ring-[#0B77F3]/50'
-                            : 'hover:ring-4 hover:ring-[#F83B66]/50',
+                            ? 'hover:shadow-[0_0_3px_3px_rgba(10,119,243,0.5)]'
+                            : 'hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]',
 
                     // focus ring
                     app === 'digi'
-                      ? 'focus:ring-4 focus:ring-[#F83B66]/50'
+                      ? 'focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]'
                       : app === 'fireweb'
                         ? 'focus:ring-4 focus:ring-[#ED1C24]/50'
                         : app === 'utils'
-                          ? 'focus:ring-4 focus:ring-[#FFC506]/50'
+                          ? 'hover:shadow-[0_0_3px_3px_rgba(255,197,6,0.5)]'
                           : app === 'sky'
-                            ? 'focus:ring-4 focus:ring-[#2E86DE]/50'
-                            : 'focus:ring-4 focus:ring-[#F83B660]/50'
+                            ? 'focus:shadow-[0_0_3px_3px_rgba(10,119,243,0.5)]'
+                            : 'focus:shadow-[0_0_3px_3px_rgba(10,119,243,0.5)]'
                   ]"
             >
                 <span class="text-white font-semibold">Sign In</span>
@@ -201,12 +209,19 @@
                   src="/icon/icon-signIn.svg"
                   alt="singIn"
                   class="w-6 h-6 ml-2" />
-                <i v-else class="fas fa-spinner animate-spin text-white ml-2"></i>
+                <svg v-else class="animate-spin color-spin ml-4" width="20" height="20" viewBox="0 0 86 86" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M43 0C49.608 0 55.8671 1.49206 61.4609 4.15527C63.289 2.80154 65.5506 2 68 2C74.0751 2 79 6.92487 79 13C79 14.7395 78.5939 16.3835 77.875 17.8457C82.9856 24.9189 86 33.6068 86 43C86 66.7482 66.7482 86 43 86C19.2518 86 0 66.7482 0 43C0 19.2518 19.2518 0 43 0ZM43 8C23.67 8 8 23.67 8 43C8 62.33 23.67 78 43 78C62.33 78 78 62.33 78 43C78 35.685 75.7543 28.8952 71.917 23.2793C70.6999 23.7434 69.3801 24 68 24C61.9249 24 57 19.0751 57 13C57 12.3154 57.0659 11.6461 57.1855 10.9961C52.8493 9.07124 48.05 8 43 8ZM43 20C55.7025 20 66 30.2975 66 43C66 55.7025 55.7025 66 43 66C30.2975 66 20 55.7025 20 43C20 30.2975 30.2975 20 43 20Z"/>
+              </svg>
               </button>
             </div>
           </form>
         </div>
-        <span class="text-[#7f7f7f]/80 text-xs font-light mt-6 mb-2 text-center block">
+        <span
+          class="
+            text-[#7f7f7f]/80 text-xs font-light
+            text-center block
+            mt-6 mb-0 sm:mb-2
+            ">
           By continuing, you agree to our
           <a href="/privacy-policy" target="_blank" class="text-[#7f7f7f]
           hover:text-[var(--text)] underline underline-offset-2 transition">
@@ -219,7 +234,7 @@
           </a>.
         </span>
       </div>
-      <div class="flex justify-center w-full mt-16 mb-4">
+      <div class="flex justify-center w-full mt-0 mb-0 sm:mt-16 sm:mb-4">
         <img
         :src="isLight
               ? '/img/logo-digi-light.svg'
@@ -240,9 +255,10 @@
       bg-[var(--bg)]
       h-full
       my-auto
-    ">
+      hidden sm:flex
+      ">
       <div
-        class="relative w-[500px]"
+        class="relative w-[500px] mx-auto px-12"
         @mouseenter="pauseRotation"
         @mouseleave="resumeRotation"
         @focusin="pauseRotation"
@@ -253,7 +269,7 @@
         <img
           src="/icon/icon-comillas.svg"
           alt="Background"
-          class="absolute h-16 -top-12 -left-14 z-0 opacity-30"
+          class="absolute h-16 -top-12 sm:-left-[-20px] lg:-left-16 z-0 opacity-30"
         />
 
         <!-- Commentaries -->

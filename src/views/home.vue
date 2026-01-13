@@ -1,121 +1,148 @@
 <template>
   <div class="font-sans">
+
     <!-- Hero Section -->
     <section class="bg-[var(--bg)] text-[var(--text)]">
       <div class="relative w-full h-full">
         <canvas
           ref="canvas"
-          class="absolute top-0 left-0 w-full h-full z-10 pointer-events-none"
+          class="absolute top-0 left-0 w-full h-full pointer-events-none"
           style="background: transparent"
-        ></canvas>
-            <!-- Contenido sobre el canvas -->
-        <div class="container flex flex-col z-10 mx-auto items-center justify-center mt-36">
-          <div class="flex items-center justify-center mb-6">
-            <img
-                  src="/img/logo-digi.svg"
-                  alt="Digi Systems Logo"
-                  class="h-8">
-            <span class="ml-3 text-lg opacity-50 font-thin font-sans"></span>
-          </div>
+          >
+        </canvas>
+
+        <!-- Contenido hero -->
+        <div
+          class="
+            container
+            flex flex-col
+            items-center justify-center
+            mx-auto mt-8 sm:mt-30
+            text-center
+          ">
           <h1 class="text-8xl font-semibold text-[var(--text)]">Enter Orbit</h1>
           <h1 class="text-6xl font-light text-[var(--text-secondary)]">reach new heights</h1>
-          <p class="mt-10 text-lg text-[var(--text-secondary)]">
+          <p class="my-10 text-lg text-[var(--text-secondary)] mx-auto text-center">
+            Empowering healthcare, education, and storage<br> with complete solutions
+            Empowering healthcare, education, and storage with complete solutions<br>
             Empowering healthcare, education, and storage with complete solutions
           </p>
-          <p class="mt-2 text-lg text-[var(--text-secondary)]">
-          Empowering healthcare, education, and storage with complete solutions
-          </p>
           <a
-                href="#products"
-                class="mt-10 inline-block bg-[#F83B66] text-white
-                  py-2 px-6 rounded-full hover:border-[#FF3374] hover:bg-[#FF3374]
-                  hover:ring-4 hover:ring-[#FF3374]/50
-                  transition ease-in duration-150
-                  ">
-                  Explore Products
-          </a>
-        </div>
-        <div ref="track" class="overflow-hidden mt-20 mx-auto w-[800px] border">
-          <div ref="inner" class="flex gap-16">
-            <img src="/img/logo-digi-gray.svg" alt="01" class="h-6 shrink-0" />
-    <img src="/img/logo-fireweb-gray.svg" alt="01" class="h-6 shrink-0" />
-    <img src="/img/logo-utils-gray.svg" alt="01" class="h-6 shrink-0" />
-    <img src="/img/logo-orbeat-gray.svg" alt="01" class="h-6 shrink-0" />
-    <img src="/img/logo-care-gray.svg" alt="01" class="h-6 shrink-0" />
-    <img src="/img/logo-orbeat-gray.svg" alt="01" class="h-6 shrink-0" />
-        </div>
-        </div>
-    <!-- Products Section -->
-    <div id="products" class="container mx-auto px-4 mt-24">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 z-50">
-        <!-- Digi-Care -->
-        <div class="bg-[var(--bg)] border border-[var(--border)]
-          shadow-lg rounded-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-4">Digi-Care Health System</h3>
-          <p class="text-gray-600 mb-4">
-            Comprehensive healthcare solutions designed to
-            streamline medical services and patient care.
-          </p>
-          <a
-            :href="careAppLink"
-            target="_blank"
-            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
-          >
-            Learn More
+            href="#products"
+            class="
+              bg-[#F83B66] text-white  rounded-full
+              py-2 px-6 my-8
+              hover:-translate-y-0.5
+              hover:shadow-[0_0_8px_4px_rgba(255,51,116,0.5)]
+              transition-all duration-200 ease-out
+            ">
+            Explore Products
           </a>
         </div>
 
-        <!-- Digi-Edu -->
-        <div class="bg-[var(--bg)] border border-[var(--border)]
-          shadow-lg rounded-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-4">Digi-Edu Courses</h3>
+        <!-- slider logos -->
+        <div ref="track" class="overflow-hidden mt-20 w-[900px] mx-auto bg-slide">
+          <div ref="inner" class="flex gap-16">
+            <img src="/img/logo-digi-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-fireweb-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-utils-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-orbeat-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-care-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-sky-gray.svg" alt="01" class="h-6 shrink-0" />
+
+            <img src="/img/logo-digi-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-fireweb-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-utils-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-orbeat-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-care-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-sky-gray.svg" alt="01" class="h-6 shrink-0" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Section -->
+      <div id="products" class="container mx-auto px-4 my-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 z-50">
+
+          <!-- Digi-Sky -->
+          <div
+            class="
+              bg-[var(--bg)] border border-[var(--border)]
+              shadow-lg rounded-lg p-6 text-center
+            ">
+            <h3 class="text-xl font-bold mb-4">Sky</h3>
+            <p class="text-gray-600 mb-4">
+              Comprehensive healthcare solutions designed to
+              streamline medical services and patient care.
+            </p>
+            <a
+              :href="skyAppLink"
+              target="_blank"
+              class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
+            >
+              Learn More
+            </a>
+          </div>
+
+        <!-- Digi-fireweb -->
+        <div
+          class="
+            bg-[var(--bg)] border border-[var(--border)]
+            shadow-lg rounded-lg p-6 text-center">
+          <h3 class="text-xl font-bold mb-4">Fireweb</h3>
           <p class="text-gray-600 mb-4">
             Empowering education through online courses, learning modules,
             and certification programs.
           </p>
           <a
-            :href="eduAppLink"
+            :href="firewebAppLink"
             target="_blank"
-            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
-          >
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
+            ">
             Learn More
           </a>
         </div>
 
-        <!-- Digi-Storage -->
-        <div class="bg-[var(--bg)] border border-[var(--border)]
-          shadow-lg rounded-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-4">Digi-Storage File Storage</h3>
+        <!-- Digi-Care -->
+        <div
+          class="
+            bg-[var(--bg)] border border-[var(--border)]
+            shadow-lg rounded-lg p-6 text-center
+          ">
+          <h3 class="text-xl font-bold mb-4">Care</h3>
           <p class="text-gray-600 mb-4">
             Secure cloud storage solutions to store, manage,
             and share files with ease and reliability.
           </p>
           <a
-            :href="storageAppLink"
+            :href="careAppLink"
             class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
+            target="_blank"
           >
             Learn More
           </a>
         </div>
 
-        <!-- fireweb -->
-        <div class="bg-[var(--bg)] border border-[var(--border)]
-        shadow-lg rounded-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-4">Fireweb</h3>
+        <!-- digi-Utils -->
+        <div
+          class="
+            bg-[var(--bg)] border border-[var(--border)]
+            shadow-lg rounded-lg p-6 text-center
+          ">
+          <h3 class="text-xl font-bold mb-4">Utils</h3>
           <p class="text-gray-600 mb-4">
             A web-based application for managing
             firestore databases using a user-friendly interface.
           </p>
           <a
-            :href="firewebLink"
+            :href="utilsAppLink"
             target="_blank"
-            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
-          >
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
+            ">
             Learn More
           </a>
         </div>
       </div>
-    </div>
     </div>
     </section>
   </div>
@@ -123,12 +150,16 @@
 
 <script setup lang="ts">
 /* eslint-disable */
-import { onMounted, onBeforeUnmount, ref, watch } from "vue";
+import { onMounted, onBeforeUnmount, ref, watch, computed } from "vue";
 
+import { useStore } from 'vuex';
+
+const skyAppLink = ref(process.env.VUE_APP_SKY_URL);
+const firewebAppLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
 const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
-const eduAppLink = ref(process.env.VUE_APP_URL_DG_EDU_APP);
-const firewebLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
-const storageAppLink = ref(process.env.VUE_APP_URL_DG_STORAGE_APP);
+const utilsAppLink = ref(process.env.VUE_APP_UTILS_URL);
+
+const store = useStore();
 
 const props = defineProps({
   color: {
@@ -339,25 +370,23 @@ onMounted(() => {
 });
 
 const inner = ref<HTMLElement | null>(null)
+
 let rafId = 0
-const speed = 0.9
 let offset = 0
+const speed = 0.2 // más bajo = más suave
 
 function loop() {
   if (!inner.value) return
 
-  const first = inner.value.children[0] as HTMLElement
-  const firstWidth = first.offsetWidth + 64 // space-x-16 = 4rem = 64px
-
   offset -= speed
-  inner.value.style.transform = `translateX(${offset}px)`
 
-  // cuando el primero sale completamente
-  if (-offset >= firstWidth) {
-    offset += firstWidth
-    inner.value.appendChild(first)
+  const width = inner.value.scrollWidth / 2
+
+  if (-offset >= width) {
+    offset = 0
   }
 
+  inner.value.style.transform = `translate3d(${offset}px, 0, 0)`
   rafId = requestAnimationFrame(loop)
 }
 
@@ -375,3 +404,8 @@ onMounted(() => {
   document.body.scrollTop = 0;
 });
 </script>
+<style scoped>
+    .inner {
+  will-change: transform;
+}
+</style>
