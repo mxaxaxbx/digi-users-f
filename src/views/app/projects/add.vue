@@ -19,7 +19,7 @@
           type="submit"
           class="
             px-4 py-2
-            text-sm font-medium text-white bg-pink-600
+            text-sm font-medium text-white bg-[#F83B66]
             rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500
           "
           :disabled="loading || !projectName"

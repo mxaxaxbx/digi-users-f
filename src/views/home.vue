@@ -1,96 +1,411 @@
 <template>
-  <div>
+  <div class="font-sans">
+
     <!-- Hero Section -->
-    <section class="bg-pink-600 text-white">
-      <div class="container mx-auto px-4 py-20 text-center">
-        <h1 class="text-5xl font-bold">Welcome to Digi Systems</h1>
-        <p class="mt-4 text-lg">
-          We offer comprehensive solutions for healthcare, education, and storage.
-        </p>
-        <a
-          href="#products"
-          class="mt-6 inline-block bg-white text-pink-600 py-3 px-6 rounded-lg hover:bg-gray-200"
-        >
-          Explore Products
-        </a>
-      </div>
-    </section>
-    <!-- Products Section -->
-    <section id="products" class="container mx-auto px-4 py-20">
-      <h2 class="text-3xl font-bold text-center mb-12 text-pink-500">Our Products</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <!-- Digi-Care -->
-        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-4">Digi-Care Health System</h3>
-          <p class="text-gray-600 mb-4">
-            Comprehensive healthcare solutions designed to
-            streamline medical services and patient care.
+    <section class="bg-[var(--bg)] text-[var(--text)]">
+      <div class="relative w-full h-full">
+        <canvas
+          ref="canvas"
+          class="absolute top-0 left-0 w-full h-full pointer-events-none"
+          style="background: transparent"
+          >
+        </canvas>
+
+        <!-- Contenido hero -->
+        <div
+          class="
+            container
+            flex flex-col
+            items-center justify-center
+            mx-auto mt-8 sm:mt-30
+            text-center
+          ">
+          <h1 class="text-8xl font-semibold text-[var(--text)]">Enter Orbit</h1>
+          <h1 class="text-6xl font-light text-[var(--text-secondary)]">reach new heights</h1>
+          <p class="my-10 text-lg text-[var(--text-secondary)] mx-auto text-center">
+            Empowering healthcare, education, and storage<br> with complete solutions
+            Empowering healthcare, education, and storage with complete solutions<br>
+            Empowering healthcare, education, and storage with complete solutions
           </p>
           <a
-            :href="careAppLink"
-            target="_blank"
-            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
-          >
-            Learn More
+            href="#products"
+            class="
+              bg-[#F83B66] text-white  rounded-full
+              py-2 px-6 my-8
+              hover:-translate-y-0.5
+              hover:shadow-[0_0_8px_4px_rgba(255,51,116,0.5)]
+              transition-all duration-200 ease-out
+            ">
+            Explore Products
           </a>
         </div>
 
-        <!-- Digi-Edu -->
-        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-4">Digi-Edu Courses</h3>
+        <!-- slider logos -->
+        <div ref="track" class="overflow-hidden mt-20 w-[900px] mx-auto bg-slide">
+          <div ref="inner" class="flex gap-16">
+            <img src="/img/logo-digi-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-fireweb-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-utils-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-orbeat-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-care-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-sky-gray.svg" alt="01" class="h-6 shrink-0" />
+
+            <img src="/img/logo-digi-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-fireweb-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-utils-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-orbeat-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-care-gray.svg" alt="01" class="h-6 shrink-0" />
+            <img src="/img/logo-sky-gray.svg" alt="01" class="h-6 shrink-0" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Section -->
+      <div id="products" class="container mx-auto px-4 my-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 z-50">
+
+          <!-- Digi-Sky -->
+          <div
+            class="
+              bg-[var(--bg)] border border-[var(--border)]
+              shadow-lg rounded-lg p-6 text-center
+            ">
+            <h3 class="text-xl font-bold mb-4">Sky</h3>
+            <p class="text-gray-600 mb-4">
+              Comprehensive healthcare solutions designed to
+              streamline medical services and patient care.
+            </p>
+            <a
+              :href="skyAppLink"
+              target="_blank"
+              class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
+            >
+              Learn More
+            </a>
+          </div>
+
+        <!-- Digi-fireweb -->
+        <div
+          class="
+            bg-[var(--bg)] border border-[var(--border)]
+            shadow-lg rounded-lg p-6 text-center">
+          <h3 class="text-xl font-bold mb-4">Fireweb</h3>
           <p class="text-gray-600 mb-4">
             Empowering education through online courses, learning modules,
             and certification programs.
           </p>
           <a
-            :href="eduAppLink"
+            :href="firewebAppLink"
             target="_blank"
-            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
-          >
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
+            ">
             Learn More
           </a>
         </div>
 
-        <!-- Digi-Storage -->
-        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-4">Digi-Storage File Storage</h3>
+        <!-- Digi-Care -->
+        <div
+          class="
+            bg-[var(--bg)] border border-[var(--border)]
+            shadow-lg rounded-lg p-6 text-center
+          ">
+          <h3 class="text-xl font-bold mb-4">Care</h3>
           <p class="text-gray-600 mb-4">
             Secure cloud storage solutions to store, manage,
             and share files with ease and reliability.
           </p>
           <a
-            :href="storageAppLink"
-            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
+            :href="careAppLink"
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500"
+            target="_blank"
           >
             Learn More
           </a>
         </div>
 
-        <!-- fireweb -->
-        <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-          <h3 class="text-xl font-bold mb-4">Fireweb</h3>
+        <!-- digi-Utils -->
+        <div
+          class="
+            bg-[var(--bg)] border border-[var(--border)]
+            shadow-lg rounded-lg p-6 text-center
+          ">
+          <h3 class="text-xl font-bold mb-4">Utils</h3>
           <p class="text-gray-600 mb-4">
             A web-based application for managing
             firestore databases using a user-friendly interface.
           </p>
           <a
-            :href="firewebLink"
+            :href="utilsAppLink"
             target="_blank"
-            class="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-500"
-          >
+            class="bg-[#F83B66] text-white py-2 px-4 rounded hover:bg-pink-500
+            ">
             Learn More
           </a>
         </div>
       </div>
+    </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+/* eslint-disable */
+import { onMounted, onBeforeUnmount, ref, watch, computed } from "vue";
 
+import { useStore } from 'vuex';
+
+const skyAppLink = ref(process.env.VUE_APP_SKY_URL);
+const firewebAppLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
 const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
-const eduAppLink = ref(process.env.VUE_APP_URL_DG_EDU_APP);
-const firewebLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
-const storageAppLink = ref(process.env.VUE_APP_URL_DG_STORAGE_APP);
+const utilsAppLink = ref(process.env.VUE_APP_UTILS_URL);
+
+const store = useStore();
+
+const props = defineProps({
+  color: {
+    type: String,
+    default: "#F83B66" // color dorado original
+  }
+});
+
+const canvas = ref(null);
+
+function hexToRgb(hex) {
+  hex = hex.replace("#", "").trim();
+
+  if (hex.length === 3) {
+    hex = hex.split("").map(c => c + c).join("");
+  }
+
+  const bigint = parseInt(hex, 16);
+  return {
+    r: (bigint >> 16) & 255,
+    g: (bigint >> 8) & 255,
+    b: bigint & 255
+  };
+}
+
+function parseColor(color) {
+  color = color.trim();
+
+  if (color.startsWith("#")) return hexToRgb(color);
+
+  if (color.startsWith("rgb")) {
+    const nums = color.match(/\d+/g).map(Number);
+    return { r: nums[0], g: nums[1], b: nums[2] };
+  }
+
+  // fallback
+  return { r: 255, g: 255, b: 255 };
+}
+
+onMounted(() => {
+  const c = canvas.value;
+  const ctx = c.getContext("2d");
+
+  let w, h, ny, nx, n;
+  const d = 40;
+
+  let mx = -100;
+  let my = -100;
+
+  let dots = [];
+  let canvasData;
+  let alphaindexes = [];
+
+  const drag = 0.01;
+  const pow = 0.04;
+
+  let currentColor = parseColor(props.color);
+
+  class Fly {
+    constructor(x, y) {
+      this.vx = 0;
+      this.vy = 0;
+      this.x = x;
+      this.y = y;
+      this.c = 0;
+    }
+
+    draw(canvasData) {
+      const ix = Math.floor(this.x);
+      const iy = Math.floor(this.y);
+
+      let i = -6;
+      let j = -6;
+
+      const mdm = Math.hypot(mx - this.x, my - this.y);
+      let a = Math.pow(2, -0.0002 * mdm * mdm);
+
+      if (this.c && a < 0.2) {
+        a = 0.2;
+        this.c -= 1;
+      } else if (!this.c && Math.random() > 0.9997) {
+        this.c = 100;
+      }
+
+      if (a < 0.01) return;
+
+      for (let t = 0; t < 169; t++) {
+        const ox = ix + i;
+        const oy = iy + j;
+
+        const dx = ox - this.x;
+        const dy = oy - this.y;
+
+        const dm = dx * dx + dy * dy;
+        const alpha =
+          (1 - Math.sqrt(dm) / 7) * 100 +
+          Math.max((2 - Math.sqrt(dm)) * 255, 0);
+
+        if (alpha > 0 && ox < w && ox > 0) {
+          const ind = (ox + oy * w) * 4 + 3;
+          canvasData.data[ind] += alpha * a;
+          alphaindexes.push(ind);
+        }
+
+        j++;
+        if (j === 7) {
+          j = -6;
+          i++;
+        }
+      }
+    }
+
+    compute() {
+      const dx = this.x - mx;
+      const dy = this.y - my;
+      const dm = Math.sqrt(dx * dx + dy * dy);
+
+      const a = pow * Math.pow(2, -0.0002 * dm * dm);
+
+      this.vx += (Math.random() * 0.1 - 0.05) - drag * this.vx - (a * dx) / dm;
+      this.vy += (Math.random() * 0.1 - 0.05) - drag * this.vy - (a * dy) / dm;
+
+      this.x = (this.x + this.vx) % w;
+      this.y = (this.y + this.vy) % h;
+
+      if (this.x < 0) this.x += w;
+      if (this.y < 0) this.y += h;
+    }
+  }
+
+  function fillBackgroundColor() {
+    const { r, g, b } = currentColor;
+
+    for (let s = 0; s < w * h; s++) {
+      canvasData.data[s * 4 + 0] = r;
+      canvasData.data[s * 4 + 1] = g;
+      canvasData.data[s * 4 + 2] = b;
+    }
+  }
+
+  function resize() {
+    w = c.offsetWidth;
+    h = c.offsetHeight;
+
+    c.width = w;
+    c.height = h;
+
+    canvasData = ctx.createImageData(w, h);
+
+    fillBackgroundColor();
+
+    ny = Math.ceil(h / d) + 2;
+    nx = Math.ceil(w / d) + 2;
+    n = nx * ny;
+
+    dots = [];
+
+    let gx = -d * 0.5;
+    let gy = -d * 0.5;
+
+    for (let i = 0; i < ny; i++) {
+      for (let j = 0; j < nx; j++) {
+        dots.push(new Fly(gx, gy));
+        gx += d;
+      }
+      gx = -d * 0.5;
+      gy += d;
+    }
+  }
+
+  function mousemove(e) {
+    mx = e.clientX;
+    my = e.clientY;
+  }
+
+  function animate() {
+    for (let z = 0; z < n; z++) dots[z].compute();
+
+    for (const u of alphaindexes) canvasData.data[u] = 0;
+    alphaindexes = [];
+
+    for (let z = 0; z < n; z++) dots[z].draw(canvasData);
+
+    ctx.putImageData(canvasData, 0, 0);
+
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  animate();
+
+  window.addEventListener("mousemove", mousemove);
+  window.addEventListener("resize", resize);
+
+  watch(
+    () => props.color,
+    newVal => {
+      currentColor = parseColor(newVal);
+      fillBackgroundColor();
+      ctx.putImageData(canvasData, 0, 0);
+    }
+  );
+
+  onBeforeUnmount(() => {
+    window.removeEventListener("mousemove", mousemove);
+    window.removeEventListener("resize", resize);
+  });
+});
+
+const inner = ref<HTMLElement | null>(null)
+
+let rafId = 0
+let offset = 0
+const speed = 0.2 // más bajo = más suave
+
+function loop() {
+  if (!inner.value) return
+
+  offset -= speed
+
+  const width = inner.value.scrollWidth / 2
+
+  if (-offset >= width) {
+    offset = 0
+  }
+
+  inner.value.style.transform = `translate3d(${offset}px, 0, 0)`
+  rafId = requestAnimationFrame(loop)
+}
+
+onMounted(() => {
+  rafId = requestAnimationFrame(loop)
+})
+
+onBeforeUnmount(() => {
+  cancelAnimationFrame(rafId)
+})
+
+onMounted(() => {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+});
 </script>
+<style scoped>
+    .inner {
+  will-change: transform;
+}
+</style>

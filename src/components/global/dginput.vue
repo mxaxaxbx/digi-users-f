@@ -2,12 +2,18 @@
   <div class="relative w-full">
     <div
       ref="editableDiv"
-      class="min-h-[40px] p-2 border border-gray-300 rounded-md cursor-text"
+      class="
+        min-h-[40px]
+        w-96
+        bg-[#2a2a2a]
+        border border-[#3d3d3d]
+        px-4 py-1
+        rounded-full cursor-text"
       :class="{
-        'bg-gray-100': props.readonly,
-        'bg-white': !props.readonly,
-        'border-gray-300': !isFocused,
-        'border-blue-500': isFocused,
+        'bg-[#3d3d3d]': props.readonly,
+        'bg-[#2a2a2a]': !props.readonly,
+        'border-[#3d3d3d]': !isFocused,
+        'border-[#3d3d3d]': isFocused,
       }"
       :contenteditable="!props.readonly"
       @input="handleInput"

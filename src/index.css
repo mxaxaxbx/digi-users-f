@@ -1,3 +1,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Tema oscuro */
+:root {
+  --bg: #1d1d1d;
+  --bg-secondary: #252525;
+  --color-primary: #F83B66;
+  --text: #ffffff;
+  --text-secondary: #dcdcdc;
+  --text-terceary: #a3a3a3;
+  --border: #3d3d3d;
+
+  --hover-border: #F83B66;
+  --hover-bg: #36252D;
+
+  --hover-bg-gray: #2a2a2a;
+  --hover-border-gray: #9CA3AF;
+}
+
+/* Tema claro */
+.light {
+  --bg: #fBFBFB;
+  --bg-secondary: #F5F5F5;
+  --text: #252525;
+  --text-secondary: #3d3d3d;
+  --text-terceary: #797979;
+  --border: #DCDCDC;
+
+  --hover-border: #F83B66;
+  --hover-bg: #FFE2EB;
+
+  --hover-bg-gray: #ffffff;
+  --hover-border-gray: #b9b9b9;
+}
+* {
+  transition:
+    background-color 0.8s ease,
+    color 0.8s ease,
+    border-color 0.8s ease,
+    fill 0.8s ease,
+    stroke 0.8s ease;
+}
+.bg-line {
+  --line-color: color-mix(in srgb, var(--border) 100%, transparent);
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--line-color),
+    transparent
+  );
+
+  background-size: 100% 100%;
+  opacity: 0.6;
+
+  transition:
+    opacity 0.9s ease,
+    background 0.9s ease,
+    background-size 0.9s ease;
+}
+
+/* Hover del grupo */
+.group:hover .bg-line {
+  --line-color: color-mix(in srgb, #F83B66 100%, transparent);
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--line-color),
+    transparent
+  );
+
+  background-size: 100% 100%;
+  opacity: 1; /* ← esta es la que da el efecto suave */
+}
+
+.bg-slide {
+  --fade: 80px;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black var(--fade),
+    black calc(100% - var(--fade)),
+    transparent
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black var(--fade),
+    black calc(100% - var(--fade)),
+    transparent
+  );
+}
