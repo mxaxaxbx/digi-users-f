@@ -10,14 +10,14 @@
         my-auto py-4 px-8
         shadow-md
       ">
-      <div class="flex justify-between w-full sm:mb-24 mb-4 ">
+      <div class="flex justify-between w-full sm:mb-24 mb-4">
         <div class="">
           <!-- logo fireweb -->
           <img
             v-if="app === 'fireweb'"
             :src="isLight
             ? '/img/logo-fireweb-light.svg'
-            : '/img/logo-fireweb.svg'" alt="Logo" class="h-[25px] mt-1" />
+            : '/img/logo-fireweb.svg'" alt="Logo" class="h-6 mt-1" />
 
           <!-- logo sky -->
           <img
@@ -26,7 +26,7 @@
               ? '/img/logo-sky.svg'
               : '/img/logo-sky-light.svg'"
             alt="sky Logo"
-            class="h-[25px] mt-1"
+            class="h-6 mt-1"
           />
           <!-- logo Utils -->
           <img
@@ -35,7 +35,7 @@
               ? '/img/logo-utils-light.svg'
               : '/img/logo-utils.svg'"
             alt="utils Logo"
-            class="h-[25px] mt-1"
+            class="h-6 mt-1"
           />
           <!-- logo inventory -->
           <img
@@ -44,7 +44,7 @@
               ? '/img/logo-inventory-light.svg'
               : '/img/logo-inventory.svg'"
             alt="inventory Logo"
-            class="h-[25px] mt-1"
+            class="h-6 mt-1"
           />
           <!-- logo digi -->
           <img
@@ -53,7 +53,7 @@
               ? '/img/logo-digi-light.svg'
               : '/img/logo-digi.svg'"
             alt="utils Logo"
-            class="h-[25px] mt-1"
+            class="h-6 mt-1"
           />
         </div>
         <button @click="toggleTheme" class="rounded-full px-1.5">
@@ -104,27 +104,27 @@
               relative
               flex flex-col justify-center
               w-full
-              px-4 pt-4 pb-4 mb-4
+              px-4 py-4 mb-4
               rounded-lg
-
-              sm:pt-10 sm:pb-6
 
               border
               " :class="isEmailInvalid ?
-                'bg-[#ffa600]/10 border-[#FFA600] text-[var(--text)]'
+                'bg-[#ffa600]/10 border-[#FFA600] text-[#FFA600]'
                 : 'bg-transparent border-transparent'">
-              <div v-if="showAlert" class="
-              absolute top-3 -mx-0
-              flex items-center
-              w-full
-              text-[var(--text)] text-xs font-regular
-              transition-all duration-300">
-                <img src="/icon/icon-alert.svg" alt="alert" class="w-5 h-5 mr-2 " />
+              <div v-if="showAlert"
+                class="
+                alert-text
+                flex items-center
+                whitespace-pre-line sm:whitespace-normal
+                w-full mb-4 sm:mx-4 mx-0
+                text-xs font-regular
+                transition-all duration-300">
+                <img src="/icon/icon-alert.svg" alt="alert" class="w-5 h-5 mr-2" />
                 {{ alertMessage }}
               </div>
               <label for="email"
               class="text-[var(--text)] text-base font-regular px-4 pb-1.5">
-                Email
+                Email:
               </label>
               <input
                 type="email"
@@ -200,7 +200,7 @@
                           ? 'hover:shadow-[0_0_3px_3px_rgba(255,197,6,0.5)]'
                           : app === 'sky'
                             ? 'focus:shadow-[0_0_3px_3px_rgba(10,119,243,0.5)]'
-                            : 'focus:shadow-[0_0_3px_3px_rgba(10,119,243,0.5)]'
+                            : 'focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]'
                   ]"
             >
                 <span class="text-white font-semibold">Sign In</span>
@@ -222,7 +222,8 @@
             text-center block
             mt-6 mb-0 sm:mb-2
             ">
-          By continuing, you agree to our
+            By continuing, you agree to our
+            <span class="block sm:hidden"></span>
           <a href="/privacy-policy" target="_blank" class="text-[#7f7f7f]
           hover:text-[var(--text)] underline underline-offset-2 transition">
             Terms of Service
@@ -373,7 +374,7 @@ async function submitEmail() {
 
   if (!emailRegex.test(emailValue)) {
     isEmailInvalid.value = true;
-    showCustomAlert('WTF was that? Try a real email. You know; with an @ and stuff.');
+    showCustomAlert('WTF was that? Try a real email.\nCome on! You know; with an @ and stuff.');
 
     setTimeout(() => {
       isEmailInvalid.value = false;

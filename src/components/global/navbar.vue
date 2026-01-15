@@ -2,17 +2,13 @@
   <nav
     class="
       font-alexandria font-sans
-      bg-[var(--bg)] text-white
-      w-full h-12
-      px-4 pt-1.5
+      bg-[var(--bg)] mt-2
       border-b border-[var(--border)]
-    "
-  >
-  <!--
-    <button @click="toggleSidebar">
-      <i class="fas fa-bars"></i>
-    </button> -->
+      w-full h-10 items-end
+      px-2
 
+      sm:px-4
+    ">
     <div class="flex items-center justify-between h-full">
       <div class="flex space-x-8">
         <router-link
@@ -25,13 +21,31 @@
             ? '/img/logo-digi-light.svg'
             : '/img/logo-digi.svg'"
             alt="Logo"
-            class="
-            h-5
-            courser-pointer"
+            class="h-5 courser-pointer"
           />
         </router-link>
       </div>
-      <div class="flex items-center space-x-6">
+
+      <div class="flex items-center gap-4 ml-auto">
+      <a v-if="!isAuth" href= "/auth/provider"
+        class="
+          flex items-center justify-center
+          bg-[var(--bg-secondary)]
+          border border-[var(--color-primary)]
+          text-[var(--color-primary)] text-sm font-regular
+          pl-3 pr-2
+          rounded-full
+
+          hover:bg-[var(--hover-bg)]
+          hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+          focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+          transition-all duration-300 ease-in-out
+        ">
+          Sign In
+        <img src="/icon/icon-signIn-color.svg"
+          alt="icon"
+          class="ml-1 h-4"/>
+      </a>
         <!--dropdown-->
         <Dropdown v-if="isAuthenticated">
           <template #trigger="{ toggle }">
@@ -249,27 +263,6 @@
                 </div>
               </template>
             </Dropdown>
-            <router-link
-              v-else to="/auth/provider"
-              class="
-                flex items-center
-                bg-[var(--bg-secondary)]
-                border border-[var(--color-primary)]
-                text-[var(--color-primary)] text-sm font-regular
-                pl-3 pr-2 py-0.5
-                rounded-full
-
-                hover:bg-[var(--hover-bg)]
-                hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
-                focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
-                transition-all duration-300 ease-in-out
-              ">
-            Sign In
-            <img src="/icon/icon-signIn-color.svg"
-                  alt="icon"
-                  class="ml-2 h-4"/>
-    </router-link>
-     <!--Login-->
     </div>
   </div>
   </nav>
