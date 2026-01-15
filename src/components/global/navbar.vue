@@ -126,7 +126,7 @@
                   </div>
 
               <!-- Manage Account Button -->
-              <a :href="`${usersLink}/app/users/edit-profile`"
+              <a href="/app/users/edit-profile"
                 class="
                   bg-[var(--bg-secondary)]
                   border border-[var(--color-primary)]
