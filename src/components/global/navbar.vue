@@ -27,7 +27,7 @@
       </div>
 
       <div class="flex items-center gap-4 ml-auto">
-      <a v-if="isAuth" href= "/auth/provider"
+      <a v-if="!isAuth" href="/auth/provider?app=digi"
         class="
           flex items-center justify-center
           bg-[var(--bg-secondary)]
@@ -47,7 +47,7 @@
           class="ml-1 h-4"/>
       </a>
         <!--dropdown-->
-        <Dropdown v-if="isAuthenticated">
+        <Dropdown v-if="isAuth">
           <template #trigger="{ toggle }">
             <button
               @click="toggle"
