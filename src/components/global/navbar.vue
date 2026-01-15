@@ -248,14 +248,14 @@
                   class="flex justify-around mt-8 text-[10px] text-[#3d3d3d] px-16"
                 >
                   <a
-                  :href="`${usersLink}/privacy-policy`"
+                  href="/privacy-policy"
                   target="_blank"
                   class="hover:underline hover:text-[#bebebe]"
                   >
                     Terms of Service</a>
                     <span>•</span>
                   <a
-                    :href="`${usersLink}/privacy-policy`"
+                    href="/privacy-policy"
                     target="_blank"
                     class="hover:underline hover:text-[#bebebe]"
                   >

@@ -96,7 +96,7 @@
                     ">Sky
                   </a></li>
                   <li><a
-                    href="#"
+                    href="https://fireweb.digiapps.com.co/"
                     class="
                       opacity-50 hover:opacity-100
                       transition-all duration-300 ease-in-out
@@ -146,7 +146,7 @@
                     pl-1
                   ">
                   <li><a
-                    :href="`${digiSystemslink}/privacy-policy`"
+                    href="/privacy-policy"
                     class="
                       opacity-50 hover:opacity-100
                       transition-all duration-300 ease-in-out
