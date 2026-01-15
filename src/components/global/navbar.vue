@@ -27,7 +27,8 @@
       </div>
 
       <div class="flex items-center gap-4 ml-auto">
-      <a v-if="!isAuth" href="/auth/provider?app=digi-users"
+      <a v-if="!isAuth"
+        :href="`${usersLink}/auth/provider?app=digi-users`"
         class="
           flex items-center justify-center
           bg-[var(--bg-secondary)]
