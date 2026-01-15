@@ -117,8 +117,8 @@
                 flex items-center
                 whitespace-pre-line sm:whitespace-normal
                 w-full mb-4 sm:mx-4 mx-0
-                text-xs font-regular
-                transition-all duration-300">
+                text-xs font-regular text-[#FFA600]
+                transition-all duration-400">
                 <img src="/icon/icon-alert.svg" alt="alert" class="w-5 h-5 mr-2" />
                 {{ alertMessage }}
               </div>
