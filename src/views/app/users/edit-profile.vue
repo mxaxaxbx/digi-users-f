@@ -1,40 +1,39 @@
 <template>
   <div class="
-    font-alexandria
-    p-10
-    h-screen
-    ">
-    <div class="
-      flex flex-col items-left justify-center
-      bg-1d1d1d
-      mx-96
-      py-16
+        container px-4 py-16 sm:w-[50%] flex flex-col justify-between
+        mx-auto font-sans
       ">
-        <h1 class="
-          text-2xl text-white font-semibold
-          mb-6">Preferences</h1>
-
-          <!--form-->
-          <div class="
-          bg-[#252525]
-          border border-[#3d3d3d]
-          rounded-lg
-          py-6
-          px-8
+      <div class="flex items-center">
+        <button
+          type="button"
+          @click="$router.back()"
+          class="
+            text-[var(--text)] opacity-30
+            hover:opacity-80
+            focus:outline-none focus:text-gray-400
           ">
-          <h1 class="
-            text-md text-white font-medium
-            mb-6">Edit your profile information</h1>
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="text:xl sm:text-2xl font-semibold text-[var(--text)] ml-4">Preferences</h1>
+      </div>
+
+      <!--form-->
+      <div
+        class="
+          my-4 sm:my-10
+          bg-[var(--bg-secondary)]
+          border border-[var(--border)] rounded-lg
+        ">
+        <h3 class="font-semibold text-[var(--text)] text-lg border-b border-[var(--border)] px-4 py-2 sm:px-8 sm:py-4">Perfil Information</h3>
         <Form
           :fields="fields"
           :loading="loading"
           @update="update"
           @submit="submit"
-          class="text-white font-thin"
+          class=""
         />
         </div>
-  </div>
-  </div>
+      </div>
 </template>
 
 <script setup lang="ts">

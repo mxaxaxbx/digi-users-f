@@ -3,11 +3,14 @@
     <div
       ref="editableDiv"
       class="
-        min-h-[40px]
-        w-96
+        w-48 sm:w-80
+        mx-auto
+        ml-4 sm:ml-16
+        items-end
         bg-[#2a2a2a]
         border border-[#3d3d3d]
-        px-4 py-1
+        px-4
+        text-sm text-[var(--text-secondary)]
         rounded-full cursor-text"
       :class="{
         'bg-[#3d3d3d]': props.readonly,

@@ -139,7 +139,7 @@
                   hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
                   focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
                   transition-all duration-300 ease-in-out"
-                target="_blank">
+                >
                 Manage your digi Account
                   </a>
                 </div>
