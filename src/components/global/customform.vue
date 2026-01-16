@@ -4,13 +4,16 @@
       <!-- text or email inputs -->
       <div v-if="field.type === 'text' || field.type === 'email'"
         class="
-          flex items-center justify-between my-4 font-sans
+          flex flex-col items-center justify-between my-4 font-sans
           text-[var(--text-terceary)]
-          ">
+          "
+        :class="{ 'border border-[#FFA600] bg-[#FFA600]/5 rounded-lg p-4 mx-2': field.error }
+        ">
+        <div class="flex items-center justify-between">
         <label
           :for="field.name"
           class="font-semibold text-xs"
-          :class="{ 'text-red-500': field.error }"
+          :class="{ 'text-[#FFA600]': field.error }"
         >
           {{ field.label }}:
         </label>
@@ -23,11 +26,12 @@
           :readonly="field.readonly"
           :disabled="field.disabled"
           :required="field.required"
-          :class="{ 'border-red-500': field.error }"
           @input="validateField"
           class=""
+          :err="field.error"
         />
-        <p v-if="field.error" class="text-red-500 text-sm mt-1">
+        </div>
+        <p v-if="field.error" class="text-[#FFA600] text-sm mt-4">
           {{ field.error }}
         </p>
       </div>
@@ -287,14 +291,21 @@
       </div>
     </div>
     <!-- actions -->
-    <div v-if="props.showActions" class="flex items-center justify-end px-4 py-2 sm:py-4 sm:px-8 mt-4 border-t border-[var(--border)] w-full">
+    <div v-if="props.showActions"
+      class="
+        flex items-center justify-end
+        border-t border-[var(--border)]
+        w-full px-4 py-2 mt-4
+
+        sm:py-4 sm:px-8
+      ">
       <button
         type="submit"
         class="
           flex items-center justify-center
           bg-[var(--bg-secondary)]
           border border-[var(--color-primary)]
-          text-[var(--color-primary)] text-sm font-regular
+          text-sm text-[var(--color-primary)] font-regular
           px-4
           rounded-full
 
@@ -303,8 +314,8 @@
           focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
           transition-all duration-300 ease-in-out
         "
-        :class="{ 'cursor-not-allowed opacity-50': props.loading }"
-      >
+        :class="{ 'cursor-not-allowed opacity-50': props.loading }
+        ">
         <font-awesome-icon v-if="props.loading" icon="fa-spinner" class="animate-spin" />
         Save
       </button>
