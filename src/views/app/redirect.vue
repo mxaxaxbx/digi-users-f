@@ -32,8 +32,8 @@ function switchApp() {
       window.location.href = `${careApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
       break;
     }
-    case 'storage': {
-      const storageApp = process.env.VUE_APP_URL_DG_STORAGE_APP;
+    case 'sky': {
+      const storageApp = process.env.VUE_APP_SKY_URL;
       window.location.href = `${storageApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
       break;
     }
@@ -53,6 +53,20 @@ function switchApp() {
       const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
       const { VUE_APP_DG_APP_SUBS } = process.env;
       const url = `${VUE_APP_DG_APP_SUBS}/${uri}`;
+      window.location.href = url;
+      break;
+    }
+    case 'inventory': {
+      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
+      const { VUE_APP_DG_APP_INVENTORY } = process.env;
+      const url = `${VUE_APP_DG_APP_INVENTORY}/${uri}`;
+      window.location.href = url;
+      break;
+    }
+    case 'utils': {
+      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
+      const { VUE_APP_UTILS_URL } = process.env;
+      const url = `${VUE_APP_UTILS_URL}/${uri}`;
       window.location.href = url;
       break;
     }

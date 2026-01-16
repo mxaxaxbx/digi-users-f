@@ -54,6 +54,14 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: 'provider',
+        name: 'provider',
+        component: () => import('../views/auth/provider.vue'),
+        meta: {
+          title: 'Select a provider to login',
+        },
+      },
+      {
         path: 'validategoogletoken',
         name: 'validategoogletoken',
         component: () => import('../views/auth/validategoogletoken.vue'),
@@ -144,6 +152,19 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0, behavior: 'smooth' };
+  },
+});
+router.afterEach(() => {
+  const app = document.querySelector('#app');
+  if (!app) return;
+
+  app.classList.add('page-transition');
+
+  setTimeout(() => {
+    app.classList.remove('page-transition');
+  }, 300); // duración suave
 });
 
 router.beforeEach((

@@ -48,7 +48,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     });
     await context.dispatch('getUserProjects');
     // TODO: validate permissions
-    await context.dispatch('getUserPermissions');
+    // await context.dispatch('getUserPermissions');
     window.location.href = `/app/redirect?app=${payload.app}&redirect=${payload.redirect}`;
   },
   async getUserDetails(

@@ -83,7 +83,7 @@
           class="
             flex items-center justify-between
             border border-gray-300
-            text-gray-900 text-sm
+            text-red-900 text-sm
             rounded-lg
             focus:border-pink-500
             block w-full
@@ -286,18 +286,19 @@
       <button
         type="submit"
         class="
-          bg-pink-500
-          hover:bg-pink-700
-          text-white
-          font-bold
-          py-2 px-4
-          rounded-lg
-          focus:border-pink-500
-        "
+            bg-[#FF3374]/60
+            border border-[#FF3374]
+            rounded-full px-6
+            h-8
+            text-white text-sm font-medium
+            hover:border-[#FF3374] hover:bg-[#FF3374]
+            hover:ring-4 hover:ring-[#FF3374]/50
+            transition ease-in duration-150
+            "
         :class="{ 'cursor-not-allowed opacity-50': props.loading }"
       >
         <font-awesome-icon v-if="props.loading" icon="fa-spinner" class="animate-spin" />
-        Guardar
+        Save
       </button>
     </div>
   </form>
