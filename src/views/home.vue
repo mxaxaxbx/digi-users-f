@@ -39,7 +39,7 @@
         </div>
 
         <!-- slider logos -->
-        <div ref="track" class="overflow-hidden mt-30 w-[900px] mx-auto bg-slide">
+        <div ref="track" class="overflow-hidden mt-30 w-90 sm:w-[900px] mx-auto bg-slide">
           <div ref="inner" class="flex gap-16">
             <img src="/img/logo-digi-gray.svg" alt="01" class="h-6 shrink-0" />
             <img src="/img/logo-fireweb-gray.svg" alt="01" class="h-6 shrink-0" />
@@ -366,7 +366,7 @@
 
         <!-- digi-Utils -->
         <a
-          :href="firewebAppLink"
+          :href="utilsAppLink"
           target="_blank"
           class="
             group
