@@ -35,7 +35,7 @@
     <!-- footer -->
     <footer
       v-if="shouldShowFooter"
-      class="bg-[var(--bg)] group">
+      class="bg-[var(--bg)] group mt-20">
         <div class="w-full h-px bg-line"></div>
         <div
           class="
