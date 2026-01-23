@@ -89,25 +89,35 @@
                     pl-1
                   ">
                   <li><a
-                    href="#"
+                    :href="skyAppLink"
                     class="
                       opacity-50 hover:opacity-100
                       transition-all duration-300 ease-in-out
                     ">Sky
                   </a></li>
                   <li><a
-                    href="https://fireweb.digiapps.com.co/"
+                    :href="firewebAppLink"
+                    target="_blank"
                     class="
                       opacity-50 hover:opacity-100
                       transition-all duration-300 ease-in-out
                     ">Fireweb
                   </a></li>
                   <li><a
-                    href="#"
+                    :href="careAppLink"
+                    target="_blank"
                     class="
                       opacity-50 hover:opacity-100
                       transition-all duration-300 ease-in-out
                     ">DigiCare
+                  </a></li>
+                  <li><a
+                    :href="utilsAppLink"
+                    target="_blank"
+                    class="
+                      opacity-50 hover:opacity-100
+                      transition-all duration-300 ease-in-out
+                    ">Utils
                   </a></li>
                 </ul>
               </div>
@@ -192,6 +202,11 @@ const Sidebar = defineAsyncComponent(() => import('./components/global/sidebar.v
 
 const store = useStore();
 const route = useRoute();
+
+const skyAppLink = ref(process.env.VUE_APP_SKY_URL);
+const firewebAppLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
+const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
+const utilsAppLink = ref(process.env.VUE_APP_UTILS_URL);
 
 const showSidebar = computed(() => store.state.sidebar);
 const shouldShowNavbar = computed(() => !route.path.startsWith('/auth'));

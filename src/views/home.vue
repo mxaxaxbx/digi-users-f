@@ -39,7 +39,7 @@
         </div>
 
         <!-- slider logos -->
-        <div ref="track" class="overflow-hidden mt-30 w-90 sm:w-[900px] mx-auto bg-slide">
+        <div ref="track" class="overflow-hidden my-16 sm:my-30 w-90 sm:w-[900px] mx-auto bg-slide">
           <div ref="inner" class="flex gap-16">
             <img src="/img/logo-digi-gray.svg" alt="01" class="h-6 shrink-0" />
             <img src="/img/logo-fireweb-gray.svg" alt="01" class="h-6 shrink-0" />
@@ -59,7 +59,7 @@
       </div>
 
       <!-- Products Section -->
-      <div id="products" class="container mx-auto px-4 my-40 min-h-screen sm:min-h-0">
+      <div id="products" class="container mx-auto px-4 mt-8 sm:my-40 min-h-screen sm:min-h-0">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-3 z-50">
 
           <!-- Digi-Sky -->
