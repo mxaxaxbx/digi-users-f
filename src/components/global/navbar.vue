@@ -136,7 +136,7 @@
 
                   hover:bg-[var(--hover-bg)]
                   hover:text-[var(--text)]
-                  hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+                  hover:shadow-[0_0_16px_8px_rgba(248,59,102,0.5)]
                   focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
                   transition-all duration-300 ease-in-out"
                 >
