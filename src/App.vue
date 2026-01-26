@@ -109,7 +109,7 @@
                     class="
                       opacity-50 hover:opacity-100
                       transition-all duration-300 ease-in-out
-                    ">DigiCare
+                    ">Care
                   </a></li>
                   <li><a
                     :href="utilsAppLink"

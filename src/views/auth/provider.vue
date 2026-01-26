@@ -51,6 +51,15 @@
             alt="inventory Logo"
             class="h-6 mt-1"
           />
+          <!-- logo care -->
+           <img
+            v-else-if="app === 'care'"
+            :src="isLight
+              ? '/img/logo-care-light.svg'
+              : '/img/logo-care.svg'"
+            alt="care Logo"
+            class="h-6 mt-1"
+            />
           <!-- logo digi -->
           <img
             v-else
@@ -192,6 +201,8 @@
                       ? 'bg-[#ED1C24]'
                       : app === 'utils'
                         ? 'bg-[#FFC506]'
+                        :app === 'care'
+                          ? 'bg-[#07CBB4]'
                         : app === 'sky'
                           ? 'bg-[#0B77F3]'
                           : 'bg-[#F83B66]',
@@ -203,19 +214,23 @@
                       ? 'hover:ring-4 hover:ring-[#ED1C24]/50'
                       : app === 'utils'
                         ? 'hover:shadow-[0_0_3px_3px_rgba(255,197,6,0.5)]'
+                        : app=== 'care'
+                          ? 'hover:shadow-[0_0_3px_3px_rgba(7,203,180,0.5)]'
                         : app === 'sky'
                           ? 'hover:shadow-[0_0_3px_3px_rgba(10,119,243,0.5)]'
                           : 'hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]',
 
                   // focus ring
                   app === 'digi'
-                    ? 'focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]'
+                    ? 'focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)] focus:outline-none'
                     : app === 'fireweb'
-                      ? 'focus:ring-4 focus:ring-[#ED1C24]/50'
+                      ? 'focus:ring-4 focus:ring-[#ED1C24]/50 focus:outline-none'
                       : app === 'utils'
-                        ? 'hover:shadow-[0_0_3px_3px_rgba(255,197,6,0.5)]'
+                        ? 'focus:shadow-[0_0_3px_3px_rgba(255,197,6,0.5)] focus:outline-none'
+                        : app=== 'care'
+                          ? 'focus:shadow-[0_0_3px_3px_rgba(7,203,180,0.5)] focus:outline-none'
                         : app === 'sky'
-                          ? 'focus:shadow-[0_0_3px_3px_rgba(10,119,243,0.5)]'
+                          ? 'focus:shadow-[0_0_3px_3px_rgba(10,119,243,0.5)] focus:outline-none'
                           : 'focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]'
                 ]">
                 <span class="text-white font-semibold">Sign In</span>
