@@ -14,6 +14,9 @@
 
   --hover-border: #F83B66;
   --hover-bg: #36252D;
+  --hover-sky-ad: #202F41;
+  --hover-fireweb-ad: #312d2e;
+  --sun:#345D8D;
 
   --hover-bg-gray: #2a2a2a;
   --hover-border-gray: #9CA3AF;
@@ -30,6 +33,9 @@
 
   --hover-border: #F83B66;
   --hover-bg: #fff4f7;
+  --hover-sky-ad: #E9F3FF;
+  --hover-fireweb-ad: #fff2f2;
+  --sun:#BFDCFF;
 
   --hover-bg-gray: #ffffff;
   --hover-border-gray: #b9b9b9;
