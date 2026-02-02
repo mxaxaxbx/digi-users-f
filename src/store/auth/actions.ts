@@ -94,7 +94,7 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
   logout(context: ActionContext<AuthStateI, RootStateI>) {
     context.commit('setToken', '');
     context.commit('setUser', '');
-    window.location.href = '/auth/login';
+    window.location.href = '/auth/provider';
   },
   async validategoogletoken(
     context: ActionContext<AuthStateI, RootStateI>,
