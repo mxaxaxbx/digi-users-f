@@ -25,6 +25,7 @@ jobs:
           VUE_APP_URL_DG_FIREWEB_APP: ${{ secrets.VUE_APP_URL_DG_FIREWEB_APP_P }}
           VUE_APP_SKY_URL: ${{ secrets.VUE_APP_SKY_URL_P }}
           VUE_APP_DG_APP_SUBS: ${{ secrets.VUE_APP_DG_APP_SUBS_P }}
+          VUE_APP_UTILS_URL: ${{ secrets.VUE_APP_UTILS_URL_P }}
           VUE_APP_DG_APP_INVENTORY: ${{ secrets.VUE_APP_DG_APP_INVENTORY_P }}
           VUE_APP_GOOGLE_CLIENT_ID: ${{ secrets.VUE_APP_GOOGLE_CLIENT_ID_P }}
         run: |
