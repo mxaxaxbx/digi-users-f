@@ -1,12 +1,19 @@
 <template>
-  <form @submit.prevent="submit">
+  <form @submit.prevent="submit" class="flex flex-col pt-4 items-center justify-between">
     <div v-for="(field, i) in props.fields" :key="i">
       <!-- text or email inputs -->
-      <div v-if="field.type === 'text' || field.type === 'email'" class="my-5">
+      <div v-if="field.type === 'text' || field.type === 'email'"
+        class="
+          flex flex-col items-center justify-between my-4 font-sans
+          text-[var(--text-terceary)]
+          "
+        :class="{ 'border border-[#FFA600] bg-[#FFA600]/5 rounded-lg p-4 mx-2': field.error }
+        ">
+        <div class="flex items-center justify-between">
         <label
           :for="field.name"
-          class="font-bold"
-          :class="{ 'text-red-500': field.error }"
+          class="font-semibold text-xs"
+          :class="{ 'text-[#FFA600]': field.error }"
         >
           {{ field.label }}:
         </label>
@@ -19,10 +26,12 @@
           :readonly="field.readonly"
           :disabled="field.disabled"
           :required="field.required"
-          :class="{ 'border-red-500': field.error }"
           @input="validateField"
+          class=""
+          :err="field.error"
         />
-        <p v-if="field.error" class="text-red-500 text-sm mt-1">
+        </div>
+        <p v-if="field.error" class="text-[#FFA600] text-sm mt-4">
           {{ field.error }}
         </p>
       </div>
@@ -43,7 +52,7 @@
           :value="field.value"
           :disabled="field.disabled"
           class="
-            bg-gray-50
+            bg-red-200
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
@@ -83,7 +92,7 @@
           class="
             flex items-center justify-between
             border border-gray-300
-            text-red-900 text-sm
+            text-red-900 text-sm bg-red-200
             rounded-lg
             focus:border-pink-500
             block w-full
@@ -97,7 +106,7 @@
             :name="field.name"
             :value="field.query"
             @keyup="updateQuery"
-            class="w-full focus:outline-none bg-transparent"
+            class="w-full focus:outline-none bg-red-200"
             autocomplete="off"
           />
           <!-- clear input -->
@@ -193,7 +202,7 @@
           :readonly="field.readonly"
           :disabled="field.disabled"
           class="
-            bg-gray-50
+            bg-red-200
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
@@ -229,7 +238,7 @@
           :readonly="field.readonly"
           :disabled="field.disabled"
           class="
-            bg-gray-50
+            bg-red-500
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
@@ -265,7 +274,7 @@
           :readonly="field.readonly"
           :disabled="field.disabled"
           class="
-            bg-gray-50
+            bg-red-200
             border border-gray-300
             text-gray-900 text-sm
             rounded-lg
@@ -282,21 +291,31 @@
       </div>
     </div>
     <!-- actions -->
-    <div v-if="props.showActions" class="flex justify-end mt-5">
+    <div v-if="props.showActions"
+      class="
+        flex items-center justify-end
+        border-t border-[var(--border)]
+        w-full px-4 py-2 mt-4
+
+        sm:py-4 sm:px-8
+      ">
       <button
         type="submit"
         class="
-            bg-[#FF3374]/60
-            border border-[#FF3374]
-            rounded-full px-6
-            h-8
-            text-white text-sm font-medium
-            hover:border-[#FF3374] hover:bg-[#FF3374]
-            hover:ring-4 hover:ring-[#FF3374]/50
-            transition ease-in duration-150
-            "
-        :class="{ 'cursor-not-allowed opacity-50': props.loading }"
-      >
+          flex items-center justify-center
+          bg-[var(--bg-secondary)]
+          border border-[var(--color-primary)]
+          text-sm text-[var(--color-primary)] font-regular
+          px-4
+          rounded-full
+
+          hover:bg-[var(--hover-bg)]
+          hover:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+          focus:shadow-[0_0_3px_3px_rgba(248,59,102,0.5)]
+          transition-all duration-300 ease-in-out
+        "
+        :class="{ 'cursor-not-allowed opacity-50': props.loading }
+        ">
         <font-awesome-icon v-if="props.loading" icon="fa-spinner" class="animate-spin" />
         Save
       </button>

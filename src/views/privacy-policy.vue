@@ -1,16 +1,16 @@
 <template>
-  <div class="bg-[var(--bg)] py-20 mt-8 px-96">
-    <h1 class="text-4xl text-[var(--text)] font-semibold mb-8">Privacy Policy</h1>
-    <p class="mb-16 text-[#7f7f7f] font-medium">
+  <div class="bg-[var(--bg)] mt-8 sm:mt-20 mb-20 px-8 md:px-24 lg:px-96">
+    <h1 class="text-2xl sm:text-3xl text-[var(--text)] font-semibold mb-8">Privacy Policy</h1>
+    <p class="mb-16 text-[#7f7f7f] text-md font-regular">
       At Digi Systems, we are committed to protecting your privacy.
       This Privacy Policy explains how we collect, use,
       and safeguard your information when you use our services.
       By using our website and services, you agree to the terms outlined in this policy.
     </p>
 
-    <h2 class="text-2xl text-[var(--text)] font-semibold mb-4">Information We Collect</h2>
+    <h2 class="text-xl sm:text-2xl text-[var(--text)] font-semibold mb-6">Information We Collect</h2>
 
-    <h3 class="text-lg text-[var(--text)]  font-medium mb-2">Google OAuth Data</h3>
+    <h3 class="text-lg sm:text-xl text-[var(--text)] font-medium mb-2">Google OAuth Data</h3>
     <p class="mb-4 text-[#7f7f7f] font-regular">
       When you log in to our website using Google OAuth,
       we collect the following information from your Google account:
@@ -23,7 +23,7 @@
     <p class="mb-10 text-[#7f7f7f] font-regular">
       This information is stored securely in our database.</p>
 
-    <h3 class="text-lg text-[var(--text)] font-medium mb-2">Permissions for Google Cloud</h3>
+    <h3 class="text-lg sm:text-xl text-[var(--text)] font-medium mb-2">Permissions for Google Cloud</h3>
     <p class="mb-10 text-[#7f7f7f] font-regular">
       We request specific permissions to access your Google Cloud account
       exclusively for the purpose of enabling functionalities in
@@ -38,7 +38,7 @@
       These permissions are used solely to provide and improve our services.
     </p>
 
-    <h2 class="text-xl text-[var(--text)]  font-semibold mb-2">How We Use Your Information</h2>
+    <h2 class="text-lg sm:text-xl text-[var(--text)] font-semibold mb-2">How we use Your Information</h2>
     <p class="mb-4 text-[#7f7f7f] font-regular">
       We use the information we collect for the following purposes:</p>
     <ol class="list-decimal list-inside text-[#7f7f7f] font-medium mb-10 ml-6">
@@ -54,7 +54,7 @@
       <li>To communicate with you regarding updates, services, and support.</li>
     </ol>
 
-    <h2 class="text-xl text-[var(--text)]  font-semibold mb-2">Sharing Your Information</h2>
+    <h2 class="text-lg sm:text-xl text-[var(--text)]  font-semibold mb-2">Sharing Your Information</h2>
     <p class="mb-4 text-[#7f7f7f] font-regular">
       We do not sell, rent, or share your personal information
       with third parties except as necessary to:
@@ -65,7 +65,7 @@
       <li>Protect the rights, privacy, safety, or property of Digi Systems, you, or others.</li>
     </ul>
 
-    <h2 class="text-xl  text-[var(--text)]  font-semibold mb-2">Data Security</h2>
+    <h2 class="text-lg sm:text-xl text-[var(--text)] font-semibold mb-2">Data Security</h2>
     <p class="mb-10 text-[#7f7f7f] font-regular">
       We take the security of your data seriously and implement appropriate technical and
       organizational measures to protect it against unauthorized access,
@@ -74,17 +74,17 @@
       and we cannot guarantee absolute security.
     </p>
 
-    <h2 class="text-xl text-[var(--text)] font-semibold mb-2">Your Choices</h2>
-    <p class="mb-4 text-[#7f7f7f] font-regular">
+    <h2 class="text-lg sm:text-xl text-[var(--text)] font-semibold mb-2">Your Choices</h2>
+    <p class="mb-4 text-[#7f7f7f] font-medium">
       You have the following rights regarding your data:</p>
-    <ul class="list-disc list-inside text-[#7f7f7f] font-medium ml-6 mb-10">
+    <ul class="list-disc list-inside text-[#7f7f7f] font-regular ml-6 mb-10">
       <li>
         <span class="font-medium">Access and Correction:</span>
         You can request access to the personal data we hold about you and request corrections
         to inaccurate or incomplete data.
       </li>
       <li>
-        <span class="font-medium">Revocation of Permissions:</span>
+        <span class="">Revocation of Permissions:</span>
         You can revoke permissions granted to Digi Systems through your Google account settings
         at any time.
       </li>
@@ -94,7 +94,7 @@
       </li>
     </ul>
 
-    <h2 class="text-xl  text-[var(--text)] font-semibold mb-2">Changes to This Privacy Policy</h2>
+    <h2 class="text-lg sm:text-xl text-[var(--text)] font-semibold mb-2">Changes to This Privacy Policy</h2>
     <p class="mb-10 text-[#7f7f7f] font-regular">
       We may update this Privacy Policy from time to time.
       We encourage you to review this policy periodically to stay informed
@@ -102,7 +102,7 @@
       Significant changes will be communicated through our website or directly to you.
     </p>
 
-    <h2 class="text-xl  text-[var(--text)] font-semibold mb-2">Contact Us</h2>
+    <h2 class="text-lg sm:text-xl text-[var(--text)] font-semibold mb-2">Contact Us</h2>
     <p class="mb-6 text-[#7f7f7f] font-regular">
       If you have any questions, concerns, or requests regarding this Privacy Policy,
       please contact us at:

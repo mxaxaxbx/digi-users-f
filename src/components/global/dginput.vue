@@ -1,20 +1,21 @@
 <template>
-  <div class="relative w-full">
+  <div class="relative">
     <div
       ref="editableDiv"
       class="
-        min-h-[40px]
-        w-96
-        bg-[#2a2a2a]
-        border border-[#3d3d3d]
-        px-4 py-1
-        rounded-full cursor-text"
-      :class="{
-        'bg-[#3d3d3d]': props.readonly,
-        'bg-[#2a2a2a]': !props.readonly,
-        'border-[#3d3d3d]': !isFocused,
-        'border-[#3d3d3d]': isFocused,
-      }"
+        items-end
+        bg-[var(--bg)]
+        border border-[var(--border)]
+        text-sm text-[var(--text-secondary)]
+        rounded-full cursor-text
+        w-48 ml-4 mx-auto px-4
+
+        sm:w-80 sm:ml-16
+
+        focus:bg-[var(--hover-bg-gray)]
+        hover:border-[var(--hover-border-gray)]
+      "
+      :class="{ '!border-[#FFA600]': props.err, }"
       :contenteditable="!props.readonly"
       @input="handleInput"
       @keydown="handleKeyDown"
@@ -22,7 +23,8 @@
       @focus="handleFocus"
       @blur="handleBlur"
       @paste="handlePaste"
-    ></div>
+      >
+    </div>
 
     <div
       v-if="placeholderVisble"
@@ -90,6 +92,10 @@ const props = defineProps({
   sanitize: {
     type: Function,
     default: (text: string) => text,
+  },
+  err: {
+    type: String,
+    default: '',
   },
 });
 
