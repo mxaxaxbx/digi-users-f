@@ -70,7 +70,7 @@
               group
               bg-[var(--bg-secondary)]
               border border-[var(--border)]
-              rounded-lg p-6 text-left
+              rounded-2xl p-6 text-left
               cursor-pointer
 
               hover:bg-[var(--hover-bg)]
@@ -188,7 +188,7 @@
             group
             bg-[var(--bg-secondary)]
             border border-[var(--border)]
-            rounded-lg p-6 text-left
+            rounded-2xl p-6 text-left
             cursor-pointer
 
             hover:bg-[var(--hover-bg)]
@@ -281,7 +281,7 @@
             group
             bg-[var(--bg-secondary)]
             border border-[var(--border)]
-            rounded-lg p-6 text-left
+            rounded-2xl p-6 text-left
             cursor-pointer
 
             hover:bg-[var(--hover-bg)]
@@ -372,7 +372,7 @@
             group
             bg-[var(--bg-secondary)]
             border border-[var(--border)]
-            rounded-lg p-6 text-left
+            rounded-2xl p-6 text-left
             cursor-pointer
 
             hover:bg-[var(--hover-bg)]
