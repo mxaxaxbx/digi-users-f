@@ -282,6 +282,14 @@
     </div>
 
     <!--anuncio sky-->
+    <audio
+    ref="audioRef"
+    src="/sky-sound.mp3"
+    loop
+    preload="auto"
+  >
+    <track kind="captions" srclang="en" label="Background audio" />
+  </audio>
     <div
       v-if="currentAd === 'sky'"
       class="
@@ -561,6 +569,21 @@ const toggleTheme = () => {
 const isCapOn = ref(false);
 const normalPlaceholder = 'what’s-your@email.com';
 const app = computed(() => typeof route.query.app === 'string' ? route.query.app : '');
+
+
+const audioRef = ref(null)
+
+onMounted(() => {
+  const startAudio = () => {
+    if (audioRef.value) {
+      audioRef.value.volume = 0.5
+      audioRef.value.play()
+    }
+    window.removeEventListener('click', startAudio)
+  }
+
+  window.addEventListener('click', startAudio)
+})
 
 function handleKey(e: KeyboardEvent) {
   if (

@@ -12,6 +12,7 @@
   --text-terceary: #a3a3a3;
   --border: #3d3d3d;
 
+  /* hover */
   --hover-border: #F83B66;
   --hover-bg: #36252D;
   --hover-sky-ad: #202F41;
@@ -20,6 +21,16 @@
 
   --hover-bg-gray: #2a2a2a;
   --hover-border-gray: #9CA3AF;
+
+  /* notifications */
+  --error-border: #FF2121;
+  --error-bg: #282525;
+  --success-border: #00B44B;
+  --success-bg: #252826;
+  --info-border: #009dff;
+  --info-bg: #252728;
+  --warning-border: #ffa600;
+  --warning-bg: #373226;
 }
 
 /* Tema claro */
@@ -31,6 +42,7 @@
   --text-terceary: #797979;
   --border: #DCDCDC;
 
+  /* hover */
   --hover-border: #F83B66;
   --hover-bg: #fff4f7;
   --hover-sky-ad: #E9F3FF;
@@ -39,7 +51,18 @@
 
   --hover-bg-gray: #ffffff;
   --hover-border-gray: #b9b9b9;
+
+  /* notifications */
+  --error-border: #FF2121;
+  --error-bg: #ffdddd;
+  --success-border: #00B44B;
+  --success-bg: #DDFFE8;
+  --info-border: #009dff;
+  --info-bg: #caedff;
+  --warning-border: #ffa600;
+  --warning-bg: #fffad2;
 }
+
 * {
   transition:
     background-color 0.8s ease,
