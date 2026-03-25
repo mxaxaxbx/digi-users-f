@@ -151,7 +151,7 @@
                   </h1>
 
                   <a
-                    href="https://discord.com/invite/UsGXbTkJSE"
+                    href="https://discord.gg/n8NHa6sJbc"
                     target="_blank"
                     class="
                       flex items-center justify-between
@@ -263,7 +263,7 @@
                   </a>
                 </div>
               </template>
-            </Dropdown>
+        </Dropdown>
     </div>
   </div>
   </nav>
