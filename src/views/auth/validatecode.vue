@@ -7,8 +7,8 @@
       bg-[var(--bg)]">
     <div class="
         -mt-5 mx-auto
-        px-auto pb-24 pt-16 sm:px-8
-        rounded-lg
+        px-auto pb-16 pt-16 sm:px-8
+        rounded-2xl
         bg-[var(--bg)]
         shadow-sm
 
@@ -19,19 +19,19 @@
         ? '/img/logo-digi-light.svg'
         : '/img/logo-digi.svg'"
         alt="utils Logo"
-        class="h-[25px] ml-6 mb-20"
+        class="h-8 ml-6 mb-16"
         />
       <form class="px-6 h-full" action="" method="POST" @submit.prevent="validatecode()">
         <h1
           class="
             w-full
             my-8
-            text-2xl text-left text-[var(--text)]
+            text-3xl text-left text-[var(--text)]
             font-bold
             sm:text-3xl
           ">
           Ready for Your<br>Verification Code?... &#58;&#41;</h1>
-        <h3 class="w-full text-center text-[var(--text-secondary)] text-md sm:text-md font-light">
+        <h3 class="w-full text-center text-[var(--text-secondary)] text-sm sm:text-md font-light">
           A fresh code just landed in your inbox. Go take a look.
         </h3>
         <div class="flex w-full justify-center items-center my-2">
@@ -49,7 +49,7 @@
           Change
         </router-link>
         </div>
-        <div class="w-full my-10 ">
+        <div class="w-full my-10">
           <div class="flex space-x-3 justify-center">
             <!-- eslint-disable-next-line  vuejs-accessibility/form-control-has-label -->
             <input
@@ -62,10 +62,12 @@
               @focus="lockCaret"
               @keydown="handleKeydown"
               type="text"
+              inoutmode="numeric"
+              pattern="[0-9]*"
               maxlength="1"
               :disabled="loading"
               :class="[
-              'w-10 p-2 rounded text-[var(--text)] text-center codes',
+              'w-10 p-2 rounded-xl text-[var(--text)] text-center codes',
               loading
                 ? 'bg-[var(--bg-secundary)] border border-[var(--border)] opacity-30'
                 : wrongCode

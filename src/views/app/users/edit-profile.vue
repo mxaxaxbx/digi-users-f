@@ -22,7 +22,7 @@
         class="
           my-4 sm:my-10
           bg-[var(--bg-secondary)]
-          border border-[var(--border)] rounded-lg
+          border border-[var(--border)] rounded-2xl
         ">
         <h3 class="font-semibold text-[var(--text)] text-lg border-b border-[var(--border)] px-4 py-2 sm:px-8 sm:py-4">Perfil Information</h3>
         <Form
