@@ -3,12 +3,13 @@
     <div
       v-for="(notification, index) in notifications"
       :key="index"
-      class="mt-2 rounded-lg px-5 py-2 border shadow mb-2 text-white"
+      class="mt-2 rounded-2xl px-3 py-1 border shadow mb-2 text-white"
       :class="{
-        'border-red-500 bg-red-100': notification.type === 'error',
-        'border-green-500 bg-green-100': notification.type === 'success',
-        'border-blue-500 bg-blue-100': notification.type === 'info',
-        'border-yellow-500 bg-yellow-100': notification.type === 'warning',
+        'border-[#FF2121] bg-[#FF2121]/20': notification.type === 'error',
+        'border-[#00B44B] bg-[#00B44B]/20': notification.type === 'success',
+        'border-[#009DFF] bg-[#009DFF]/20': notification.type === 'info',
+        'border-[#FFA600] bg-[#FFA600]/20': notification.type === 'warning',
+        'border-[#3d3d3d] bg-[#3d3d3d]/20': notification.type === 'default'
       }"
     >
       <div class="flex justify-between">
@@ -54,15 +55,15 @@ import { NotificationI } from '@/store/notifications/state';
 function getIcon(type: string) {
   switch (type) {
     case 'success':
-      return '/icon/icon/icon-success.svg';
+      return '/icon/icon-success.svg';
     case 'error':
-      return '/icon/icon/icon-error.svg';
+      return '/icon/icon-error.svg';
     case 'info':
-      return '/icon/icon/icon-info.svg';
+      return '/icon/icon-info.svg';
     case 'warning':
-      return '/icon/icon/icon-warning.svg';
+      return '/icon/icon-warning.svg';
     default:
-      return '/icon/icon/icon-notification.svg';
+      return '/icon/icon-notification.svg';
   }
 }
 

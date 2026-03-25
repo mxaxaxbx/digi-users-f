@@ -35,8 +35,10 @@
     <!-- footer -->
     <footer
       v-if="shouldShowFooter"
-      class="bg-[var(--bg)] group mt-20">
-        <div class="w-full h-px bg-line"></div>
+      class="bg-[var(--bg)] group mt-20
+      "
+    >
+      <div class="w-full h-px bg-line"></div>
         <div
           class="
             container
@@ -44,7 +46,8 @@
             text-center
 
             sm:px-24
-          ">
+          "
+        >
           <div
             class="
               flex flex-col
@@ -53,7 +56,8 @@
               py-16 mb-8
 
               sm:flex-row sm:items-start
-            ">
+            "
+          >
             <router-link
               :to="isAuth ? '/app' : '/'"
               class="mb-10 sm:mb-0
@@ -67,7 +71,8 @@
                   h-6 opacity-30
                   group-hover:opacity-100
                   courser-pointer
-                "/>
+                "
+              />
             </router-link>
             <div
               class="
@@ -79,7 +84,8 @@
 
                 sm:mr-20 sm:mx-0
                 sm:space-x-20
-              ">
+              "
+            >
               <div class="text-left">
                 <h3 class="text-sm text-[var(--text)] font-regular mb-4">Products</h3>
                 <ul
@@ -87,9 +93,12 @@
                     space-y-2
                     text-xs text-[var(--text)] font-light
                     pl-1
-                  ">
-                  <li><a
+                  "
+                >
+                  <li>
+                    <a
                     :href="skyAppLink"
+                    target="_blank"
                     class="
                       opacity-50 hover:opacity-100
                       transition-all duration-300 ease-in-out
@@ -138,7 +147,7 @@
                     ">Help Center
                   </a></li>
                   <li><a
-                    href="https://discord.gg/UsGXbTkJSE"
+                    href="https://discord.gg/n8NHa6sJbc"
                     target="_blank"
                     class="
                       opacity-50 hover:opacity-100
@@ -188,7 +197,7 @@
             </button>
             </div>
           </div>
-        </footer>
+    </footer>
   </div>
 </template>
 <script setup lang="ts">

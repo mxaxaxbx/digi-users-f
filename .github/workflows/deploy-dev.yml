@@ -28,6 +28,7 @@ jobs:
           VUE_APP_UTILS_URL: ${{ secrets.VUE_APP_UTILS_URL_DEV }}
           VUE_APP_DG_APP_INVENTORY: ${{ secrets.VUE_APP_DG_APP_INVENTORY_DEV }}
           VUE_APP_GOOGLE_CLIENT_ID: ${{ secrets.VUE_APP_GOOGLE_CLIENT_ID_DEV }}
+          VUE_APP_CALENDAR_URL: ${{ secrets.VUE_APP_CALENDAR_URL_DEV }}
         run: |
           env="DEV"
           printenv | grep VUE_APP_ > .env
