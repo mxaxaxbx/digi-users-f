@@ -77,6 +77,13 @@ function switchApp() {
       window.location.href = url;
       break;
     }
+    case 'contextify': {
+      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
+      const { VUE_APP_CONTEXTIFY_URL } = process.env;
+      const url = `${VUE_APP_CONTEXTIFY_URL}/${uri}`;
+      window.location.href = url;
+      break;
+    }
     default:
       console.log(`Invalid app specified in query: ${app}`);
       loading.value = false;
