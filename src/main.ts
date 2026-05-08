@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, defineAsyncComponent } from 'vue';
 import App from './App.vue';
 
 import router from './router';
@@ -24,4 +24,5 @@ createApp(App)
   .use(store)
   .use(router)
   .use(clickOutside)
+  .component('PolicySidebar', defineAsyncComponent(() => import('./components/global/policy-sidebar.vue')))
   .mount('#app');
