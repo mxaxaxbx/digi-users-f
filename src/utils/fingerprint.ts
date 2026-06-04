@@ -89,3 +89,13 @@ export async function getFingerprint(): Promise<Record<string, unknown>> {
 
   return fp;
 }
+
+async function hashFingerprint(fp: Record<string, unknown>): Promise<string> {
+  const json = JSON.stringify(fp);
+  const encoder = new TextEncoder();
+  const data = encoder.encode(json);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
