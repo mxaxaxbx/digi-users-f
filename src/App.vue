@@ -27,7 +27,7 @@
     <div
       class="min-h-[calc(100vh-4rem)]"
       :class="{
-        'pt-16': shouldShowNavbar
+        'pt-10': shouldShowNavbar
       }"
     >
       <router-view :key="$route.fullPath" />
@@ -35,7 +35,7 @@
     <!-- footer -->
     <footer
       v-if="shouldShowFooter"
-      class="bg-[var(--bg)] group mt-20
+      class="bg-[var(--bg)] group
       "
     >
       <div class="w-full h-px bg-line"></div>
