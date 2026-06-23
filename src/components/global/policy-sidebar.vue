@@ -1,8 +1,8 @@
 <template>
-  <aside class="w-72 flex-shrink-0 sticky fixed top-0 h-screen border-r border-[var(--border)] overflow-y-auto custom-scrollbar mt-0">
+  <aside class="w-80 flex-shrink-0 sticky fixed top-0 h-screen border-r border-[var(--border)] overflow-y-auto custom-scrollbar pt-8">
     <div class="sticky pt-4 pb-20 space-y-8 divide-y divide-[var(--border)]">
       <div v-for="group in groups" :key="group.title" class="">
-        <h2 class="px-8 my-8 text-md font-light text-[var(--text-secondary)] opacity-40">
+        <h2 class="px-8 my-4 text-md font-light text-[var(--text-secondary)] opacity-40">
           {{ group.title }}
         </h2>
         <div class="space-y-2 ">

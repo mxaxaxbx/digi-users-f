@@ -244,24 +244,15 @@
                 </div>
 
                 <!-- Footer -->
-                <div
-                  class="flex justify-around mt-8 text-[10px] text-[#3d3d3d] px-16"
-                >
-                  <a
+                <a
                   href="/privacy-policy"
                   target="_blank"
-                  class="hover:underline hover:text-[#bebebe]"
-                  >
-                    Terms of Service</a>
+                  class="flex justify-around mt-8 text-[10px] text-[var(--text-terceary)] px-16 opacity-50 hover:opacity-100"
+                >
+                  <span>Terms of Service</span>
                     <span>•</span>
-                  <a
-                    href="/privacy-policy"
-                    target="_blank"
-                    class="hover:underline hover:text-[#bebebe]"
-                  >
-                    Privacy Policy
-                  </a>
-                </div>
+                  <span>Privacy Policy</span>
+                </a>
               </template>
         </Dropdown>
     </div>
