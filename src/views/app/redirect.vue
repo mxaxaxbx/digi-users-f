@@ -13,83 +13,38 @@ const route = useRoute();
 const router = useRouter();
 const loading = ref(false);
 
-function switchApp() {
-  const { app } = route.query;
-  let { redirect } = route.query;
+// Maps each supported app to the env var holding its base URL.
+const APP_BASE_URLS: Record<string, string | undefined> = {
+  edu: process.env.VUE_APP_URL_DG_EDU_APP,
+  care: process.env.VUE_APP_URL_DG_CARE_APP,
+  sky: process.env.VUE_APP_SKY_URL,
+  atlas: process.env.VUE_APP_URL_DG_ATLAS_APP,
+  fireweb: process.env.VUE_APP_URL_DG_FIREWEB_APP,
+  subscriptions: process.env.VUE_APP_DG_APP_SUBS,
+  inventory: process.env.VUE_APP_DG_APP_INVENTORY,
+  utils: process.env.VUE_APP_UTILS_URL,
+  calendar: process.env.VUE_APP_CALENDAR_URL,
+  contextify: process.env.VUE_APP_CONTEXTIFY_URL,
+  connect: process.env.VUE_APP_CONNECT_URL,
+};
 
-  redirect = redirect && redirect.includes('/auth/confirmsession') ? '' : redirect;
+function switchApp() {
+  const app = String(route.query.app ?? '');
+  const rawRedirect = String(route.query.redirect ?? '');
+  const redirect = rawRedirect.includes('/auth/confirmsession') ? '' : rawRedirect;
+
+  const baseUrl = APP_BASE_URLS[app];
+
+  if (!baseUrl) {
+    console.log(`Invalid app specified in query: ${app}`);
+    loading.value = false;
+    router.push({ name: 'home' });
+    return;
+  }
 
   const token = localStorage.getItem('token');
-
-  switch (app) {
-    case 'edu': {
-      const eduApp = process.env.VUE_APP_URL_DG_EDU_APP;
-      window.location.href = `${eduApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
-      break;
-    }
-    case 'care': {
-      const careApp = process.env.VUE_APP_URL_DG_CARE_APP;
-      window.location.href = `${careApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
-      break;
-    }
-    case 'sky': {
-      const storageApp = process.env.VUE_APP_SKY_URL;
-      window.location.href = `${storageApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
-      break;
-    }
-    case 'atlas': {
-      const atlasApp = process.env.VUE_APP_URL_DG_ATLAS_APP;
-      window.location.href = `${atlasApp}/auth/confirmsession?token=${token}&redirect=${redirect}`;
-      break;
-    }
-    case 'fireweb': {
-      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
-      const { VUE_APP_URL_DG_FIREWEB_APP } = process.env;
-      const url = `${VUE_APP_URL_DG_FIREWEB_APP}/${uri}`;
-      window.location.href = url;
-      break;
-    }
-    case 'subscriptions': {
-      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
-      const { VUE_APP_DG_APP_SUBS } = process.env;
-      const url = `${VUE_APP_DG_APP_SUBS}/${uri}`;
-      window.location.href = url;
-      break;
-    }
-    case 'inventory': {
-      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
-      const { VUE_APP_DG_APP_INVENTORY } = process.env;
-      const url = `${VUE_APP_DG_APP_INVENTORY}/${uri}`;
-      window.location.href = url;
-      break;
-    }
-    case 'utils': {
-      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
-      const { VUE_APP_UTILS_URL } = process.env;
-      const url = `${VUE_APP_UTILS_URL}/${uri}`;
-      window.location.href = url;
-      break;
-    }
-    case 'calendar': {
-      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
-      const { VUE_APP_CALENDAR_URL } = process.env;
-      const url = `${VUE_APP_CALENDAR_URL}/${uri}`;
-      window.location.href = url;
-      break;
-    }
-    case 'contextify': {
-      const uri = `auth/confirmsession?token=${token}&redirect=${redirect}`;
-      const { VUE_APP_CONTEXTIFY_URL } = process.env;
-      const url = `${VUE_APP_CONTEXTIFY_URL}/${uri}`;
-      window.location.href = url;
-      break;
-    }
-    default:
-      console.log(`Invalid app specified in query: ${app}`);
-      loading.value = false;
-      router.push({ name: 'home' });
-      break;
-  }
+  const params = new URLSearchParams({ token: token ?? '', redirect: String(redirect) });
+  window.location.href = `${baseUrl}/auth/confirmsession?${params}`;
 }
 
 onMounted(() => {

@@ -813,8 +813,8 @@ const calendarAppLink = ref(process.env.VUE_APP_CALENDAR_URL);
 const firewebAppLink = ref(process.env.VUE_APP_URL_DG_FIREWEB_APP);
 const careAppLink = ref(process.env.VUE_APP_URL_DG_CARE_APP);
 const utilsAppLink = ref(process.env.VUE_APP_UTILS_URL);
-const contextifyAppLink = ref(process.env.VUE_APP_CONTEXTIFY_URL);  
-console.log('contextifyAppLink', contextifyAppLink.value);
+const contextifyAppLink = ref(process.env.VUE_APP_CONTEXTIFY_URL);
+const connectAppLink = ref(process.env.VUE_APP_CONNECT_URL);
 
 const isLight = computed(() => store.state.theme.theme === 'light');
 
