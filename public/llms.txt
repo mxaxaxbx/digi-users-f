@@ -1,0 +1,23 @@
+# digi systems
+
+## Summary
+Digi Systems is a digital product studio that builds web-based software solutions and product experiences. The public website introduces the company’s offerings, privacy information, and an authenticated application area for managing users and projects.
+
+## Main pages
+- [Home](/): Landing page with the company overview and product highlights.
+- [About](/about): Company information and product-oriented narrative.
+- [Privacy Policy](/privacy-policy): Privacy and legal information.
+- [Login](/auth/login): Authentication entry point for the application.
+- [Application Home](/app): Authenticated workspace for app users.
+- [Projects](/app/projects): Project management area.
+- [Users](/app/users): User management and profile area.
+
+## Product highlights
+- Digi Sky: Cloud storage and file organization solution.
+- Digi Calendar: Scheduling and planning experience.
+- Other offerings: Digital products and software solutions for modern workflows.
+
+## Notes for AI agents
+- The public site is primarily marketing and navigation.
+- The main functional experience is behind authenticated routes under /app.
+- Important user-facing flows include authentication, profile editing, and project management.
