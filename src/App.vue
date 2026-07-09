@@ -201,7 +201,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import { defineAsyncComponent, computed, ref } from 'vue';
+import {
+  defineAsyncComponent,
+  computed,
+  ref,
+  onMounted,
+} from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 
@@ -238,6 +243,15 @@ function toggleSidebar() {
 function clickOutside() {
   if (showSidebar.value) store.commit('toggleSidebar');
 }
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    // Phase 1: Core Signals Collection
+    store.dispatch('device/generateFingerprint').catch((err) => {
+      console.warn('Could not generate device fingerprint', err);
+    });
+  }
+});
 
 </script>
 
