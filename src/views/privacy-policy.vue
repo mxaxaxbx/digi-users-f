@@ -11,6 +11,7 @@
       <!-- Content -->
       <main class="flex-1 max-w-5xl mx-auto py-16 px-8">
         <div id="intro" class="section scroll-mt-24 my-16">
+          <h1 class="text-5xl md:text-5xl font-normal text-[var(--text-terceary)] opacity-50 mb-16">Términos y condiciones</h1>
           <h1 class="text-6xl md:text-4xl font-normal mb-8">Introducción</h1>
             <span class="text-[var(--text-secondary)] italic font-light text-sm">
             "Sabemos que es tentador saltarse estos Términos del Servicio, pero es importante
@@ -232,65 +233,150 @@
               Puedes encontrar más detalles sobre cómo gestionamos estas comunicaciones en nuestra Política de Privacidad.
             </p>
             <h3 class="text-2xl font-regular mb-4 text-[var(--text-secondary)]">Comentarios y sugerencias</h3>
-            <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mx-6 mb-4">
+            <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mx-6 mb-36">
               Si decides enviarnos comentarios, sugerencias o propuestas de mejora, Digi podrá utilizarlos para desarrollar, mejorar o modificar los servicios sin que ello genere obligación de compensación, reconocimiento o respuesta hacia ti.
             </p>
         </div>
 
-        <div id="sharing" class="section mb-16 scroll-mt-24">
-          <h2 class="text-2xl font-semibold mb-6">Compartir su información</h2>
-          <p class="text-gray-500 mb-4">
-            No vendemos, alquilamos ni compartimos su información personal con terceros, excepto cuando sea necesario para:
+        <div id="intro2" class="section mb-16 scroll-mt-24">
+          <h1 class="text-5xl md:text-5xl font-normal text-[var(--text-terceary)] opacity-50 mb-16 mt-20">Política de privacidad</h1>
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Introducción</h1>
+          <p class="text-[var(--text-secondary)] italic font-light text-sm">
+            En Digi Systems, estamos comprometidos con la protección de tu privacidad.
+            Esta Política de Privacidad explica cómo recopilamos, utilizamos y protegemos tu información cuando utilizas nuestros servicios.
+            Al utilizar nuestro sitio web y nuestros servicios, aceptas los términos descritos en esta política.
           </p>
-          <ul class="space-y-3 text-gray-500">
-            <li v-for="item in sharingItems" :key="item" class="flex gap-3">
-              <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              {{ item }}
-            </li>
+        </div>
+
+        <div id="info" class="section mb-16 scroll-mt-24">
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Información que recopilamos</h1>
+          <h3 class="text-2xl font-light mb-4 text-[var(--text-secondary)]">1. Datos de Google OAuth</h3>
+            <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mb-8">
+              Cuando inicias sesión utilizando Google OAuth, recopilamos la siguiente información:
+            </p>
+            <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-8" style="list-style-type: disc">
+              <li>Dirección de correo electrónico</li>
+              <li>Nombre</li>
+              <li>ID de Google</li>
+            </ul>
+            <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12">
+              Esta información se almacena de forma segura en nuestra base de datos.
+            </p>
+            <h3 class="text-xl mx-4 font-light mb-4 text-[var(--text-secondary)]">2. Permisos para Google Cloud</h3>
+            <p class="text-[var(--text-terceary)] mx-4 leading-relaxed text-md font-light mb-12">
+                Solicitamos permisos específicos para acceder a tu cuenta de Google Cloud exclusivamente
+                con el fin de habilitar funcionalidades de Fireweb, nuestra plataforma basada en la nube.
+                Estos permisos se utilizan únicamente para proporcionar y mejorar nuestros servicios.
+            </p>
+        </div>
+
+        <div id="how" class="section mb-16 scroll-mt-24">
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Cómo utilizamos tu información</h1>
+          <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mb-8">
+            Solicitamos permisos específicos para acceder a tu cuenta de Google Cloud exclusivamente
+            con el fin de habilitar funcionalidades de Fireweb, nuestra plataforma basada en la nube.
+            Estos permisos se utilizan únicamente para proporcionar y mejorar nuestros servicios.
+          </p>
+          <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12" style="list-style-type: disc">
+            <li>Autenticar e identificar usuarios.</li>
+            <li>Proporcionar y mantener nuestros servicios.</li>
+            <li>Mejorar la experiencia del usuario.</li>
+            <li>Comunicar actualizaciones, soporte e información relacionada con los servicios.</li>
           </ul>
         </div>
 
+        <div id="products" class="section mb-16 scroll-mt-24">
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Políticas específicas por producto</h1>
+          <h3 class="text-xl mx-4 font-light mb-4 text-[var(--text-secondary)]">digi Subscriptions</h3>
+            <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12" style="list-style-type: disc">
+              <li>Podemos enviarte correos electrónicos promocionales sobre nuestros productos, novedades y actualizaciones.</li>
+              <li>Puedes desactivar o reactivar estas comunicaciones promocionales en cualquier momento.</li>
+              <li>También enviaremos comunicaciones relacionadas con soporte, mantenimiento o actualizaciones
+                importantes del servicio. Estas notificaciones no pueden desactivarse, ya que las consideramos
+                esenciales para el correcto funcionamiento de nuestros productos.</li>
+            </ul>
+            <h3 class="text-xl mx-4 font-light mb-4 text-[var(--text-secondary)]">sky</h3>
+            <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12" style="list-style-type: disc">
+              <li>Cualquier archivo reportado bajo la DMCA (Digital Millennium Copyright Act) o por posibles infracciones de derechos de autor podrá ser eliminado sin previo aviso.</li>
+              <li>Esto incluye cualquier contenido que pueda infringir leyes de propiedad intelectual o derechos de terceros.</li>
+            </ul>
+            <h3 class="text-xl mx-4 font-light mb-4 text-[var(--text-secondary)]">calendar</h3>
+            <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12" style="list-style-type: disc">
+              <li>Podemos enviarte correos electrónicos promocionales sobre nuestros productos, novedades y actualizaciones.</li>
+              <li>Puedes desactivar o reactivar estas comunicaciones promocionales en cualquier momento.</li>
+              <li>También enviaremos comunicaciones relacionadas con soporte, mantenimiento o actualizaciones
+                importantes del servicio. Estas notificaciones no pueden desactivarse, ya que las consideramos
+                esenciales para el correcto funcionamiento de nuestros productos.</li>
+            </ul>
+            <h3 class="text-xl mx-4 font-light mb-4 text-[var(--text-secondary)]">fireweb</h3>
+            <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-8" style="list-style-type: disc">
+              <li>Tokens generados por Google.</li>
+              <li>Tokens de recuperación.</li>
+            </ul>
+            <p class="text-[var(--text-terceary)] mx-4 leading-relaxed text-md font-light mb-12">El acceso a Google Cloud está limitado estrictamente a las funcionalidades necesarias para la prestación del servicio.</p>
+            <h3 class="text-xl mx-4 font-light mb-4 text-[var(--text-secondary)]">contextify</h3>
+            <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12" style="list-style-type: disc">
+              <li>Las fuentes de contenido podrán ser eliminadas si se determina que están involucradas en infracciones de derechos de autor o en problemas legales relacionados con propiedad intelectual.</li>
+            </ul>
+            <h3 class="text-xl mx-4 font-light mb-4 text-[var(--text-secondary)]">care</h3>
+            <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12" style="list-style-type: disc">
+              <li>Podemos enviarte correos electrónicos promocionales sobre nuestros productos, novedades y actualizaciones.</li>
+              <li>Puedes desactivar o reactivar estas comunicaciones promocionales en cualquier momento.</li>
+              <li>También enviaremos comunicaciones relacionadas con soporte, mantenimiento o actualizaciones
+                importantes del servicio. Estas notificaciones no pueden desactivarse, ya que las consideramos
+                esenciales para el correcto funcionamiento de nuestros productos.</li>
+            </ul>
+        </div>
+        <div id="share" class="section mb-16 scroll-mt-24">
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Compartición de información</h1>
+          <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mb-8">
+            No vendemos, alquilamos ni compartimos información personal con terceros, salvo cuando sea necesario para:
+          </p>
+          <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12" style="list-style-type: disc">
+            <li>Cumplir con obligaciones legales.</li>
+            <li>Hacer cumplir nuestros Términos de Servicio.</li>
+            <li>Proteger los derechos, la seguridad y la integridad de Digi Systems, sus usuarios o terceros.</li>
+          </ul>
+        </div>
         <div id="security" class="section mb-16 scroll-mt-24">
-          <h2 class="text-2xl font-semibold mb-6">Seguridad de los datos</h2>
-          <div class="bg-blue-500/5 border border-blue-500/10 p-6 rounded-2xl">
-            <p class="text-gray-500 leading-relaxed">
-              Nos tomamos muy en serio la seguridad de sus datos e implementamos las medidas técnicas y organizativas adecuadas para protegerlos contra el acceso, la alteración, la divulgación o la destrucción no autorizados. Sin embargo, ningún método de transmisión o almacenamiento es 100% seguro y no podemos garantizar una seguridad absoluta.
-            </p>
-          </div>
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Seguridad de los datos</h1>
+          <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12">
+            Implementamos medidas técnicas y organizativas adecuadas para proteger tu información
+            frente a accesos no autorizados, alteraciones, divulgación o destrucción.
+            Sin embargo, ningún método de transmisión o almacenamiento es completamente seguro,
+            por lo que no podemos garantizar una seguridad absoluta.
+          </p>
         </div>
-
-        <div id="rights" class="section mb-16 scroll-mt-24">
-          <h2 class="text-2xl font-semibold mb-6">Sus derechos</h2>
-          <div class="space-y-6">
-            <div v-for="right in userRights" :key="right.title" class="group">
-              <h3 class="text-lg font-medium mb-2 group-hover:text-blue-500 transition-colors">{{ right.title }}</h3>
-              <p class="text-gray-500 leading-relaxed">{{ right.description }}</p>
-            </div>
-          </div>
+        <div id="right" class="section mb-16 scroll-mt-24">
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Tus derechos</h1>
+          <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mb-8">
+            Tienes derecho a:
+          </p>
+          <ul class="mx-12 text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12" style="list-style-type: disc">
+            <li>Acceder y corregir tus datos personales.</li>
+            <li>Revocar los permisos otorgados a través de tu cuenta de Google.</li>
+            <li>Solicitar la eliminación de tu cuenta y de los datos asociados.</li>
+          </ul>
         </div>
-
         <div id="changes" class="section mb-16 scroll-mt-24">
-          <h2 class="text-2xl font-semibold mb-6">Cambios en esta política</h2>
-          <p class="text-gray-500 leading-relaxed">
-            Podemos actualizar esta Política de Privacidad de vez en cuando. Le recomendamos que revise esta política periódicamente para mantenerse informado sobre cómo protegemos su información. Los cambios significativos se comunicarán a través de nuestro sitio web o directamente a usted.
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Cambios en esta política</h1>
+          <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mb-12">
+            Podemos actualizar esta Política de Privacidad periódicamente.
+            Los cambios importantes serán comunicados a través de nuestro sitio web o mediante otros canales apropiados.
           </p>
         </div>
 
         <div id="contact" class="section mb-24 scroll-mt-24">
-          <h2 class="text-2xl font-semibold mb-6">Contacto</h2>
-          <div class="p-8 rounded-3xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/10">
-            <p class="text-gray-500 mb-6">Si tiene alguna pregunta, inquietud o solicitud con respecto a esta Política de Privacidad, por favor contáctenos en:</p>
+          <h1 class="text-6xl md:text-4xl font-normal mb-8">Contacto</h1>
+            <p class="text-[var(--text-terceary)] leading-relaxed text-md font-light mb-8">Si tiene alguna pregunta, inquietud o solicitud con respecto a esta Política de Privacidad, por favor contáctenos en:</p>
             <div class="space-y-1">
-              <p class="font-semibold">Equipo de Privacidad de <strong>digiApps</strong> Systems</p>
-              <a href="mailto:support@digiapps.com.co" class="text-blue-500 hover:underline text-lg">support@digiapps.com.co</a>
+              <p class="text-[var(--text-terceary)] leading-relaxed text-md font-regular">Equipo de Privacidad de <strong>digiApps</strong> Systems</p>
+              <a href="mailto:support@digiapps.com.co" class="text-[var(--color-primary)] hover:underline text-lg">support@digiapps.com.co</a>
             </div>
-          </div>
         </div>
 
-        <footer class="pt-12 border-t border-[var(--border)]">
-          <p class="text-sm text-gray-400">
+        <footer class="pt-12">
+          <p class="text-sm text-[var(--text-terceary)] font-light">
             Al utilizar nuestros servicios, usted reconoce que ha leído y comprendido esta Política de Privacidad y acepta sus términos.
           </p>
         </footer>
@@ -317,10 +403,14 @@ const groups = [
   {
     title: 'Política de privacidad',
     sections: [
-      { id: 'sharing', title: 'Compartir información' },
-      { id: 'security', title: 'Seguridad' },
-      { id: 'rights', title: 'Sus derechos' },
-      { id: 'changes', title: 'Cambios' },
+      { id: 'intro2', title: 'Introducción' },
+      { id: 'info', title: 'Información que recopilamos' },
+      { id: 'how', title: 'Cómo utilizamos tu información' },
+      { id: 'products', title: 'Políticas específicas por producto' },
+      { id: 'share', title: 'Compartición de información' },
+      { id: 'security', title: 'Seguridad de los datos' },
+      { id: 'rights', title: 'Tus derechos' },
+      { id: 'changes', title: 'Cambios en esta política' },
       { id: 'contact', title: 'Contacto' },
     ],
   },
