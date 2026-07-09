@@ -1,54 +1,188 @@
-# Roadmap 2 — Users Frontend
+# Project Roadmap & Architecture
 
-The Users frontend becomes responsible for integrating the SDK into every authentication flow.
+## @digi-io/device-sdk
 
-## Milestone 1 — Login
+Device Identity SDK for browser and device fingerprinting.
 
-### Current
-- Email OTP
-- outh (Google)
+This package provides a `DeviceSDK` class with a `generate()` method to extract various signals (browser, screen, timezone, language, hardware, etc.) and normalizes them into a stable SHA-256 fingerprint hash.
 
-### Future
-- Include Device Fingerprint
+### Installation
 
-### Flow
-1. Login
-2. `DeviceSDK.generate()`
-3. `POST /login`
+```bash
+npm install @digi-io/device-sdk
+```
 
-## Milestone 2 — OAuth
+### Usage
 
-Every OAuth provider should also include the fingerprint.
+#### Phase 1: Core Signals (achieved)
+By default, the SDK collects stable, non-intrusive core signals (browser, screen, language, timezone, and hardware):
 
-- Google → Users Backend → Device Identity
+```ts
+import { DeviceSDK } from "@digi-io/device-sdk";
 
-Same for:
-- Google
-- GitHub
-- Microsoft
-- Apple
-- Future providers
+const sdk = new DeviceSDK();
 
-## Milestone 3 — Token Refresh
+sdk.generate().then((fingerprint) => {
+    console.log("Device Hash:", fingerprint.hash);
+    console.log("Device Data:", fingerprint);
+});
+```
 
-Every refresh request should send:
+#### Phase 2: Advanced Fingerprinting
+To generate a more unique fingerprint, you can enable advanced collectors like Canvas, WebGL, and Audio:
 
+```ts
+import { DeviceSDK } from "@digi-io/device-sdk";
+
+const sdk = new DeviceSDK({
+    includeCanvas: true,
+    includeWebGL: true,
+    includeAudio: true,
+    includeFonts: true,
+    includePlugins: true,
+    includeMediaDevices: true
+});
+
+const fingerprint = await sdk.generate();
+console.log("Advanced Fingerprint:", fingerprint.hash);
+```
+
+#### Phase 3: Integrity & Risk Signals
+You can also enable integrity checks and heuristics to detect bots, emulators, and tampering:
+
+```ts
+import { DeviceSDK } from "@digi-io/device-sdk";
+
+const sdk = new DeviceSDK({
+    // Advanced Fingerprinting
+    includeCanvas: true,
+    includeWebGL: true,
+    
+    // Integrity & Risk Signals
+    detectIncognito: true,
+    detectAutomation: true, // e.g. WebDriver
+    detectHeadless: true,
+    detectVM: true,
+    detectDevTools: true,
+    enableAntiTampering: true
+});
+
+const fingerprint = await sdk.generate();
+console.log("Risk Score & Integrity Data:", fingerprint);
+```
+
+#### Phase 4: Identity Integration
+The SDK also provides helpers for securely integrating with identity backend systems via signed payloads and API clients.
+
+```ts
+import { DeviceSDK, DeviceIdentity, DeviceAPI } from "@digi-io/device-sdk";
+
+const sdk = new DeviceSDK();
+const fingerprint = await sdk.generate();
+
+// 1. Generate JWT-compatible Claims & Signed Payloads
+const identity = new DeviceIdentity();
+await identity.generateKeyPair(); // ECDSA Key Pair
+
+const signedPayload = await identity.generateSignedDevicePayload(fingerprint, {
+    risk_score: fingerprint.integrity?.entropyScore || 0,
+    trusted_device: false
+});
+
+console.log("Signed Device Payload:", signedPayload);
+
+// 2. Interact with Backend Device APIs
+const deviceApi = new DeviceAPI({
+    baseUrl: process.env.VUE_APP_URL_DG_USERS,
+    getToken: () => localstorage.get('token')
+});
+
+// Register or fetch devices
+const userDevices = await deviceApi.getDevices();
+console.log("User Devices:", userDevices);
+
+// Trust or Revoke Devices
+await deviceApi.trustDevice('device_123');
+await deviceApi.revokeDevice('device_123');
+```
+
+---
+
+## Architecture Flow
+
+```text
+    @digi-io/device-sdk
+        ┌───────────────────────────────────────┐
+        │                                       │
+        │  Signal Collection                    │
+        │  Fingerprint Engine                   │
+        │  Integrity Detection                  │
+        │  Risk Signals                         │
+        │  DeviceIdentity (ECDSA)               │
+        │  DeviceAPI Client                     │
+        │                                       │
+        └───────────────────────────────────────┘
+                        │
+                        ▼
+                Signed Device Payload
+                        │
+                        ▼
+              Digi Users (Identity Authority)
+ ┌─────────────────────────────────────────────────────┐
+ │                                                     │
+ │ Authentication                                      │
+ │ OAuth                                               │
+ │ JWT                                                  │
+ │ Device Registry                                     │
+ │ Device Resolver                                     │
+ │ Session Manager                                     │
+ │ Risk Engine                                         │
+ │ Trust Engine                                        │
+ │ Device APIs                                         │
+ │ Event Publisher                                     │
+ │                                                     │
+ └─────────────────────────────────────────────────────┘
+                        │
+              JWT + Device Claims
+                        │
+      ┌────────────┬─────────────┬────────────┬────────────┐
+      ▼            ▼             ▼            ▼
+     Sky       Fireweb      Contextify      Atlas
+```
+
+---
+
+## Roadmap 2 — Users Frontend
+
+### Authentication
+- [ ] Login integration
+- [ ] OAuth integration
+- [ ] Refresh Token integration
+
+*Note: All authentication requests should include the following payload format instead of sending only a hash:*
 ```json
 {
-    "device_hash": "...",
-    "device_version": 1
+    "fingerprint": {},
+    "device_payload": "...",
+    "signature": "..."
 }
 ```
 
-This lets the backend detect token theft.
+### Device Management
 
-## Milestone 4 — Device Management
+**Navigation Flow:** `New Account page` -> `Account` -> `Devices`
 
-New page: **Account** → **Devices**
+#### Capabilities
+- [ ] View devices
+- [ ] Rename device
+- [ ] Trust device
+- [ ] Revoke device
+- [ ] Remove device
+- [ ] Session history
 
-Showing:
-- Browser
-- OS
-- First seen
-- Last seen
-- Trusted
+#### Security Center (Future feature)
+- [ ] Display Last login
+- [ ] Display Risk score
+- [ ] Display Trusted status
+- [ ] Display Suspicious logins
+- [ ] Display Active sessions
