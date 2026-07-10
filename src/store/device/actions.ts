@@ -6,7 +6,15 @@ import { DeviceStateI } from './state';
 export const actions: ActionTree<DeviceStateI, RootStateI> = {
   async generateFingerprint({ commit }) {
     try {
-      const sdk = new DeviceSDK();
+      const SDK = DeviceSDK as any;
+      const sdk = new SDK({
+        includeCanvas: true,
+        includeWebGL: true,
+        includeAudio: true,
+        includeFonts: true,
+        includePlugins: true,
+        includeMediaDevices: true,
+      });
       const fingerprint = await sdk.generate();
       commit('setFingerprint', {
         hash: fingerprint.hash,
