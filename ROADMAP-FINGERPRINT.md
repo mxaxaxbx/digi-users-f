@@ -155,9 +155,9 @@ await deviceApi.revokeDevice('device_123');
 ## Roadmap 2 — Users Frontend
 
 ### Authentication
-- [ ] Login integration
-- [ ] OAuth integration
-- [ ] Refresh Token integration
+- [x] Login integration
+- [x] OAuth integration
+- [x] Refresh Token integration
 
 *Note: All authentication requests should include the following payload format instead of sending only a hash:*
 ```json

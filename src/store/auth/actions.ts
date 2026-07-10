@@ -104,6 +104,14 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context.commit('setUser', '');
     window.location.href = '/auth/provider';
   },
+  // TODO: Pending validate token implementation
+  async refreshToken(context: ActionContext<AuthStateI, RootStateI>) {
+    const deviceData = (context.rootState as any).device?.data || {};
+    const { data } = await usersClient.post('api/auth/refresh', {
+      ...deviceData,
+    });
+    context.commit('setToken', data);
+  },
   async validategoogletoken(
     context: ActionContext<AuthStateI, RootStateI>,
     payload: string,
