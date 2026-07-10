@@ -11,7 +11,11 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context: ActionContext<AuthStateI, RootStateI>,
     payload: SendCodeI,
   ) {
-    await usersClient.post('api/auth/sendcode', payload);
+    const deviceData = (context.rootState as any).device?.data || {};
+    await usersClient.post('api/auth/sendcode', {
+      ...payload,
+      ...deviceData,
+    });
     context.commit('setToken', '');
     context.commit('setUser', '');
   },
@@ -19,7 +23,11 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context: ActionContext<AuthStateI, RootStateI>,
     payload: SendCodeI,
   ) {
-    const { data } = await usersClient.post('api/auth/validatecodev2', payload);
+    const deviceData = (context.rootState as any).device?.data || {};
+    const { data } = await usersClient.post('api/auth/validatecodev2', {
+      ...payload,
+      ...deviceData,
+    });
     context.commit('setToken', data);
     // eslint-disable-next-line no-promise-executor-return
     // await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -100,8 +108,15 @@ export const actions: ActionTree<AuthStateI, RootStateI> = {
     context: ActionContext<AuthStateI, RootStateI>,
     payload: string,
   ) {
+    const deviceData = (context.rootState as any).device?.data || {};
     const formData = new FormData();
     formData.append('code', payload);
+
+    if (deviceData.fingerprint) {
+      formData.append('fingerprint', JSON.stringify(deviceData.fingerprint));
+      formData.append('device_payload', JSON.stringify(deviceData.device_payload));
+      formData.append('signature', deviceData.signature);
+    }
 
     const { data } = await usersClient.post(
       '/api/auth/validategoogletoken',

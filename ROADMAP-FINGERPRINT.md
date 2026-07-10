@@ -71,7 +71,7 @@ const fingerprint = await sdk.generate();
 console.log("Risk Score & Integrity Data:", fingerprint);
 ```
 
-#### Phase 4: Identity Integration
+#### Phase 4: Identity Integration (completed)
 The SDK also provides helpers for securely integrating with identity backend systems via signed payloads and API clients.
 
 ```ts

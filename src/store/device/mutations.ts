@@ -6,4 +6,7 @@ export const mutations: MutationTree<DeviceStateI> = {
     state.hash = payload.hash;
     state.data = payload.data;
   },
+  setDevices(state, payload: any[]) {
+    state.devices = payload;
+  },
 };
