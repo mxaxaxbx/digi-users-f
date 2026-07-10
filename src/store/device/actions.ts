@@ -14,6 +14,12 @@ export const actions: ActionTree<DeviceStateI, RootStateI> = {
         includeFonts: true,
         includePlugins: true,
         includeMediaDevices: true,
+        detectIncognito: true,
+        detectAutomation: true,
+        detectHeadless: true,
+        detectVM: true,
+        detectDevTools: true,
+        enableAntiTampering: true,
       });
       const fingerprint = await sdk.generate();
       commit('setFingerprint', {

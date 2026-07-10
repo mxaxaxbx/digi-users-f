@@ -14,7 +14,7 @@ npm install @digi-io/device-sdk
 
 ### Usage
 
-#### Phase 1: Core Signals (achieved)
+#### Phase 1: Core Signals (completed)
 By default, the SDK collects stable, non-intrusive core signals (browser, screen, language, timezone, and hardware):
 
 ```ts
@@ -28,7 +28,7 @@ sdk.generate().then((fingerprint) => {
 });
 ```
 
-#### Phase 2: Advanced Fingerprinting
+#### Phase 2: Advanced Fingerprinting (completed)
 To generate a more unique fingerprint, you can enable advanced collectors like Canvas, WebGL, and Audio:
 
 ```ts
@@ -47,7 +47,7 @@ const fingerprint = await sdk.generate();
 console.log("Advanced Fingerprint:", fingerprint.hash);
 ```
 
-#### Phase 3: Integrity & Risk Signals
+#### Phase 3: Integrity & Risk Signals (completed)
 You can also enable integrity checks and heuristics to detect bots, emulators, and tampering:
 
 ```ts
