@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import store from '@/store';
 

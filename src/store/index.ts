@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { createStore, Store } from 'vuex';
 
 import auth from './auth';

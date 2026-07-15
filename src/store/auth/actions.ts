@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { ActionTree, ActionContext } from 'vuex';
 
 import { usersClient } from '@/http-client';
