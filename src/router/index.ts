@@ -115,6 +115,14 @@ const routes: Array<RouteRecordRaw> = [
               title: 'Edit Profile',
             },
           },
+          {
+            path: 'devices',
+            name: 'devices',
+            component: () => import('../views/app/users/devices.vue'),
+            meta: {
+              title: 'Devices',
+            },
+          },
         ],
       },
       // projects

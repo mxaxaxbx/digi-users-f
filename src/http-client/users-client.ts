@@ -1,4 +1,6 @@
+/* eslint-disable import/no-cycle */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import store from '@/store';
 
 import { camelToSnake } from '@/utils/index';
 import { decode } from '@/utils/custom-enc-dec';
@@ -13,7 +15,7 @@ const baseHttpClient = axios.create({
   },
 });
 
-function customErrorHandler(error: any) {
+async function customErrorHandler(error: any) {
   if (!error.response) {
     console.error('Network error', error);
     return error;
@@ -94,7 +96,10 @@ baseHttpClient.interceptors.request.use((config) => {
 
 baseHttpClient.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
+    if (error.response && error.response.status === 401 && !error.config.isRetry) {
+      return customErrorHandler(error);
+    }
     customErrorHandler(error);
     return Promise.reject(error);
   },
