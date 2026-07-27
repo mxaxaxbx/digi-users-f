@@ -30,6 +30,7 @@ jobs:
           VUE_APP_GOOGLE_CLIENT_ID: ${{ secrets.VUE_APP_GOOGLE_CLIENT_ID_P }}
           VUE_APP_CALENDAR_URL: ${{ secrets.VUE_APP_CALENDAR_URL_P }}
           VUE_APP_CONTEXTIFY_URL: ${{ secrets.VUE_APP_CONTEXTIFY_URL_P }}
+          VUE_APP_CONNECT_URL: ${{ secrets.VUE_APP_CONNECT_URL_P }}
         run: |
           printenv | grep VUE_APP_ > .env
 
